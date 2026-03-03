@@ -88,8 +88,9 @@ All workflows are available as skills. Use them with `/skill-name`.
 
 | Skill | Command | What it does |
 |-------|---------|--------------|
-| Morning Routine | `/morning` | Start the day — reviews yesterday, sets priorities, creates daily note |
+| Morning Routine | `/morning` | Start the day — pulls calendar, reviews yesterday, sets priorities, creates daily note |
 | Daily Wrap-Up | `/daily-wrap-up` | End the day — reflects on priorities, notes for tomorrow, commits to GitHub |
+| Calendar | `/calendar` | View today's or this week's Google Calendar schedule via Playwright |
 | Meeting Notes | `/meeting` | Quick-capture meeting notes into `meetings/raw/` with minimal structure |
 
 ### Reviews
@@ -128,6 +129,12 @@ All workflows are available as skills. Use them with `/skill-name`.
 |-------|---------|--------------|
 | Log Decision | `/log-decision` | Captures a decision with context, options, rationale, and trade-offs |
 | Leverage Audit | `/leverage-audit` | Audits where time goes vs where it should — finds delegation and automation opportunities |
+
+### Integrations
+
+| Skill | Command | What it does |
+|-------|---------|--------------|
+| Calendar | `/calendar [today\|week]` | Reads Google Calendar via Playwright browser, parses events, detects conflicts, estimates focus time |
 
 ---
 

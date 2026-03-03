@@ -10,8 +10,9 @@ Based on [Rohun Jauhar's CEO Personal OS](https://x.com/rohunjauhar/status/19132
 
 EngineeringOS is a vault of markdown files that work together as your daily operating system. Claude Code acts as your AI chief of staff — it reads your context (goals, meetings, patterns, writing style) and helps you run your day, prepare for meetings, draft communications, and reflect on your progress.
 
-**15 built-in skills** (slash commands) automate your workflows:
-- `/morning` — start your day with priorities
+**16 built-in skills** (slash commands) automate your workflows:
+- `/morning` — start your day with calendar and priorities
+- `/calendar` — view today's or this week's schedule from Google Calendar
 - `/daily-wrap-up` — reflect and commit to GitHub
 - `/meeting` — quick-capture meeting notes
 - `/weekly-checkpoint` — weekly review against goals
@@ -104,7 +105,7 @@ Then try your first skill:
 ```
 /morning
 ```
-Reviews yesterday, sets today's priorities, creates a daily note.
+Pulls today's calendar from Google Calendar, reviews yesterday, sets priorities, creates a daily note.
 
 **During the day:**
 ```
@@ -137,7 +138,8 @@ Reflects on the day, commits everything to GitHub.
 
 | Skill | Command | What it does |
 |-------|---------|--------------|
-| Morning Routine | `/morning` | Start the day with priorities |
+| Morning Routine | `/morning` | Start the day with calendar and priorities |
+| Calendar | `/calendar` | View today's or this week's Google Calendar |
 | Daily Wrap-Up | `/daily-wrap-up` | Reflect and commit to GitHub |
 | Meeting Notes | `/meeting` | Quick-capture meeting notes |
 | Weekly Checkpoint | `/weekly-checkpoint` | Weekly review against goals |
@@ -152,6 +154,8 @@ Reflects on the day, commits everything to GitHub.
 | Staff Meeting Prep | `/staff-prep` | Prepare for staff/leadership meetings |
 | Log Decision | `/log-decision` | Capture decisions with rationale |
 | Leverage Audit | `/leverage-audit` | Audit time allocation and find leverage |
+
+**Note:** The `/calendar` skill requires the [Playwright MCP server](https://github.com/anthropics/anthropic-quickstarts/tree/main/mcp-servers/playwright) configured in your Claude Code MCP settings. It uses Playwright to open Google Calendar in a browser and read your schedule via accessibility snapshots.
 
 ---
 
