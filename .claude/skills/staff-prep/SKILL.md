@@ -76,7 +76,7 @@ After I answer, generate the prep document and output it directly (don't save to
 
 After showing the prep, ask:
 
-5. Want me to save this to `meetings/raw/YYYY-MM-DD-staff.md`?
+5. Want me to save this to `meetings/YYYY-MM/YYYY-MM-DD-staff.md`?
 
 ## Tips
 

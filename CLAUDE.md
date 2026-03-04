@@ -40,8 +40,7 @@ EngineeringOS/
 ├── memory.md                    # Accumulated patterns and insights (CRITICAL)
 ├── frameworks/                  # Mental models and frameworks
 ├── meetings/
-│   ├── raw/                     # Dump of meeting notes per day
-│   ├── summaries/               # summary of the meeting for  (YYYY-MM-DD.md)
+│   ├── YYYY-MM/                 # Meeting notes organized by month
 ├── log/
 │   ├── daily/                   # Current week's daily notes (YYYY-MM-DD.md)
 │   ├── weekly/                  # Weekly folders (YYYY-Www/)
@@ -91,7 +90,7 @@ All workflows are available as skills. Use them with `/skill-name`.
 | Morning Routine | `/morning` | Start the day — pulls calendar, reviews yesterday, sets priorities, creates daily note |
 | Daily Wrap-Up | `/daily-wrap-up` | End the day — reflects on priorities, notes for tomorrow, commits to GitHub |
 | Calendar | `/calendar` | View today's or this week's Google Calendar schedule via Playwright |
-| Meeting Notes | `/meeting` | Quick-capture meeting notes into `meetings/raw/` with minimal structure |
+| Meeting Notes | `/meeting` | Quick-capture meeting notes into `meetings/YYYY-MM/` with minimal structure |
 
 ### Reviews
 

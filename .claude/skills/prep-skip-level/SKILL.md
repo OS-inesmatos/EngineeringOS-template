@@ -99,7 +99,7 @@ After I answer, generate the prep document and output it directly (don't save to
 
 After showing the prep, ask:
 
-3. Want me to save this to `meetings/raw/[date]-skip-level-[name].md`?
+3. Want me to save this to `meetings/YYYY-MM/[date]-skip-level-[name].md`?
 
 ## Tips
 

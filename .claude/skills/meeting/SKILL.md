@@ -1,12 +1,12 @@
 ---
 skill_name: meeting
 title: Meeting Notes
-description: Quick-capture meeting notes into meetings/raw/ with minimal structure
+description: Quick-capture meeting notes into meetings/YYYY-MM/ with minimal structure
 ---
 
 # Meeting Notes
 
-Quick-capture a meeting note so you don't lose context. Creates a timestamped file in `meetings/raw/` with just enough structure to be useful later.
+Quick-capture a meeting note so you don't lose context. Creates a timestamped file in `meetings/YYYY-MM/` with just enough structure to be useful later.
 
 ## Usage
 
@@ -24,7 +24,7 @@ The argument after `/meeting` is the meeting description.
    - **Who** — person name(s) or group (e.g., "Carlos", "Staff", "Marina")
    - **Topic** — if provided after a dash or colon (e.g., "AI initiative alignment")
 
-2. Create a file in `meetings/raw/` with this naming format:
+2. Create a file in `meetings/YYYY-MM/` with this naming format:
    `YYYY-MM-DD-<slug>.md` where `<slug>` is a short kebab-case version of the description (e.g., `2026-02-25-1o1-carlos.md`, `2026-02-25-staff-meeting.md`)
 
 3. Use this minimal template:
