@@ -1,0 +1,64 @@
+Total issues analyzed: 115 (out of 115)
+
+========================================
+PHASE 1: Retrospective In Progress → RCA Request Date
+========================================
+Issues analyzed: 115
+Average time: 24.4 days
+Median time: 19.1 days
+Min time: -36 days
+Max time: 149.2 days
+Std deviation: 27.9 days
+
+========================================
+PHASE 2: RCA Request Date → Retrospective Completed
+========================================
+Issues analyzed: 115
+Average time: 50.2 days
+Median time: 34.9 days
+Min time: 3.1 days
+Max time: 283.2 days
+Std deviation: 43.5 days
+
+========================================
+TOTAL TIME (Both Phases)
+========================================
+Issues analyzed: 115
+Average time: 74.6 days
+Median time: 61 days
+Min time: 0.1 days
+Max time: 291.1 days
+Std deviation: 48.8 days
+
+========================================
+BREAKDOWN ANALYSIS
+========================================
+Average Phase 1 (Retro IP → RCA Request): 24.4 days (33%)
+Average Phase 2 (RCA Request → Completed): 50.2 days (67%)
+Average Total: 74.6 days (100%)
+
+Bottleneck: Phase 2 (completing after RCA request)
+
+Top 10 longest Phase 1 (Retro IP → RCA Request):
+  RDINC-36884    :  149.2 days
+  RDINC-47752    :  106.8 days
+  RDINC-39154    :   98.1 days
+  RDINC-37183    :   91.2 days
+  RDINC-53830    :   69.5 days
+  RDINC-54170    :   67.2 days
+  RDINC-54487    :   66.5 days
+  RDINC-54335    :   65.6 days
+  RDINC-55209    :   63.7 days
+  RDINC-55285    :   60.9 days
+
+Top 10 longest Phase 2 (RCA Request → Completed):
+  RDINC-43232    :  283.2 days
+  RDINC-45669    :  140.2 days
+  RDINC-38678    :  140.1 days
+  RDINC-48924    :  135.0 days
+  RDINC-61437    :  119.2 days
+  RDINC-43642    :  116.2 days
+  RDINC-61911    :  113.2 days
+  RDINC-61140    :  113.2 days
+  RDINC-48008    :  111.1 days
+  RDINC-62612    :  110.2 days

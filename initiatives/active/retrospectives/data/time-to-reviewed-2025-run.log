@@ -1,0 +1,540 @@
+
+=== Time from RCA Readout to Reviewed? = Yes (2025 Analysis) ===
+Analyzing 115 issues from 2025...
+
+Using field IDs:
+  RCA Request Date/Time: customfield_16357
+  Reviewed?: customfield_17853
+
+[1/115] Processing RDINC-67391...
+  RCA Readout: 2026-02-12 11:00
+  Reviewed: 2026-02-27 14:26
+  Duration: 15.14 days
+[2/115] Processing RDINC-65975...
+  RCA Readout: 2026-02-13 11:00
+  Reviewed: 2026-03-12 10:33
+  Duration: 26.98 days
+[3/115] Processing RDINC-65898...
+  RCA Readout: 2026-01-30 11:00
+  Reviewed: 2026-02-09 10:37
+  Duration: 9.98 days
+[4/115] Processing RDINC-65652...
+  RCA Readout: 2026-01-20 11:00
+  Reviewed: 2026-02-09 09:21
+  Duration: 19.93 days
+[5/115] Processing RDINC-65439...
+  RCA Readout: 2026-01-27 11:00
+  Reviewed: 2026-02-03 14:53
+  Duration: 7.16 days
+[6/115] Processing RDINC-64639...
+  RCA Readout: 2025-12-17 11:00
+  Reviewed: 2025-12-26 14:45
+  Duration: 9.16 days
+[7/115] Processing RDINC-64439...
+  RCA Readout: 2025-12-31 11:00
+  Reviewed: 2025-12-31 16:44
+  Duration: 0.24 days
+[8/115] Processing RDINC-64437...
+  RCA Readout: 2026-02-10 11:00
+  Reviewed: 2026-02-13 15:56
+  Duration: 3.21 days
+[9/115] Processing RDINC-64289...
+  RCA Readout: 2026-01-27 11:00
+  Reviewed: 2026-02-16 12:17
+  Duration: 20.05 days
+[10/115] Processing RDINC-63743...
+  RCA Readout: 2025-12-02 11:00
+  Reviewed: 2026-01-06 13:35
+  Duration: 35.11 days
+
+  Progress: 10/115 (8.7%)
+
+[11/115] Processing RDINC-63691...
+  RCA Readout: 2025-12-02 11:00
+  Reviewed: 2025-12-29 15:41
+  Duration: 27.2 days
+[12/115] Processing RDINC-63322...
+  RCA Readout: 2026-01-30 11:00
+  Reviewed: 2026-02-04 10:28
+  Duration: 4.98 days
+[13/115] Processing RDINC-62612...
+  RCA Readout: 2025-11-14 11:00
+  Reviewed: 2026-03-04 16:29
+  Duration: 110.23 days
+[14/115] Processing RDINC-61943...
+  RCA Readout: 2025-12-09 11:00
+  Reviewed: 2026-01-13 08:07
+  Duration: 34.88 days
+[15/115] Processing RDINC-61911...
+  RCA Readout: 2025-11-11 11:00
+  Reviewed: 2026-03-04 16:27
+  Duration: 113.23 days
+[16/115] Processing RDINC-61899...
+  RCA Readout: 2025-11-21 11:00
+  Reviewed: 2026-01-07 11:08
+  Duration: 47.01 days
+[17/115] Processing RDINC-61732...
+  RCA Readout: 2025-12-31 11:00
+  Reviewed: 2026-01-21 08:45
+  Duration: 20.91 days
+[18/115] Processing RDINC-61437...
+  RCA Readout: 2025-11-05 11:00
+  Reviewed: 2026-03-04 16:26
+  Duration: 119.23 days
+[19/115] Processing RDINC-61388...
+  RCA Readout: 2025-12-09 11:00
+  Reviewed: 2026-02-02 09:27
+  Duration: 54.94 days
+[20/115] Processing RDINC-61380...
+  RCA Readout: 2026-01-30 11:00
+  Reviewed: 2026-02-02 21:05
+  Duration: 3.42 days
+
+  Progress: 20/115 (17.4%)
+
+[21/115] Processing RDINC-61140...
+  RCA Readout: 2025-11-11 11:00
+  Reviewed: 2026-03-04 16:26
+  Duration: 113.23 days
+[22/115] Processing RDINC-60676...
+  RCA Readout: 2025-11-21 11:00
+  Reviewed: 2025-11-26 12:51
+  Duration: 5.08 days
+[23/115] Processing RDINC-60640...
+  RCA Readout: 2025-12-11 11:00
+  Reviewed: 2025-12-19 14:07
+  Duration: 8.13 days
+[24/115] Processing RDINC-60247...
+  RCA Readout: 2025-12-02 11:00
+  Reviewed: 2025-12-23 08:25
+  Duration: 20.89 days
+[25/115] Processing RDINC-59520...
+  RCA Readout: 2025-11-28 11:00
+  Reviewed: 2026-03-04 16:29
+  Duration: 96.23 days
+[26/115] Processing RDINC-58009...
+  RCA Readout: 2025-11-28 11:00
+  Reviewed: 2026-03-04 16:33
+  Duration: 96.23 days
+[27/115] Processing RDINC-57683...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:33
+  Duration: 96.19 days
+[28/115] Processing RDINC-57405...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:35
+  Duration: 96.19 days
+[29/115] Processing RDINC-56511...
+  RCA Readout: 2025-10-29 10:00
+  Reviewed: 2025-11-04 09:35
+  Duration: 5.98 days
+[30/115] Processing RDINC-56425...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:36
+  Duration: 96.19 days
+
+  Progress: 30/115 (26.1%)
+
+[31/115] Processing RDINC-56421...
+  RCA Readout: 2025-11-07 10:00
+  Reviewed: 2025-11-12 11:52
+  Duration: 5.08 days
+[32/115] Processing RDINC-56032...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:37
+  Duration: 96.19 days
+[33/115] Processing RDINC-56010...
+  RCA Readout: 2025-11-25 12:00
+  Reviewed: 2025-12-09 17:23
+  Duration: 14.22 days
+[34/115] Processing RDINC-55788...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:38
+  Duration: 96.19 days
+[35/115] Processing RDINC-55778...
+  RCA Readout: 2025-11-07 10:00
+  Reviewed: 2025-11-13 11:08
+  Duration: 6.05 days
+[36/115] Processing RDINC-55643...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:38
+  Duration: 96.19 days
+[37/115] Processing RDINC-55555...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:39
+  Duration: 96.19 days
+[38/115] Processing RDINC-55285...
+  RCA Readout: 2025-11-25 12:00
+  Reviewed: 2025-12-22 15:00
+  Duration: 27.13 days
+[39/115] Processing RDINC-55209...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:40
+  Duration: 96.19 days
+[40/115] Processing RDINC-54619...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:40
+  Duration: 96.2 days
+
+  Progress: 40/115 (34.8%)
+
+[41/115] Processing RDINC-54487...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:41
+  Duration: 96.2 days
+[42/115] Processing RDINC-54366...
+  RCA Readout: 2025-10-10 16:00
+  Reviewed: 2025-10-20 17:04
+  Duration: 10.05 days
+[43/115] Processing RDINC-54335...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:41
+  Duration: 96.2 days
+[44/115] Processing RDINC-54170...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:43
+  Duration: 96.2 days
+[45/115] Processing RDINC-53830...
+  RCA Readout: 2025-11-28 12:00
+  Reviewed: 2026-03-04 16:44
+  Duration: 96.2 days
+[46/115] Processing RDINC-53480...
+  RCA Readout: 2025-10-22 14:00
+  Reviewed: 2025-10-29 10:56
+  Duration: 6.87 days
+[47/115] Processing RDINC-53338...
+  RCA Readout: 2025-10-08 14:00
+  Reviewed: 2025-10-13 10:04
+  Duration: 4.84 days
+[48/115] Processing RDINC-53197...
+  RCA Readout: 2025-10-09 10:00
+  Reviewed: 2025-10-30 14:06
+  Duration: 21.17 days
+[49/115] Processing RDINC-53049...
+  RCA Readout: 2025-09-23 14:00
+  Reviewed: 2025-10-20 11:15
+  Duration: 26.89 days
+[50/115] Processing RDINC-52520...
+  RCA Readout: 2025-09-23 10:00
+  Reviewed: 2025-09-30 15:40
+  Duration: 7.24 days
+
+  Progress: 50/115 (43.5%)
+
+[51/115] Processing RDINC-51786...
+  RCA Readout: 2025-09-22 10:00
+  Reviewed: 2025-10-20 10:50
+  Duration: 28.04 days
+[52/115] Processing RDINC-50709...
+  RCA Readout: 2025-09-15 11:30
+  Reviewed: 2025-09-23 11:23
+  Duration: 8 days
+[53/115] Processing RDINC-49925...
+  RCA Readout: 2025-09-08 16:30
+  Reviewed: 2025-09-15 09:30
+  Duration: 6.71 days
+[54/115] Processing RDINC-49765...
+  RCA Readout: 2025-08-26 15:00
+  Reviewed: 2025-09-16 10:53
+  Duration: 20.83 days
+[55/115] Processing RDINC-48942...
+  RCA Readout: 2025-08-18 11:30
+  Reviewed: 2025-09-05 15:13
+  Duration: 18.15 days
+[56/115] Processing RDINC-48924...
+  RCA Readout: 2025-09-08 11:00
+  Reviewed: 2025-09-17 13:48
+  Duration: 9.12 days
+[57/115] Processing RDINC-48648...
+  RCA Readout: 2025-09-01 10:30
+  Reviewed: 2025-09-16 16:18
+  Duration: 15.24 days
+[58/115] Processing RDINC-48388...
+  RCA Readout: 2025-09-15 15:30
+  Reviewed: 2025-10-14 15:34
+  Duration: 29 days
+[59/115] Processing RDINC-48008...
+  RCA Readout: 2025-08-07 16:00
+  Reviewed: 2025-10-07 17:56
+  Duration: 61.08 days
+[60/115] Processing RDINC-47955...
+  RCA Readout: 2025-08-13 10:00
+  Reviewed: 2025-09-12 14:27
+  Duration: 30.19 days
+
+  Progress: 60/115 (52.2%)
+
+[61/115] Processing RDINC-47752...
+  RCA Readout: 2025-11-06 10:00
+  Reviewed: 2025-11-11 13:48
+  Duration: 5.16 days
+[62/115] Processing RDINC-46787...
+  RCA Readout: 2025-07-23 16:00
+  Reviewed: 2025-07-30 11:42
+  Duration: 6.82 days
+[63/115] Processing RDINC-46603...
+  RCA Readout: 2025-07-23 03:00
+  Reviewed: 2025-09-02 18:32
+  Duration: 41.65 days
+[64/115] Processing RDINC-46598...
+  RCA Readout: 2025-08-04 11:00
+  Reviewed: 2025-08-04 11:33
+  Duration: 0.02 days
+[65/115] Processing RDINC-46517...
+  RCA Readout: 2025-07-29 15:30
+  Reviewed: 2025-08-13 22:57
+  Duration: 15.31 days
+[66/115] Processing RDINC-46447...
+  RCA Readout: 2025-07-22 12:00
+  Reviewed: 2025-08-25 16:49
+  Duration: 34.2 days
+[67/115] Processing RDINC-46267...
+  RCA Readout: 2025-07-24 16:30
+  Reviewed: 2025-08-21 09:42
+  Duration: 27.72 days
+[68/115] Processing RDINC-46156...
+  RCA Readout: 2025-07-15 11:30
+  Reviewed: 2025-08-14 09:11
+  Duration: 29.9 days
+[69/115] Processing RDINC-46135...
+  RCA Readout: 2025-07-15 11:30
+  Reviewed: 2025-08-14 09:11
+  Duration: 29.9 days
+[70/115] Processing RDINC-45937...
+  RCA Readout: 2025-07-11 14:30
+  Reviewed: 2025-09-02 18:31
+  Duration: 53.17 days
+
+  Progress: 70/115 (60.9%)
+
+[71/115] Processing RDINC-45707...
+  RCA Readout: 2025-07-08 12:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 21.14 days
+[72/115] Processing RDINC-45669...
+  RCA Readout: 2025-07-07 11:00
+  Reviewed: 2025-09-04 09:39
+  Duration: 58.94 days
+[73/115] Processing RDINC-45466...
+  RCA Readout: 2025-07-01 10:00
+  Reviewed: 2025-07-29 16:55
+  Duration: 28.29 days
+[74/115] Processing RDINC-45455...
+  RCA Readout: 2025-07-01 10:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 28.22 days
+[75/115] Processing RDINC-45165...
+  RCA Readout: 2025-07-01 10:00
+  Reviewed: 2025-07-29 16:55
+  Duration: 28.29 days
+[76/115] Processing RDINC-44842...
+  RCA Readout: 2025-07-21 15:00
+  Reviewed: 2025-07-25 14:18
+  Duration: 3.97 days
+[77/115] Processing RDINC-43900...
+  RCA Readout: 2025-06-25 15:00
+  Reviewed: 2025-08-05 11:56
+  Duration: 40.87 days
+[78/115] Processing RDINC-43642...
+  RCA Readout: 2025-07-31 12:00
+  Reviewed: 2025-10-29 10:29
+  Duration: 89.94 days
+[79/115] Processing RDINC-43387...
+  RCA Readout: 2025-06-05 15:30
+  Reviewed: 2025-08-05 10:52
+  Duration: 60.81 days
+[80/115] Processing RDINC-43232...
+  RCA Readout: 2025-05-30 10:00
+  Reviewed: 2025-10-20 16:25
+  Duration: 143.27 days
+
+  Progress: 80/115 (69.6%)
+
+[81/115] Processing RDINC-42739...
+  RCA Readout: 2025-06-05 11:00
+  Reviewed: 2025-08-14 09:20
+  Duration: 69.93 days
+[82/115] Processing RDINC-42729...
+  RCA Readout: 2025-06-05 11:00
+  Reviewed: 2025-08-04 10:22
+  Duration: 59.97 days
+[83/115] Processing RDINC-42568...
+  RCA Readout: 2025-07-18 02:00
+  Reviewed: 2025-08-04 07:50
+  Duration: 17.24 days
+[84/115] Processing RDINC-42270...
+  RCA Readout: 2025-07-17 14:30
+  Reviewed: 2025-10-02 17:43
+  Duration: 77.13 days
+[85/115] Processing RDINC-41857...
+  RCA Readout: 2025-05-28 16:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 61.95 days
+[86/115] Processing RDINC-41748...
+  RCA Readout: 2025-07-11 16:00
+  Reviewed: 2025-07-23 15:47
+  Duration: 11.99 days
+[87/115] Processing RDINC-41747...
+  RCA Readout: 2025-05-20 14:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 70.05 days
+[88/115] Processing RDINC-41720...
+  RCA Readout: 2025-06-04 16:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 54.95 days
+[89/115] Processing RDINC-41528...
+  RCA Readout: 2025-07-25 11:30
+  Reviewed: 2025-09-01 15:11
+  Duration: 38.15 days
+[90/115] Processing RDINC-41288...
+  RCA Readout: 2025-06-05 14:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 54.06 days
+
+  Progress: 90/115 (78.3%)
+
+[91/115] Processing RDINC-41083...
+  RCA Readout: 2025-06-02 10:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 57.2 days
+[92/115] Processing RDINC-40392...
+  RCA Readout: 2025-05-30 12:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 60.14 days
+[93/115] Processing RDINC-40306...
+  RCA Readout: 2025-05-20 14:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 70.06 days
+[94/115] Processing RDINC-39589...
+  RCA Readout: 2025-06-23 11:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 36.18 days
+[95/115] Processing RDINC-39382...
+  RCA Readout: 2025-04-21 10:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 99.2 days
+[96/115] Processing RDINC-39280...
+  RCA Readout: 2025-05-06 09:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 84.24 days
+[97/115] Processing RDINC-39154...
+  RCA Readout: 2025-07-10 11:30
+  Reviewed: 2025-07-23 15:52
+  Duration: 13.18 days
+[98/115] Processing RDINC-38678...
+  RCA Readout: 2025-04-21 12:00
+  Reviewed: 2025-09-08 14:17
+  Duration: 140.1 days
+[99/115] Processing RDINC-38469...
+  RCA Readout: 2025-04-23 10:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 97.2 days
+[100/115] Processing RDINC-37969...
+  RCA Readout: 2025-05-15 15:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 75.01 days
+
+  Progress: 100/115 (87%)
+
+[101/115] Processing RDINC-37688...
+  RCA Readout: 2025-05-05 11:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 85.16 days
+[102/115] Processing RDINC-37491...
+  RCA Readout: 2025-04-21 14:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 99.06 days
+[103/115] Processing RDINC-37306...
+  RCA Readout: 2025-03-25 16:30
+  Reviewed: 2025-08-05 10:57
+  Duration: 132.77 days
+[104/115] Processing RDINC-37183...
+  RCA Readout: 2025-05-28 14:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 62.03 days
+[105/115] Processing RDINC-36884...
+  RCA Readout: 2025-08-06 16:00
+  Reviewed: 2025-09-10 13:29
+  Duration: 34.9 days
+[106/115] Processing RDINC-36863...
+  RCA Readout: 2025-03-14 15:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 137.01 days
+[107/115] Processing RDINC-36551...
+  RCA Readout: 2025-03-20 17:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 130.91 days
+[108/115] Processing RDINC-36438...
+  RCA Readout: 2025-03-18 17:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 132.91 days
+[109/115] Processing RDINC-36405...
+  RCA Readout: 2025-06-03 09:30
+  Reviewed: 2025-08-04 17:16
+  Duration: 62.32 days
+[110/115] Processing RDINC-36359...
+  RCA Readout: 2025-02-25 11:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 154.16 days
+
+  Progress: 110/115 (95.7%)
+
+[111/115] Processing RDINC-36200...
+  RCA Readout: 2025-02-27 15:30
+  Reviewed: 2025-07-29 15:19
+  Duration: 151.99 days
+[112/115] Processing RDINC-35624...
+  RCA Readout: 2025-02-06 10:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 173.22 days
+[113/115] Processing RDINC-35430...
+  RCA Readout: 2025-01-28 10:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 182.22 days
+[114/115] Processing RDINC-35357...
+  RCA Readout: 2025-02-05 16:30
+  Reviewed: 2025-08-04 17:05
+  Duration: 180.02 days
+[115/115] Processing RDINC-35312...
+  RCA Readout: 2025-02-04 12:00
+  Reviewed: 2025-07-29 15:19
+  Duration: 175.14 days
+
+=== Summary Statistics ===
+
+Total issues processed: 115
+Issues with both dates: 115
+Issues missing RCA date: 0
+Issues missing review: 0
+Errors: 0
+
+Time from RCA Readout to Reviewed? = Yes:
+  Average: 56.73 days
+  Median: 40.87 days
+  Min: 0.02 days
+  Max: 182.22 days
+
+Percentiles:
+  P25 (25%): 15.31 days
+  P75 (75%): 96.19 days
+  P90 (90%): 130.91 days
+
+Results saved to:
+..\data\time-to-reviewed-2025-20260319-101126.csv
+
+=== Top 10 Slowest (Days to Review) ===
+
+Issue       DurationDays RCAReadoutDate      ReviewedDate       
+-----       ------------ --------------      ------------       
+RDINC-35430       182.22 2025-01-28 10:00:00 2025-07-29 15:19:37
+RDINC-35357       180.02 2025-02-05 16:30:00 2025-08-04 17:05:33
+RDINC-35312       175.14 2025-02-04 12:00:00 2025-07-29 15:19:38
+RDINC-35624       173.22 2025-02-06 10:00:00 2025-07-29 15:19:36
+RDINC-36359       154.16 2025-02-25 11:30:00 2025-07-29 15:19:34
+RDINC-36200       151.99 2025-02-27 15:30:00 2025-07-29 15:19:35
+RDINC-43232       143.27 2025-05-30 10:00:00 2025-10-20 16:25:33
+RDINC-38678        140.1 2025-04-21 12:00:00 2025-09-08 14:17:57
+RDINC-36863       137.01 2025-03-14 15:00:00 2025-07-29 15:19:29
+RDINC-36438       132.91 2025-03-18 17:30:00 2025-07-29 15:19:33
+
+

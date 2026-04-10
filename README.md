@@ -154,8 +154,30 @@ Reflects on the day, commits everything to GitHub.
 | Staff Meeting Prep | `/staff-prep` | Prepare for staff/leadership meetings |
 | Log Decision | `/log-decision` | Capture decisions with rationale |
 | Leverage Audit | `/leverage-audit` | Audit time allocation and find leverage |
+| Audit Jira Field | `/audit-jira-field` | Check if a Jira field is used in automations |
 
 **Note:** The `/calendar` skill requires the [Playwright MCP server](https://github.com/anthropics/anthropic-quickstarts/tree/main/mcp-servers/playwright) configured in your Claude Code MCP settings. It uses Playwright to open Google Calendar in a browser and read your schedule via accessibility snapshots.
+
+---
+
+## Governance & Tools
+
+### Audit Jira Field Usage
+
+Before changing or removing Jira fields, check if they're used in automations:
+
+```bash
+/audit-jira-field "Field Name"
+/audit-jira-field "Field Name" --project 24263
+```
+
+**How it works:**
+- Searches cached Jira automation rules (`.claude/data/automation-rules.json`)
+- Shows which automations use the field
+- Provides impact analysis and recommendations
+
+**Update automation cache:**
+Export from Jira (Settings → System → Automation → Export) and replace `.claude/data/automation-rules.json`.
 
 ---
 

@@ -9,6 +9,9 @@
 # Claude Code auto-memory (personal to each user)
 .claude/projects/
 
+# Jira automation data (contains sensitive company data)
+.claude/data/automation-rules.json
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -16,3 +19,28 @@ desktop.ini
 
 # Optional: uncomment if you don't want uploads tracked
 # uploads/
+
+# Scripts with hardcoded tokens (security risk)
+extract_incident_details.py
+fetch_all_detailed.py
+fetch_all_incidents.py
+
+# Incident data exports (sensitive company data)
+*.csv
+incident-sample.json
+incidents-without-retro-commander-*.csv
+
+# Screenshots (too large, not needed in git)
+*.png
+
+# Playwright automation artifacts
+.playwright-mcp/
+
+# Credentials (never commit these!)
+.credentials/
+**/jira-email.txt
+**/jira-token.txt
+
+# Scripts with hardcoded tokens in retrospectives analysis
+initiatives/active/retrospectives/scripts/*.js
+initiatives/active/retrospectives/scripts/*.sh

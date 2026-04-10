@@ -1,0 +1,25 @@
+Total issues analyzed: 115
+Average lead time: 88.6 days
+Median lead time: 69.6 days
+Min lead time: 14.9 days
+Max lead time: 291.9 days
+Std deviation: 50.7 days
+
+Distribution:
+  0-30 days:    8 issues (7%)
+  30-60 days:   39 issues (34%)
+  60-90 days:   18 issues (16%)
+  90-120 days:  15 issues (13%)
+  120+ days:    35 issues (30%)
+
+Top 10 longest lead times:
+  RDINC-43232    :  291.9 days
+  RDINC-36884    :  203.8 days
+  RDINC-43642    :  180.3 days
+  RDINC-38678    :  174.7 days
+  RDINC-39154    :  173.9 days
+  RDINC-48924    :  168.5 days
+  RDINC-53830    :  165.7 days
+  RDINC-55285    :  165.2 days
+  RDINC-54170    :  163.4 days
+  RDINC-54487    :  162.7 days

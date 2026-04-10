@@ -12,27 +12,27 @@ Rate yourself on each spectrum (mark with X):
 
 ### Formality
 ```
-Very Formal [ ] [ ] [ ] [ ] [ ] Very Casual
+Very Formal [ ] [ ] [X] [ ] [ ] Very Casual
 ```
 
 ### Verbosity
 ```
-Very Concise [ ] [ ] [ ] [ ] [ ] Very Verbose
+Very Concise [ ] [ ] [X] [ ] [ ] Very Verbose
 ```
 
 ### Directness
 ```
-Very Direct [ ] [ ] [ ] [ ] [ ] Very Cautious
+Very Direct [ ] [X] [ ] [ ] [ ] Very Cautious
 ```
 
 ### Warmth
 ```
-All Business [ ] [ ] [ ] [ ] [ ] Highly Personal
+All Business [ ] [ ] [X] [ ] [ ] Highly Personal
 ```
 
 ### Confidence
 ```
-Tentative [ ] [ ] [ ] [ ] [ ] Assertive
+Tentative [ ] [ ] [ ] [X] [ ] Assertive
 ```
 
 ---
@@ -41,21 +41,22 @@ Tentative [ ] [ ] [ ] [ ] [ ] Assertive
 
 ### I Sound Like Someone Who...
 
-- [Describe your communication personality — e.g., "values clarity over diplomacy"]
-- [How you want people to feel when reading your messages]
-- [Your communication style in a sentence]
+- Values clarity over diplomacy
+- Clear and structured
+- Empathetic
+- Action-oriented
 
 ### Sentence Patterns
 
-**Average sentence length:** [Short / Medium / Long]
+**Average sentence length:** Medium
 
 **Typical structure:**
-- [ ] Short, punchy sentences
+- [x] Short, punchy sentences
 - [ ] Longer, flowing sentences with clauses
-- [ ] Mix—short for emphasis, longer for explanation
+- [x] Mix—short for emphasis, longer for explanation
 
 **Paragraph habits:**
-- [ ] One idea per paragraph, very structured
+- [x] One idea per paragraph, very structured
 - [ ] Conversational flow, natural breaks
 - [ ] Dense paragraphs with multiple ideas
 
@@ -66,31 +67,34 @@ Tentative [ ] [ ] [ ] [ ] [ ] Assertive
 *List words and phrases that appear regularly in your writing:*
 
 ### Openers I Use
-- [How you start emails to your team]
-- [How you start emails to executives]
-- [How you start Slack messages]
+- Hi team!
+- Hi everyone!
+- Hi [Name]
 
 ### Transitions I Use
-- [Transition phrase 1]
-- [Transition phrase 2]
-- [Transition phrase 3]
+- First
+- However
+- As a result
+- Additionally
 
 ### Ways I Express Agreement
-- [Agreement phrase 1]
-- [Agreement phrase 2]
+- I agree
+- Absolutely
 
 ### Ways I Push Back
-- [How you disagree or challenge — e.g., "ask questions instead of making statements"]
+- I wonder if…
+- Have we considered…
 
 ### How I Close Messages
-- **Email to team:** [Sign-off + name format]
-- **Email to executives:** [Sign-off + signature format]
-- **Slack:** [How you end Slack messages]
+- **Slack (team channels):** Thank you for your cooperation! / Thanks!
+- **Slack (DMs):** Thanks! / Thank you!
+- **Email (rare):** Best regards, Inês
 
 ### Phrases I Use Frequently
-- [Phrase 1]
-- [Phrase 2]
-- [Phrase 3]
+- "I believe this gives us..."
+- "This can help us..."
+- "Feel free to share..."
+- "For example, we can now..."
 
 ---
 
@@ -141,66 +145,70 @@ Tentative [ ] [ ] [ ] [ ] [ ] Assertive
 
 ## Context-Specific Adjustments
 
-### Email Style
-
-**To my team:**
-- Tone: [e.g., warm, reflective, honest]
-- Length: [e.g., longer, narrative style]
-- Signature: [your sign-off]
-
-**To executives:**
-- Tone: [e.g., urgent, direct, data-driven]
-- Length: [e.g., structured, bullet-heavy]
-- Signature: [your sign-off]
-
-**To peers:**
-- Tone: [e.g., direct, collaborative]
-- Typical format: [e.g., context → ask → "What do you think?"]
-
-**To external partners:**
-- Tone: [e.g., professional but not stiff]
-- Formality level: [e.g., slightly more formal than internal]
-
-### Slack/Chat Style
+### Slack/Chat Style (Primary Communication)
 
 **In team channels:**
-- [How you open messages]
-- [How you end messages]
-- [General style notes]
+- Use structured headers with emojis for visual clarity (![:mega:], ![:rocket:], ![:books:])
+- Start with "Hi team!" or "Hi everyone!"
+- Break information into clear sections (What's Changing, Why This Matters, Resources)
+- End with "Thanks!" or "Thank you for your cooperation!"
+- Encourage questions: "Feel free to share any thoughts or questions you have"
 
 **In DMs:**
-- [Style notes]
+- Friendly but focused
+- Get to the point quickly
+- "Thanks!" to close
 
 **In cross-functional channels:**
-- [Style notes]
+- Slightly more structured
+- Always provide context before the ask
+- Link to documentation for details
 
-### Document Style
+### Email Style (Rare)
 
-**Strategy docs:**
-- [Style notes — e.g., data-first, every claim backed by specifics]
+**To team or peers:**
+- Tone: warm, collaborative
+- Length: medium, structured with clear sections
+- Signature: Best regards, Inês
 
-**Status updates:**
-- [Style notes — e.g., concise, bullet-focused, clear next steps]
+### Document Style (Confluence)
+
+**Process documentation:**
+- Data-first approach
+- Every claim backed by metrics or examples
+- Clear headers and bullet points
+- Use tables and visual structure
+
+**Status updates / Announcements:**
+- Visual emojis for sections
+- Concise, bullet-focused
+- Always include "Why This Matters" section
+- Link to resources for details
 
 ---
 
 ## Formatting Preferences
 
 ### Lists
-- [ ] Bullet points
+- [x] Bullet points
 - [ ] Numbered lists
 - [ ] Mix based on content
 
 ### Headers
-- [ ] Frequent headers, highly structured
+- [x] Frequent headers, highly structured
 - [ ] Headers for major sections only
 - [ ] Minimal headers, prose-focused
 
 ### Emphasis
-- [ ] **Bold** for emphasis
-- [ ] *Italics* for emphasis
+- [x] **Bold** for emphasis
+- [x] *Italics* for emphasis
 - [ ] CAPS for emphasis (use sparingly)
 - [ ] Word choice for emphasis (no formatting needed)
+
+### Punctuation
+- [x] Use simple hyphen `-` for dashes
+- [ ] Do NOT use em-dash `—` or en-dash `–`
+- [x] Keep punctuation simple and clean
 
 ---
 
@@ -211,19 +219,55 @@ Tentative [ ] [ ] [ ] [ ] [ ] Assertive
 ### Sample 1: Team Communication
 
 ```
-[Paste a real email or message to your team]
+Hi team,  
+Inspired by some recent discussions, I’ve been chatting with our new "teammate" (![:koda_jetbrains:](https://emoji.slack-edge.com/T0878KDDQN5/koda_jetbrains/ac2984be5a9058f7.png)) about our **Retrospective process**. Specifically, I asked him to analyze system-wide incidents closed over the last 6 months. My goal was to see how we can evolve our **Ops Review** reporting and gather data to **validate some of the improvements we’re considering for the Retrospective process**.  
+  
+![:arrow_forward:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/25b6-fe0f.png) **Here are the results of the analysis:** **[Retrospective Process Metrics](https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6049103995/Retrospective+Process+Metrics)** ![:smiling_face_with_tear:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/1f972.png) (sharing this as a quick example of the depth of analysis **he** can provide)  
+  
+I believe this gives us much more valuable insights than our current PowerBI dashboard. For example, we can now track time spent in each state; time from 'Solved' to 'Retrospective Commander' assignment; time from 'Solved' to the Retrospective Readout...  
+This can not only improve our Ops Review reporting but also help us clearly **identify where the bottlenecks are.**![:excelent:](https://emoji.slack-edge.com/T0878KDDQN5/excelent/81cdaac10c2d885f.png)
 ```
 
-### Sample 2: Executive Communication
+### Sample 2: Slack Message
 
 ```
-[Paste a real email or message to executives]
-```
+**![:mega:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/1f4e3.png)** **[Internal Communication of Incidents with System-wide Impact on ODC - Rollout Announcement]**  
+  
+Hi Team,  
+  
+Today, we're rolling out an updated process for **communicating system-wide incidents on ODC**. This new process is designed to improve how we share critical information internally.  
+  
+![:new:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/1f195.png) **What's Changing:**  
 
-### Sample 3: Slack Message
+- **Global Support (Service Controllers) will no longer be responsible for internal communications during ODC system-wide incidents**.
+- This role will be taken over by someone from the **Value Stream of the area most affected by the incident**, that will be notified via Rootly on-call.
+- They will act as **Internal Communication Leader**, responsible for sharing timely updates on the incident status outside the Product Group, through the **Internal Status Page**.
 
-```
-[Paste a real Slack message]
+  
+  
+**![:heavy_equals_sign:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/1f7f0.png)** **What's Not Changing**  
+
+- **Global Support will continue to own all external communication.** This includes updating the Status Page and managing 1:1 customer communications.
+
+  
+  
+![:rocket:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/1f680.png) **Why This Change Matters?**  
+Implementing this change is expected to yield the following outcomes:  
+
+- **Focused R&D:** Our R&D teams can now remain fully focused on incident investigation and resolution without the distraction of crafting broad internal communications.
+- **Engineering on control:** Engineering will have greater control over the level of technical detail shared outside the group, reducing speculation and confusion.
+- **Company-Wide Awareness:** OutSystems will be promptly informed about the incident, its scope, and the actions being taken to resolve it, enabling the company to take appropriate actions such as informing customers and or triggering other special protocols.
+
+  
+  
+![:books:](https://a.slack-edge.com/production-standard-emoji-assets/15.0/google-medium/1f4da.png) **Resources:**  
+
+-  [Full Documentation](https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/5344100368/Internal+Communication+of+Incidents+with+System-Wide+Impact)
+
+  
+  
+The Process Engineering team will be monitoring this rollout over the next few weeks. Feel free to share any thoughts or questions you have.  
+Thanks!
 ```
 
 ---
@@ -233,14 +277,19 @@ Tentative [ ] [ ] [ ] [ ] [ ] Assertive
 *Things that would make writing NOT sound like you:*
 
 ### Never Do This
-- [Anti-pattern 1 — e.g., start with "I hope this email finds you well"]
-- [Anti-pattern 2 — e.g., use excessive enthusiasm]
-- [Anti-pattern 3 — e.g., add unnecessary pleasantries before getting to the point]
-- [Anti-pattern 4 — e.g., use corporate jargon]
+- Start with "I hope this email finds you well" or similar pleasantries
+- Use excessive enthusiasm or fake excitement
+- Overuse emojis without purpose (only use them for visual structure)
+- Write long paragraphs without headers or structure
+- Use corporate jargon that adds no value
+- Be vague — always provide specific examples or data
 
 ### Red Flags That It's Not My Voice
-- [Red flag 1 — e.g., too many transition words]
-- [Red flag 2 — e.g., overly formal closings on casual messages]
+- Too casual or informal (missing structure)
+- Missing visual structure (no headers, no emojis for sections)
+- No "Why This Matters" or context section
+- Forgetting to invite questions or feedback at the end
+- Overly formal language in Slack messages
 
 ---
 
@@ -267,4 +316,4 @@ Before sending anything Claude drafted, ask:
 
 ---
 
-*Last updated: [DATE]*
+*Last updated: 2026-03-14*

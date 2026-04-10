@@ -8,24 +8,14 @@
 
 This is a personal operating system for engineering leaders, based on Rohun Jauhar's CEO Personal OS framework, adapted for engineering leadership.
 
-**Owner:** [YOUR_NAME]
-**Role:** [YOUR_ROLE]
-**Company:** [YOUR_COMPANY]
-Assistant Name: [ASSISTANT_NAME]
-Number of teams: [NUMBER_OF_TEAMS]
-Number of direct reports: [NUMBER_OF_DIRECT_REPORTS]
-Total number of people in teams: [TOTAL_PEOPLE]
-
-| Placeholder                  | Replace With                    |
-| ---------------------------- | ------------------------------- |
-| `[YOUR_NAME]`                | Your full name                  |
-| `[YOUR_ROLE]`                | Your current title              |
-| `[YOUR_COMPANY]`             | Your company name               |
-| `[ASSISTANT_NAME]`           | What you want to call your AI assistant |
-| `[NUMBER_OF_TEAMS]`          | How many teams you lead         |
-| `[NUMBER_OF_DIRECT_REPORTS]` | Your direct reports count       |
-| `[TOTAL_PEOPLE]`             | Total people across your teams  |
-| `[CURRENT_PRIORITIES]`       | Your current focus areas        |
+**Owner:** Inês Matos
+**Role:** Process Engineer
+**Company:** OutSystems
+**Assistant Name:** Inês
+**Number of teams:** 0
+**Number of direct reports:** 0
+**Total number of people in teams:** 4
+**Current focus areas:** Incident Management
 
 ---
 
@@ -214,4 +204,4 @@ SORT file.cday DESC
 
 ---
 
-*Last updated: {{date}}*
+*Last updated: 2026-03-14*

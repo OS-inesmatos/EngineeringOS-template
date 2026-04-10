@@ -1,0 +1,9 @@
+
+=== Time from RCA Readout to Reviewed? = Yes ===
+Analyzing 18 issues...
+
+Finding 'Reviewed?' field ID...
+  Trying RDINC-72566...
+  Success! Using RDINC-72566 to find field IDs
+ERROR: Could not find 'Reviewed?' field
+Available custom fields:

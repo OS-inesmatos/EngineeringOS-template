@@ -18,10 +18,19 @@ Before greeting, collect today's context in parallel:
 2. **Calendar** — Run the `/calendar` skill to get today's schedule from Google Calendar. This uses Playwright to navigate to Google Calendar day view, take an accessibility snapshot, and parse events into a markdown table.
 3. **90-day goals** — Read `goals/90_day.md` for current priorities.
 4. **Inbox** — Check `inbox.md` for any pending items.
+5. **Principles** — Read `principles.md` to pull the Daily Reminders section.
 
 ### Step 2: Brief the day
 
-Present a brief greeting with:
+Start with:
+- **Motivational quote** — A short, relevant quote to energize the day (rotate between themes: leadership, resilience, courage, growth)
+- **Daily reminders** — Display the four operating values from principles.md:
+  - 🔍 **Ask Why** — Challenge assumptions
+  - 🗣️ **Say** — Speak up
+  - ⚡ **Challenge More** — Question the status quo
+  - 🤝 **Create Networking** — Build connections
+
+Then present a brief greeting with:
 - Summary of yesterday's carry-forward items (if any).
 - Today's calendar at a glance — the parsed event table from `/calendar`, highlighting conflicts, tentative events needing RSVP, and estimated focus time blocks.
 - Suggest the 3 most important topics to work on today based on goals and calendar shape.

@@ -1,0 +1,33 @@
+Total issues analyzed: 115
+
+========================================
+PAULO ALVES MONTEIRO & LOUISE PEROLD
+========================================
+Paulo Alves Monteiro: 20 issues (17%)
+Louise Perold: 36 issues (31%)
+COMBINED: 56 issues (49%)
+
+Comparison with Confluence data:
+  Confluence (2025): 63% reviewed by 2 people
+  This analysis:     49% reviewed by Paulo & Louise
+
+========================================
+ALL REVIEWERS (Top 15)
+========================================
+ 1. Louise Perold                  :  36 issues ( 31%) ⭐
+ 2. Paulo Alves Monteiro           :  20 issues ( 17%) ⭐
+ 3. Pedro Charola Alves            :  20 issues ( 17%)
+ 4. Alberto Gomez Bravo            :   9 issues (  8%)
+ 5. Acácio Porta Nova              :   8 issues (  7%)
+ 6. João Matos                     :   5 issues (  4%)
+ 7. Chris Carter                   :   4 issues (  3%)
+ 8. Rui Santos                     :   2 issues (  2%)
+ 9. João Rodrigues                 :   2 issues (  2%)
+10. Chris Curtis                   :   2 issues (  2%)
+11. Isabel Paralta                 :   1 issues (  1%)
+12. Inês Sousa                     :   1 issues (  1%)
+13. Jyothi Kaspa                   :   1 issues (  1%)
+14. Ahmed Fouzan                   :   1 issues (  1%)
+15. João Brandão                   :   1 issues (  1%)
+
+Total unique reviewers: 17

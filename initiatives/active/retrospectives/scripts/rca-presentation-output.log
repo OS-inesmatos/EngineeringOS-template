@@ -1,0 +1,126 @@
+
+=== Time from Solved to RCA Presentation (RCA Request Date/Time) ===
+Analyzing 18 issues...
+
+Processing RDINC-72566...
+  Warning: Could not parse RCA date: 2026-03-18T11:00:00.000+0000
+  Solved: 2026-02-05 12:15
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-67391...
+  Warning: Could not parse RCA date: 2026-02-12T11:00:00.000+0000
+  Solved: 2025-12-30 17:44
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-65898...
+  Warning: Could not parse RCA date: 2026-01-30T11:00:00.000+0000
+  Solved: 2025-12-10 08:14
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-65652...
+  Warning: Could not parse RCA date: 2026-01-20T11:00:00.000+0000
+  Solved: 2025-12-09 09:13
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-65439...
+  Warning: Could not parse RCA date: 2026-01-27T11:00:00.000+0000
+  Solved: 2025-12-04 08:17
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-64639...
+  Warning: Could not parse RCA date: 2025-12-17T11:00:00.000+0000
+  Solved: 2025-11-28 08:51
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-64612...
+  Solved: 2025-11-26 14:07
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-64437...
+  Warning: Could not parse RCA date: 2026-02-10T11:00:00.000+0000
+  Solved: 2025-12-12 09:39
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-64289...
+  Warning: Could not parse RCA date: 2026-01-27T11:00:00.000+0000
+  Solved: 2025-11-24 12:54
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-63743...
+  Warning: Could not parse RCA date: 2025-12-02T11:00:00.000+0000
+  Solved: 2025-11-18 11:37
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-63691...
+  Warning: Could not parse RCA date: 2025-12-02T11:00:00.000+0000
+  Solved: 2025-11-21 14:54
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-63322...
+  Warning: Could not parse RCA date: 2026-01-30T11:00:00.000+0000
+  Solved: 2025-11-11 11:09
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-62612...
+  Warning: Could not parse RCA date: 2025-11-14T11:00:00.000+0000
+  Solved: 2025-11-05 21:40
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-61943...
+  Warning: Could not parse RCA date: 2025-12-09T11:00:00.000+0000
+  Solved: 2025-10-30 21:23
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-61911...
+  Warning: Could not parse RCA date: 2025-11-11T11:00:00.000+0000
+  Solved: 2025-10-31 12:24
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-61899...
+  Warning: Could not parse RCA date: 2025-11-21T11:00:00.000+0000
+  Solved: 2025-11-10 14:47
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-61732...
+  Warning: Could not parse RCA date: 2025-12-31T11:00:00.000+0000
+  Solved: 2025-10-29 14:58
+  RCA Presentation: Not scheduled/completed
+
+Processing RDINC-61437...
+  Warning: Could not parse RCA date: 2025-11-05T11:00:00.000+0000
+  Solved: 2025-10-27 16:45
+  RCA Presentation: Not scheduled/completed
+
+=== Summary Statistics ===
+
+Total issues: 18
+Issues with RCA presentation scheduled: 0
+Issues without RCA presentation: 18
+
+Results saved to:
+C:\Users\ios\Documents\koda+claude\retrospectives\data\time-to-rca-presentation-20260311-120216.csv
+
+=== Detailed Results ===
+
+Issue       DurationDays RCAPresentationDate
+-----       ------------ -------------------
+RDINC-63322            0 Not set            
+RDINC-62612            0 Not set            
+RDINC-63743            0 Not set            
+RDINC-63691            0 Not set            
+RDINC-61943            0 Not set            
+RDINC-61732            0 Not set            
+RDINC-61437            0 Not set            
+RDINC-61911            0 Not set            
+RDINC-61899            0 Not set            
+RDINC-65898            0 Not set            
+RDINC-65652            0 Not set            
+RDINC-72566            0 Not set            
+RDINC-67391            0 Not set            
+RDINC-65439            0 Not set            
+RDINC-64437            0 Not set            
+RDINC-64289            0 Not set            
+RDINC-64639            0 Not set            
+RDINC-64612            0 Not set            
+
+

@@ -1,0 +1,347 @@
+
+=== Processing 30 issues ===
+
+
+=== Retrospective Metrics Calculator ===
+Processing 30 issue(s)...
+
+Analyzing RDINC-74155...
+  Status: Closed
+  Changelog entries: 68
+  Status transitions: 9
+  Solved: 1.01 days
+  Retrospective In Progress: 0.03 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-73979...
+  Status: Closed
+  Changelog entries: 55
+  Status transitions: 10
+  Solved: 1.92 days
+  Retrospective In Progress: 0 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-73055...
+  Status: Closed
+  Changelog entries: 50
+  Status transitions: 6
+  Solved: 0.01 days
+  Retrospective In Progress: 24.96 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-72566...
+  Status: Retrospective Completed
+  Changelog entries: 100
+  Status transitions: 7
+  Solved: 7.01 days
+  Retrospective In Progress: 16.18 days
+  Retrospective Completed: 11.81 days
+
+Analyzing RDINC-72522...
+  Status: Closed
+  Changelog entries: 40
+  Status transitions: 7
+  Solved: 19.96 days
+  Retrospective In Progress: 3.31 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-72264...
+  Status: Closed
+  Changelog entries: 75
+  Status transitions: 16
+  Solved: 1.11 days
+  Retrospective In Progress: 0 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-68564...
+  Status: Closed
+  Changelog entries: 80
+  Status transitions: 12
+  Solved: 0 days
+  Retrospective In Progress: 0 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-67391...
+  Status: Closed
+  Changelog entries: 70
+  Status transitions: 7
+  Solved: 34.61 days
+  Retrospective In Progress: 31.33 days
+  Retrospective Completed: 0.02 days
+
+Analyzing RDINC-67341...
+  Status: Closed
+  Changelog entries: 88
+  Status transitions: 9
+  Solved: 17.74 days
+  Retrospective In Progress: 13.26 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-66502...
+  Status: Retrospective Completed
+  Changelog entries: 29
+  Status transitions: 5
+  Solved: 0 days
+  Retrospective In Progress: 42.07 days
+  Retrospective Completed: 41.05 days
+
+Analyzing RDINC-65898...
+  Status: Closed
+  Changelog entries: 94
+  Status transitions: 9
+  Solved: 5.11 days
+  Retrospective In Progress: 57.25 days
+  Retrospective Completed: 0.01 days
+
+Analyzing RDINC-65652...
+  Status: Retrospective Completed
+  Changelog entries: 77
+  Status transitions: 6
+  Solved: 2.32 days
+  Retrospective In Progress: 68.79 days
+  Retrospective Completed: 20.99 days
+
+Analyzing RDINC-65439...
+  Status: Closed
+  Changelog entries: 60
+  Status transitions: 6
+  Solved: 7.36 days
+  Retrospective In Progress: 54.04 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-64639...
+  Status: Retrospective Completed
+  Changelog entries: 85
+  Status transitions: 8
+  Solved: 0 days
+  Retrospective In Progress: 101.13 days
+  Retrospective Completed: 1.98 days
+
+Analyzing RDINC-64612...
+  Status: Cancelled
+  Changelog entries: 43
+  Status transitions: 7
+  Solved: 0 days
+  Retrospective In Progress: 0 days
+  Retrospective Completed: 0.01 days
+
+Analyzing RDINC-64439...
+  Status: Retrospective Completed
+  Changelog entries: 50
+  Status transitions: 6
+  Solved: 22.91 days
+  Retrospective In Progress: 27.98 days
+  Retrospective Completed: 55.05 days
+
+Analyzing RDINC-64437...
+  Status: Retrospective Completed
+  Changelog entries: 93
+  Status transitions: 10
+  Solved: 19.73 days
+  Retrospective In Progress: 84.23 days
+  Retrospective Completed: 1.8 days
+
+Analyzing RDINC-64289...
+  Status: Closed
+  Changelog entries: 64
+  Status transitions: 7
+  Solved: 17.16 days
+  Retrospective In Progress: 81.68 days
+  Retrospective Completed: 0.02 days
+
+Analyzing RDINC-63743...
+  Status: Retrospective Completed
+  Changelog entries: 81
+  Status transitions: 5
+  Solved: 8.09 days
+  Retrospective In Progress: 41.8 days
+  Retrospective Completed: 63.12 days
+
+Analyzing RDINC-63691...
+  Status: Retrospective Completed
+  Changelog entries: 44
+  Status transitions: 5
+  Solved: 0 days
+  Retrospective In Progress: 44.77 days
+  Retrospective Completed: 65.09 days
+
+Analyzing RDINC-63402...
+  Status: Closed
+  Changelog entries: 62
+  Status transitions: 7
+  Solved: 56.03 days
+  Retrospective In Progress: 17.05 days
+  Retrospective Completed: 4.87 days
+
+Analyzing RDINC-63322...
+  Status: Retrospective Completed
+  Changelog entries: 76
+  Status transitions: 6
+  Solved: 30.24 days
+  Retrospective In Progress: 83.95 days
+  Retrospective Completed: 5.84 days
+
+Analyzing RDINC-63294...
+  Status: Retrospective Completed
+  Changelog entries: 58
+  Status transitions: 5
+  Solved: 0.35 days
+  Retrospective In Progress: 0 days
+  Retrospective Completed: 120.02 days
+
+Analyzing RDINC-63219...
+  Status: Closed
+  Changelog entries: 85
+  Status transitions: 7
+  Solved: 3.79 days
+  Retrospective In Progress: 12.61 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-62612...
+  Status: Retrospective Completed
+  Changelog entries: 45
+  Status transitions: 5
+  Solved: 35.56 days
+  Retrospective In Progress: 83.22 days
+  Retrospective Completed: 6.8 days
+
+Analyzing RDINC-61943...
+  Status: Closed
+  Changelog entries: 71
+  Status transitions: 6
+  Solved: 10.56 days
+  Retrospective In Progress: 91.04 days
+  Retrospective Completed: 0 days
+
+Analyzing RDINC-61911...
+  Status: Retrospective Completed
+  Changelog entries: 53
+  Status transitions: 5
+  Solved: 40.95 days
+  Retrospective In Progress: 83.22 days
+  Retrospective Completed: 6.8 days
+
+Analyzing RDINC-61899...
+  Status: Closed
+  Changelog entries: 100
+  Status transitions: 10
+  Solved: 12.22 days
+  Retrospective In Progress: 65.02 days
+  Retrospective Completed: 1.18 days
+
+Analyzing RDINC-61732...
+  Status: Retrospective Completed
+  Changelog entries: 87
+  Status transitions: 5
+  Solved: 8.8 days
+  Retrospective In Progress: 75.04 days
+  Retrospective Completed: 49.02 days
+
+Analyzing RDINC-61437...
+  Status: Retrospective Completed
+  Changelog entries: 42
+  Status transitions: 5
+  Solved: 44.77 days
+  Retrospective In Progress: 83.22 days
+  Retrospective Completed: 6.8 days
+
+=== Summary ===
+Total issues: 30
+Results saved: C:\Users\ios\Documents\koda+claude\retrospectives\data\retrospective-metrics-20260311-113839.csv
+
+=== Results Preview ===
+
+Issue       MeasuredStatus            DurationDays DurationHours
+-----       --------------            ------------ -------------
+RDINC-74155 Solved                            1.01         24.27
+RDINC-74155 Retrospective In Progress         0.03          0.81
+RDINC-74155 Retrospective Completed              0             0
+RDINC-73979 Solved                            1.92         46.19
+RDINC-73979 Retrospective In Progress            0             0
+RDINC-73979 Retrospective Completed              0          0.02
+RDINC-73055 Solved                            0.01          0.15
+RDINC-73055 Retrospective In Progress        24.96        598.99
+RDINC-73055 Retrospective Completed              0             0
+RDINC-72566 Solved                            7.01        168.19
+RDINC-72566 Retrospective In Progress        16.18        388.43
+RDINC-72566 Retrospective Completed          11.81        283.41
+RDINC-72522 Solved                           19.96        478.98
+RDINC-72522 Retrospective In Progress         3.31         79.33
+RDINC-72522 Retrospective Completed              0             0
+RDINC-72264 Solved                            1.11         26.66
+RDINC-72264 Retrospective In Progress            0          0.01
+RDINC-72264 Retrospective Completed              0             0
+RDINC-68564 Solved                               0             0
+RDINC-68564 Retrospective In Progress            0             0
+RDINC-68564 Retrospective Completed              0             0
+RDINC-67391 Solved                           34.61        830.55
+RDINC-67391 Retrospective In Progress        31.33        751.92
+RDINC-67391 Retrospective Completed           0.02          0.44
+RDINC-67341 Solved                           17.74        425.86
+RDINC-67341 Retrospective In Progress        13.26        318.23
+RDINC-67341 Retrospective Completed              0             0
+RDINC-66502 Solved                               0             0
+RDINC-66502 Retrospective In Progress        42.07       1009.65
+RDINC-66502 Retrospective Completed          41.05        985.22
+RDINC-65898 Solved                            5.11        122.68
+RDINC-65898 Retrospective In Progress        57.25       1373.95
+RDINC-65898 Retrospective Completed           0.01          0.12
+RDINC-65652 Solved                            2.32          55.7
+RDINC-65652 Retrospective In Progress        68.79       1651.02
+RDINC-65652 Retrospective Completed          20.99         503.7
+RDINC-65439 Solved                            7.36         176.6
+RDINC-65439 Retrospective In Progress        54.04       1297.02
+RDINC-65439 Retrospective Completed              0          0.12
+RDINC-64639 Solved                               0          0.12
+RDINC-64639 Retrospective In Progress       101.13       2427.05
+RDINC-64639 Retrospective Completed           1.98         47.62
+RDINC-64612 Solved                               0             0
+RDINC-64612 Retrospective In Progress            0          0.07
+RDINC-64612 Retrospective Completed           0.01          0.26
+RDINC-64439 Solved                           22.91        549.92
+RDINC-64439 Retrospective In Progress        27.98         671.5
+RDINC-64439 Retrospective Completed          55.05       1321.15
+RDINC-64437 Solved                           19.73        473.58
+RDINC-64437 Retrospective In Progress        84.23       2021.47
+RDINC-64437 Retrospective Completed            1.8         43.25
+RDINC-64289 Solved                           17.16        411.96
+RDINC-64289 Retrospective In Progress        81.68       1960.24
+RDINC-64289 Retrospective Completed           0.02          0.46
+RDINC-63743 Solved                            8.09        194.05
+RDINC-63743 Retrospective In Progress         41.8       1003.13
+RDINC-63743 Retrospective Completed          63.12       1514.83
+RDINC-63691 Solved                               0          0.03
+RDINC-63691 Retrospective In Progress        44.77       1074.49
+RDINC-63691 Retrospective Completed          65.09       1562.21
+RDINC-63402 Solved                           56.03       1344.72
+RDINC-63402 Retrospective In Progress        17.05        409.28
+RDINC-63402 Retrospective Completed           4.87        116.84
+RDINC-63322 Solved                           30.24        725.69
+RDINC-63322 Retrospective In Progress        83.95        2014.7
+RDINC-63322 Retrospective Completed           5.84        140.09
+RDINC-63294 Solved                            0.35          8.49
+RDINC-63294 Retrospective In Progress            0          0.03
+RDINC-63294 Retrospective Completed         120.02       2880.46
+RDINC-63219 Solved                            3.79         90.86
+RDINC-63219 Retrospective In Progress        12.61        302.75
+RDINC-63219 Retrospective Completed              0             0
+RDINC-62612 Solved                           35.56        853.54
+RDINC-62612 Retrospective In Progress        83.22       1997.31
+RDINC-62612 Retrospective Completed            6.8        163.12
+RDINC-61943 Solved                           10.56        253.54
+RDINC-61943 Retrospective In Progress        91.04       2184.87
+RDINC-61943 Retrospective Completed              0          0.01
+RDINC-61911 Solved                           40.95         982.8
+RDINC-61911 Retrospective In Progress        83.22       1997.25
+RDINC-61911 Retrospective Completed            6.8        163.18
+RDINC-61899 Solved                           12.22        293.39
+RDINC-61899 Retrospective In Progress        65.02       1560.49
+RDINC-61899 Retrospective Completed           1.18         28.27
+RDINC-61732 Solved                             8.8        211.27
+RDINC-61732 Retrospective In Progress        75.04       1800.92
+RDINC-61732 Retrospective Completed          49.02       1176.48
+RDINC-61437 Solved                           44.77       1074.45
+RDINC-61437 Retrospective In Progress        83.22       1997.24
+RDINC-61437 Retrospective Completed            6.8        163.19
+
+

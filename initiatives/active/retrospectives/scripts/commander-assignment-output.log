@@ -1,0 +1,129 @@
+
+=== Time from Solved to Retrospective Commander Assignment ===
+Analyzing 18 issues...
+
+Processing RDINC-72566...
+  Solved: 2026-02-05 12:15
+  Commander Assigned: 2026-02-18 14:41
+  Time to Assignment: 13.1 days
+
+Processing RDINC-67391...
+  Solved: 2025-12-30 17:44
+  Commander Assigned: 2026-02-03 08:17
+  Time to Assignment: 34.61 days
+
+Processing RDINC-65898...
+  Solved: 2025-12-10 08:14
+  Commander Assigned: 2026-01-07 12:20
+  Time to Assignment: 28.17 days
+
+Processing RDINC-65652...
+  Solved: 2025-12-09 09:13
+  Commander Assigned: 2026-01-05 11:51
+  Time to Assignment: 27.11 days
+
+Processing RDINC-65439...
+  Solved: 2025-12-04 08:17
+  Commander Assigned: 2026-01-07 12:25
+  Time to Assignment: 34.17 days
+
+Processing RDINC-64639...
+  Solved: 2025-11-28 08:51
+  Commander Assigned: 2025-11-28 08:57
+  Time to Assignment: 0 days
+
+Processing RDINC-64612...
+  Solved: 2025-11-26 14:07
+  Commander: Not assigned
+
+Processing RDINC-64437...
+  Solved: 2025-12-12 09:39
+  Commander Assigned: 2026-01-26 09:33
+  Time to Assignment: 45 days
+
+Processing RDINC-64289...
+  Solved: 2025-11-24 12:54
+  Commander Assigned: 2026-01-07 12:39
+  Time to Assignment: 43.99 days
+
+Processing RDINC-63743...
+  Solved: 2025-11-18 11:37
+  Commander Assigned: 2025-11-26 13:40
+  Time to Assignment: 8.09 days
+
+Processing RDINC-63691...
+  Solved: 2025-11-21 14:54
+  Commander Assigned: 2025-11-21 14:56
+  Time to Assignment: 0 days
+
+Processing RDINC-63322...
+  Solved: 2025-11-11 11:09
+  Commander Assigned: 2026-01-07 12:37
+  Time to Assignment: 57.06 days
+
+Processing RDINC-62612...
+  Solved: 2025-11-05 21:40
+  Commander: Not assigned
+
+Processing RDINC-61943...
+  Solved: 2025-10-30 21:23
+  Commander Assigned: 2025-11-10 10:55
+  Time to Assignment: 10.56 days
+
+Processing RDINC-61911...
+  Solved: 2025-10-31 12:24
+  Commander: Not assigned
+
+Processing RDINC-61899...
+  Solved: 2025-11-10 14:47
+  Commander Assigned: 2025-11-10 10:56
+  Time to Assignment: -0.16 days
+
+Processing RDINC-61732...
+  Solved: 2025-10-29 14:58
+  Commander Assigned: 2025-11-10 10:58
+  Time to Assignment: 11.83 days
+
+Processing RDINC-61437...
+  Solved: 2025-10-27 16:45
+  Commander: Not assigned
+
+=== Summary Statistics ===
+
+Total issues: 18
+Issues with commander assigned: 11
+Issues without commander: 7
+
+Time to Commander Assignment:
+  Average: 28.52 days
+  Median: 28.17 days
+  Min: 8.09 days
+  Max: 57.06 days
+
+Results saved to:
+C:\Users\ios\Documents\koda+claude\retrospectives\data\time-to-commander-assignment-20260311-115717.csv
+
+=== Detailed Results ===
+
+Issue       DurationDays CommanderName                      
+-----       ------------ -------------                      
+RDINC-63322        57.06 oz.hidiroglu@outsystems.com        
+RDINC-64437           45 luis.rocha@outsystems.com          
+RDINC-64289        43.99 jegathis.subramaniam@outsystems.com
+RDINC-67391        34.61 juan.demiguel@outsystems.com       
+RDINC-65439        34.17 andre.rosendo@outsystems.com       
+RDINC-65898        28.17 samuel.audu@outsystems.com         
+RDINC-65652        27.11 juan.demiguel@outsystems.com       
+RDINC-72566         13.1 Vladyslav Mishchenko               
+RDINC-61732        11.83 kevin.tek@outsystems.com           
+RDINC-61943        10.56 joel.carvalho@outsystems.com       
+RDINC-63743         8.09 nuno.almeida.silva@outsystems.com  
+RDINC-61437            0 N/A                                
+RDINC-61911            0 N/A                                
+RDINC-64612            0 N/A                                
+RDINC-63691            0 nuno.almeida.silva@outsystems.com  
+RDINC-62612            0 N/A                                
+RDINC-64639            0 pedro.saraiva@outsystems.com       
+RDINC-61899        -0.16 dhruv.desai@outsystems.com         
+
+

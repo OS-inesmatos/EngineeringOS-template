@@ -6,6 +6,11 @@
 
 ## To Process
 
+- [ ] **Preparar 1:1 com Vera (próxima semana)**
+  - Definir goals profissionais: M3.3 (Triage Models), M3.1 (Failure Governance), Retrospectives
+  - Definir goals pessoais: aumentar confiança em falar em público (remoto) e em inglês
+  - Conectar goals pessoais com oportunidades nos profissionais (ex: apresentar M3.3)
+
 
 ---
 

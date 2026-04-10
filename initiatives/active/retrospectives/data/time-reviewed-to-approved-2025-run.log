@@ -1,0 +1,562 @@
+
+=== Time from Reviewed? = Yes to Approved? = Yes (2025) ===
+Analyzing 115 issues from 2025...
+
+Using field IDs:
+  Reviewed?: customfield_17853
+  Approved?: customfield_17854
+
+[1/115] Processing RDINC-67391...
+  Reviewed: 2026-02-27 14:26
+  Approved: 2026-03-06 16:12
+  Duration: 7.07 days
+[2/115] Processing RDINC-65975...
+  Reviewed: 2026-03-12 10:33
+  Approved: 2026-03-12 10:34
+  Duration: 0 days
+[3/115] Processing RDINC-65898...
+  Reviewed: 2026-02-09 10:37
+  Approved: 2026-02-10 16:52
+  Duration: 1.26 days
+[4/115] Processing RDINC-65652...
+  Reviewed: 2026-02-09 09:21
+  Approved: 2026-02-14 12:00
+  Duration: 5.11 days
+[5/115] Processing RDINC-65439...
+  Reviewed: 2026-02-03 14:53
+  Approved: 2026-02-03 17:54
+  Duration: 0.13 days
+[6/115] Processing RDINC-64639...
+  Reviewed: 2025-12-26 14:45
+  Approved: 2026-03-09 12:00
+  Duration: 72.89 days
+[7/115] Processing RDINC-64439...
+  Reviewed: 2025-12-31 16:44
+  Approved: 2026-01-12 09:54
+  Duration: 11.72 days
+[8/115] Processing RDINC-64437...
+  Reviewed: 2026-02-13 15:56
+  Approved: 2026-03-09 09:16
+  Duration: 23.72 days
+[9/115] Processing RDINC-64289...
+  Reviewed: 2026-02-16 12:17
+  Approved: 2026-03-03 09:06
+  Duration: 14.87 days
+[10/115] Processing RDINC-63743...
+  Reviewed: 2026-01-06 13:35
+  Approved: 2026-01-07 08:47
+  Duration: 0.8 days
+
+  Progress: 10/115 (8.7%)
+
+[11/115] Processing RDINC-63691...
+  Reviewed: 2025-12-29 15:41
+  Approved: 2026-01-05 09:25
+  Duration: 6.74 days
+[12/115] Processing RDINC-63322...
+  Reviewed: 2026-02-04 10:28
+  Approved: 2026-03-05 15:32
+  Duration: 29.21 days
+[13/115] Processing RDINC-62612...
+  Reviewed: 2026-03-04 16:29
+  Approved: 2026-03-04 16:29
+  Duration: 0 days
+[14/115] Processing RDINC-61943...
+  Reviewed: 2026-01-13 08:07
+  Approved: 2026-02-02 09:24
+  Duration: 20.05 days
+[15/115] Processing RDINC-61911...
+  Reviewed: 2026-03-04 16:27
+  Approved: 2026-03-04 16:27
+  Duration: 0 days
+[16/115] Processing RDINC-61899...
+  Reviewed: 2026-01-07 11:08
+  Approved: 2026-01-07 11:19
+  Duration: 0.01 days
+[17/115] Processing RDINC-61732...
+  Reviewed: 2026-01-21 08:45
+  Approved: 2026-01-21 11:08
+  Duration: 0.1 days
+[18/115] Processing RDINC-61437...
+  Reviewed: 2026-03-04 16:26
+  Approved: 2026-03-04 16:26
+  Duration: 0 days
+[19/115] Processing RDINC-61388...
+  Reviewed: 2026-02-02 09:27
+  Approved: 2026-02-18 09:40
+  Duration: 16.01 days
+[20/115] Processing RDINC-61380...
+  Reviewed: 2026-02-02 21:05
+  Approved: 2026-03-05 15:33
+  Duration: 30.77 days
+
+  Progress: 20/115 (17.4%)
+
+[21/115] Processing RDINC-61140...
+  Reviewed: 2026-03-04 16:26
+  Approved: 2026-03-04 16:26
+  Duration: 0 days
+[22/115] Processing RDINC-60676...
+  Reviewed: 2025-11-26 12:51
+  Approved: 2025-12-06 17:02
+  Duration: 10.17 days
+[23/115] Processing RDINC-60640...
+  Reviewed: 2025-12-19 14:07
+  Approved: 2026-01-20 13:43
+  Duration: 31.98 days
+[24/115] Processing RDINC-60247...
+  Reviewed: 2025-12-23 08:25
+  Approved: 2025-12-23 08:25
+  Duration: 0 days
+[25/115] Processing RDINC-59520...
+  Reviewed: 2026-03-04 16:29
+  Approved: 2026-03-04 16:32
+  Duration: 0 days
+[26/115] Processing RDINC-58009...
+  Reviewed: 2026-03-04 16:33
+  Approved: 2026-03-04 16:32
+  Duration: 0 days
+[27/115] Processing RDINC-57683...
+  Reviewed: 2026-03-04 16:33
+  Approved: 2026-03-04 16:33
+  Duration: 0 days
+[28/115] Processing RDINC-57405...
+  Reviewed: 2026-03-04 16:35
+  Approved: 2026-03-04 16:35
+  Duration: 0 days
+[29/115] Processing RDINC-56511...
+  Reviewed: 2025-11-04 09:35
+  Approved: 2025-11-06 10:04
+  Duration: 2.02 days
+[30/115] Processing RDINC-56425...
+  Reviewed: 2026-03-04 16:36
+  Approved: 2026-03-04 16:36
+  Duration: 0 days
+
+  Progress: 30/115 (26.1%)
+
+[31/115] Processing RDINC-56421...
+  Reviewed: 2025-11-12 11:52
+  Approved: 2025-11-21 18:10
+  Duration: 9.26 days
+[32/115] Processing RDINC-56032...
+  Reviewed: 2026-03-04 16:37
+  Approved: 2026-03-04 16:37
+  Duration: 0 days
+[33/115] Processing RDINC-56010...
+  Reviewed: 2025-12-09 17:23
+  Approved: 2026-02-03 17:56
+  Duration: 56.02 days
+[34/115] Processing RDINC-55788...
+  Reviewed: 2026-03-04 16:38
+  Approved: 2026-03-04 16:38
+  Duration: 0 days
+[35/115] Processing RDINC-55778...
+  Reviewed: 2025-11-13 11:08
+  Approved: 2025-11-20 11:15
+  Duration: 7 days
+[36/115] Processing RDINC-55643...
+  Reviewed: 2026-03-04 16:38
+  Approved: 2026-03-04 16:38
+  Duration: 0 days
+[37/115] Processing RDINC-55555...
+  Reviewed: 2026-03-04 16:39
+  Approved: 2026-03-04 16:39
+  Duration: 0 days
+[38/115] Processing RDINC-55285...
+  Reviewed: 2025-12-22 15:00
+  Approved: 2026-03-05 15:32
+  Duration: 73.02 days
+[39/115] Processing RDINC-55209...
+  Reviewed: 2026-03-04 16:40
+  Approved: 2026-03-04 16:40
+  Duration: 0 days
+[40/115] Processing RDINC-54619...
+  Reviewed: 2026-03-04 16:40
+  Approved: 2026-03-04 16:40
+  Duration: 0 days
+
+  Progress: 40/115 (34.8%)
+
+[41/115] Processing RDINC-54487...
+  Reviewed: 2026-03-04 16:41
+  Approved: 2026-03-04 16:41
+  Duration: 0 days
+[42/115] Processing RDINC-54366...
+  Reviewed: 2025-10-20 17:04
+  Approved: 2025-11-04 04:45
+  Duration: 14.49 days
+[43/115] Processing RDINC-54335...
+  Reviewed: 2026-03-04 16:41
+  Approved: 2026-03-04 16:41
+  Duration: 0 days
+[44/115] Processing RDINC-54170...
+  Reviewed: 2026-03-04 16:43
+  Approved: 2026-03-04 16:43
+  Duration: 0 days
+[45/115] Processing RDINC-53830...
+  Reviewed: 2026-03-04 16:44
+  Approved: 2026-03-04 16:44
+  Duration: 0 days
+[46/115] Processing RDINC-53480...
+  Reviewed: 2025-10-29 10:56
+  Approved: 2025-10-29 10:56
+  Duration: 0 days
+[47/115] Processing RDINC-53338...
+  Reviewed: 2025-10-13 10:04
+  Approved: 2025-11-12 14:17
+  Duration: 30.18 days
+[48/115] Processing RDINC-53197...
+  Reviewed: 2025-10-30 14:06
+  Approved: 2025-11-02 10:04
+  Duration: 2.83 days
+[49/115] Processing RDINC-53049...
+  Reviewed: 2025-10-20 11:15
+  Approved: 2025-11-12 14:17
+  Duration: 23.13 days
+[50/115] Processing RDINC-52520...
+  Reviewed: 2025-09-30 15:40
+  Approved: 2025-10-27 17:03
+  Duration: 27.06 days
+
+  Progress: 50/115 (43.5%)
+
+[51/115] Processing RDINC-51786...
+  Reviewed: 2025-10-20 10:50
+  Approved: 2025-10-27 09:55
+  Duration: 6.96 days
+[52/115] Processing RDINC-50709...
+  Reviewed: 2025-09-23 11:23
+  Approved: 2025-09-23 13:10
+  Duration: 0.07 days
+[53/115] Processing RDINC-49925...
+  Reviewed: 2025-09-15 09:30
+  Approved: 2025-09-23 09:06
+  Duration: 7.98 days
+[54/115] Processing RDINC-49765...
+  Reviewed: 2025-09-16 10:53
+  Approved: 2025-10-02 17:27
+  Duration: 16.27 days
+[55/115] Processing RDINC-48942...
+  Reviewed: 2025-09-05 15:13
+  Approved: 2025-09-08 11:04
+  Duration: 2.83 days
+[56/115] Processing RDINC-48924...
+  Reviewed: 2025-09-17 13:48
+  Approved: 2025-12-02 12:12
+  Duration: 75.93 days
+[57/115] Processing RDINC-48648...
+  Reviewed: 2025-09-16 16:18
+  Approved: 2025-09-16 18:35
+  Duration: 0.1 days
+[58/115] Processing RDINC-48388...
+  Reviewed: 2025-10-14 15:34
+  Approved: 2025-10-14 15:39
+  Duration: 0 days
+[59/115] Processing RDINC-48008...
+  Reviewed: 2025-10-07 17:56
+  Approved: 2025-11-25 11:12
+  Duration: 48.72 days
+[60/115] Processing RDINC-47955...
+  Reviewed: 2025-09-12 14:27
+  Approved: 2025-09-23 11:04
+  Duration: 10.86 days
+
+  Progress: 60/115 (52.2%)
+
+[61/115] Processing RDINC-47752...
+  Reviewed: 2025-11-11 13:48
+  Approved: Not set
+[62/115] Processing RDINC-46787...
+  Reviewed: 2025-07-30 11:42
+  Approved: 2025-08-01 11:42
+  Duration: 2 days
+[63/115] Processing RDINC-46603...
+  Reviewed: 2025-09-02 18:32
+  Approved: 2025-09-08 15:25
+  Duration: 5.87 days
+[64/115] Processing RDINC-46598...
+  Reviewed: 2025-08-04 11:33
+  Approved: 2025-08-11 09:48
+  Duration: 6.93 days
+[65/115] Processing RDINC-46517...
+  Reviewed: 2025-08-13 22:57
+  Approved: 2025-08-27 10:39
+  Duration: 13.49 days
+[66/115] Processing RDINC-46447...
+  Reviewed: 2025-08-25 16:49
+  Approved: 2025-08-25 16:54
+  Duration: 0 days
+[67/115] Processing RDINC-46267...
+  Reviewed: 2025-08-21 09:42
+  Approved: 2025-08-21 10:13
+  Duration: 0.02 days
+[68/115] Processing RDINC-46156...
+  Reviewed: 2025-08-14 09:11
+  Approved: 2025-08-27 10:40
+  Duration: 13.06 days
+[69/115] Processing RDINC-46135...
+  Reviewed: 2025-08-14 09:11
+  Approved: 2025-08-26 09:36
+  Duration: 12.02 days
+[70/115] Processing RDINC-45937...
+  Reviewed: 2025-09-02 18:31
+  Approved: 2025-09-08 15:23
+  Duration: 5.87 days
+
+  Progress: 70/115 (60.9%)
+
+[71/115] Processing RDINC-45707...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[72/115] Processing RDINC-45669...
+  Reviewed: 2025-09-04 09:39
+  Approved: 2025-11-24 09:30
+  Duration: 80.99 days
+[73/115] Processing RDINC-45466...
+  Reviewed: 2025-07-29 16:55
+  Approved: 2025-07-29 16:55
+  Duration: 0 days
+[74/115] Processing RDINC-45455...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[75/115] Processing RDINC-45165...
+  Reviewed: 2025-07-29 16:55
+  Approved: 2025-07-29 16:55
+  Duration: 0 days
+[76/115] Processing RDINC-44842...
+  Reviewed: 2025-07-25 14:18
+  Approved: 2025-07-28 15:29
+  Duration: 3.05 days
+[77/115] Processing RDINC-43900...
+  Reviewed: 2025-08-05 11:56
+  Approved: 2025-08-05 11:56
+  Duration: 0 days
+[78/115] Processing RDINC-43642...
+  Reviewed: 2025-10-29 10:29
+  Approved: 2025-11-21 18:10
+  Duration: 23.32 days
+[79/115] Processing RDINC-43387...
+  Reviewed: 2025-08-05 10:52
+  Approved: 2025-08-05 10:52
+  Duration: 0 days
+[80/115] Processing RDINC-43232...
+  Reviewed: 2025-10-20 16:25
+  Approved: 2026-03-09 11:58
+  Duration: 139.81 days
+
+  Progress: 80/115 (69.6%)
+
+[81/115] Processing RDINC-42739...
+  Reviewed: 2025-08-14 09:20
+  Approved: 2025-09-22 13:55
+  Duration: 39.19 days
+[82/115] Processing RDINC-42729...
+  Reviewed: 2025-08-04 10:22
+  Approved: 2025-09-22 11:27
+  Duration: 49.04 days
+[83/115] Processing RDINC-42568...
+  Reviewed: 2025-08-04 07:50
+  Approved: 2025-08-07 15:44
+  Duration: 3.33 days
+[84/115] Processing RDINC-42270...
+  Reviewed: 2025-10-02 17:43
+  Approved: 2025-10-16 09:11
+  Duration: 13.64 days
+[85/115] Processing RDINC-41857...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[86/115] Processing RDINC-41748...
+  Reviewed: 2025-07-23 15:47
+  Approved: 2025-09-22 10:02
+  Duration: 60.76 days
+[87/115] Processing RDINC-41747...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[88/115] Processing RDINC-41720...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[89/115] Processing RDINC-41528...
+  Reviewed: 2025-09-01 15:11
+  Approved: 2025-09-08 15:23
+  Duration: 7.01 days
+[90/115] Processing RDINC-41288...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+
+  Progress: 90/115 (78.3%)
+
+[91/115] Processing RDINC-41083...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[92/115] Processing RDINC-40392...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[93/115] Processing RDINC-40306...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[94/115] Processing RDINC-39589...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[95/115] Processing RDINC-39382...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[96/115] Processing RDINC-39280...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[97/115] Processing RDINC-39154...
+  Reviewed: 2025-07-23 15:52
+  Approved: 2025-09-12 13:14
+  Duration: 50.89 days
+[98/115] Processing RDINC-38678...
+  Reviewed: 2025-09-08 14:17
+  Approved: 2025-09-08 14:58
+  Duration: 0.03 days
+[99/115] Processing RDINC-38469...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[100/115] Processing RDINC-37969...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+
+  Progress: 100/115 (87%)
+
+[101/115] Processing RDINC-37688...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[102/115] Processing RDINC-37491...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[103/115] Processing RDINC-37306...
+  Reviewed: 2025-08-05 10:57
+  Approved: 2025-08-05 10:57
+  Duration: 0 days
+[104/115] Processing RDINC-37183...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[105/115] Processing RDINC-36884...
+  Reviewed: 2025-09-10 13:29
+  Approved: 2025-09-10 14:47
+  Duration: 0.05 days
+[106/115] Processing RDINC-36863...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[107/115] Processing RDINC-36551...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[108/115] Processing RDINC-36438...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[109/115] Processing RDINC-36405...
+  Reviewed: 2025-08-04 17:16
+  Approved: 2025-08-04 17:16
+  Duration: 0 days
+[110/115] Processing RDINC-36359...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+
+  Progress: 110/115 (95.7%)
+
+[111/115] Processing RDINC-36200...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[112/115] Processing RDINC-35624...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[113/115] Processing RDINC-35430...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:19
+  Duration: 0 days
+[114/115] Processing RDINC-35357...
+  Reviewed: 2025-08-04 17:05
+  Approved: 2025-08-04 17:05
+  Duration: 0 days
+[115/115] Processing RDINC-35312...
+  Reviewed: 2025-07-29 15:19
+  Approved: 2025-07-29 15:11
+  Duration: -0.01 days
+
+=== Summary Statistics ===
+
+Total issues processed: 115
+Issues with both dates: 114
+Issues missing approval: 
+Issues not reviewed: 0
+Errors: 0
+
+Time from Reviewed to Approved:
+  Average: 10.77 days
+  Median: 0.02 days
+  Min: -0.01 days
+  Max: 139.81 days
+
+Percentiles:
+  P25 (25%): 0 days
+  P75 (75%): 11.72 days
+  P90 (90%): 31.98 days
+
+Distribution:
+  < 1 day: 65 (57%)
+  < 1 week: 78 (68.4%)
+  < 2 weeks: 90 (78.9%)
+  >= 30 days: 14 (12.3%)
+
+Results saved to:
+..\data\time-reviewed-to-approved-2025-20260319-101821.csv
+
+=== Top 10 Slowest (Days from Reviewed to Approved) ===
+
+Issue       DurationDays ReviewedDate        ApprovedDate       
+-----       ------------ ------------        ------------       
+RDINC-43232       139.81 2025-10-20 16:25:33 2026-03-09 11:58:51
+RDINC-45669        80.99 2025-09-04 09:39:27 2025-11-24 09:30:16
+RDINC-48924        75.93 2025-09-17 13:48:32 2025-12-02 12:12:00
+RDINC-55285        73.02 2025-12-22 15:00:39 2026-03-05 15:32:00
+RDINC-64639        72.89 2025-12-26 14:45:34 2026-03-09 12:00:57
+RDINC-41748        60.76 2025-07-23 15:47:15 2025-09-22 10:02:10
+RDINC-56010        56.02 2025-12-09 17:23:59 2026-02-03 17:56:06
+RDINC-39154        50.89 2025-07-23 15:52:35 2025-09-12 13:14:47
+RDINC-42729        49.04 2025-08-04 10:22:36 2025-09-22 11:27:09
+RDINC-48008        48.72 2025-10-07 17:56:18 2025-11-25 11:12:58
+
+
+
+=== Top 10 Fastest (Days from Reviewed to Approved) ===
+
+Issue       DurationDays ReviewedDate        ApprovedDate       
+-----       ------------ ------------        ------------       
+RDINC-35312        -0.01 2025-07-29 15:19:38 2025-07-29 15:11:32
+RDINC-54619            0 2026-03-04 16:40:51 2026-03-04 16:40:53
+RDINC-55209            0 2026-03-04 16:40:25 2026-03-04 16:40:23
+RDINC-40306            0 2025-07-29 15:19:18 2025-07-29 15:19:18
+RDINC-54487            0 2026-03-04 16:41:17 2026-03-04 16:41:19
+RDINC-54170            0 2026-03-04 16:43:41 2026-03-04 16:43:43
+RDINC-54335            0 2026-03-04 16:41:52 2026-03-04 16:41:54
+RDINC-40392            0 2025-07-29 15:19:17 2025-07-29 15:19:17
+RDINC-39382            0 2025-07-29 15:19:20 2025-07-29 15:19:20
+RDINC-56032            0 2026-03-04 16:37:52 2026-03-04 16:37:53
+
+

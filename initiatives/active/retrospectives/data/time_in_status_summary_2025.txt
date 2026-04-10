@@ -1,0 +1,51 @@
+Total issues analyzed: 115
+
+========================================
+TIME IN "SOLVED" STATUS
+========================================
+Issues analyzed: 97
+Average time: 20.9 days
+Median time: 11.6 days
+Min time: 0.1 days
+Max time: 86.2 days
+Std deviation: 21.7 days
+
+========================================
+TIME IN "RETROSPECTIVE IN PROGRESS" STATUS
+========================================
+Issues analyzed: 115
+Average time: 70.4 days
+Median time: 58.9 days
+Min time: 0.1 days
+Max time: 291.1 days
+Std deviation: 44.1 days
+
+========================================
+COMPARISON
+========================================
+Issues with time in SOLVED: 97 (84%)
+Issues with time in Retro In Progress: 115 (100%)
+
+Top 10 longest time in SOLVED:
+  RDINC-36405    :   86.2 days
+  RDINC-54619    :   77.9 days
+  RDINC-41528    :   72.6 days
+  RDINC-55643    :   72.0 days
+  RDINC-55788    :   70.5 days
+  RDINC-56425    :   64.2 days
+  RDINC-56032    :   61.9 days
+  RDINC-57405    :   58.1 days
+  RDINC-57683    :   57.9 days
+  RDINC-55555    :   57.8 days
+
+Top 10 longest time in Retrospective In Progress:
+  RDINC-43232    :  291.1 days
+  RDINC-36884    :  184.1 days
+  RDINC-43642    :  173.2 days
+  RDINC-48924    :  168.0 days
+  RDINC-38678    :  167.0 days
+  RDINC-39154    :  165.2 days
+  RDINC-45669    :  145.1 days
+  RDINC-55285    :  136.0 days
+  RDINC-37491    :  134.8 days
+  RDINC-42270    :  132.0 days

@@ -1,6 +1,26 @@
 # Leadership Principles
 
-*Last updated: [DATE]*
+*Last updated: 2026-03-13*
+
+---
+
+## Daily Reminders
+
+**My four operating values:**
+
+### 🔍 Ask Why
+Challenge assumptions. Dig deeper into root causes. Don't accept surface-level answers.
+
+### 🗣️ Say
+Speak up. Share your perspective. Your voice matters, especially in remote settings.
+
+### ⚡ Challenge More
+Question the status quo. Push for better solutions. Don't settle for "good enough."
+
+### 🤝 Create Networking
+Build connections. Reach out. Strengthen relationships across teams and organizations.
+
+---
 
 ## Core Beliefs
 

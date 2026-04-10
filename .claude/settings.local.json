@@ -1,5 +1,22 @@
 {
   "permissions": {
-    "allow": []
+    "allow": [
+      "WebFetch(domain:outsystemsrd.atlassian.net)",
+      "Bash(powershell.exe:*)",
+      "Bash(initiatives/active/retrospectives/scripts/issues-system-wide.txt:*)",
+      "Bash(\"C:/Users/ios/Documents/koda+claude/AI Assistent/EngineeringOS/initiatives/active/retrospectives/scripts/issues-system-wide.txt\":*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_handle_dialog",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_run_code",
+      "Bash(acli jira:*)",
+      "WebFetch(domain:docs.google.com)",
+      "Bash(analyze_19_incidents.py:*)",
+      "WebFetch(domain:rootly.com)",
+      "Bash(python generate_table_image.py)",
+      "Bash(python:*)"
+    ]
   }
 }

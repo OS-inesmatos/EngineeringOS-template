@@ -1,0 +1,725 @@
+{
+  "changelog": null,
+  "editmeta": null,
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "fields": {
+    "assignee": {
+      "accountId": "712020:366c2a5c-5325-41e9-a3bb-47d74efb47e8",
+      "accountType": "atlassian",
+      "active": true,
+      "avatarUrls": {
+        "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:366c2a5c-5325-41e9-a3bb-47d74efb47e8/f9b0d7eb-7fac-4829-a1b1-1a1611a0d5b8/16",
+        "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:366c2a5c-5325-41e9-a3bb-47d74efb47e8/f9b0d7eb-7fac-4829-a1b1-1a1611a0d5b8/24",
+        "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:366c2a5c-5325-41e9-a3bb-47d74efb47e8/f9b0d7eb-7fac-4829-a1b1-1a1611a0d5b8/32",
+        "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:366c2a5c-5325-41e9-a3bb-47d74efb47e8/f9b0d7eb-7fac-4829-a1b1-1a1611a0d5b8/48"
+      },
+      "displayName": "Tomás Antunes",
+      "emailAddress": "tomas.antunes@outsystems.com",
+      "self": "https://jira-prod-us-53-as-3.prod.atl-paas.net/rest/api/3/user?accountId=712020%3A366c2a5c-5325-41e9-a3bb-47d74efb47e8",
+      "timeZone": "Europe/London"
+    },
+    "description": {
+      "content": [
+        {
+          "content": [
+            {
+              "text": "*",
+              "type": "text"
+            },
+            {
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ],
+              "text": "ISSUE DESCRIPTION AND HOW TO REPRODUCE",
+              "type": "text"
+            },
+            {
+              "text": "*",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "   Multiple customers are reporting that as of earlier today, their external authentication no longer works; they either get an error or are simply not redirected to the External IdP page to finish the authentication flow as expected.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  Regardless of the specific behavior each customer is facing, there's a constant; we see the exact same error in Grafana for every single customer:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            }
+          ],
+          "type": "bulletList"
+        },
+        {
+          "content": [
+            {
+              "text": "GET /api/user-information/v1/profiles/me - 502 Fetch GET Error - 502 ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  [Attachment - image.png](",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "attrs": {
+                            "href": "https://supportoutsystems.zendesk.com/attachments/token/iaTuczMZgfEhXzvhyWFnv6OMV/?name=image.png"
+                          },
+                          "type": "link"
+                        }
+                      ],
+                      "text": "https://supportoutsystems.zendesk.com/attachments/token/iaTuczMZgfEhXzvhyWFnv6OMV/?name=image.png",
+                      "type": "text"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            }
+          ],
+          "type": "bulletList"
+        },
+        {
+          "content": [
+            {
+              "text": "*",
+              "type": "text"
+            },
+            {
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ],
+              "text": "IMPACT ON THE CUSTOMER",
+              "type": "text"
+            },
+            {
+              "text": "*",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "   This is completely preventing external authentication from working, and multiple customers have reported this to us in the past few hours. We'll share a complete list of those who've reported this to us in a comment shortly after this escalation is created.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "   We can also this is impacting multiple customers in Grafana (",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "attrs": {
+                            "href": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1):"
+                          },
+                          "type": "link"
+                        }
+                      ],
+                      "text": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1):",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "attrs": {
+                            "href": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1):"
+                          },
+                          "type": "link"
+                        }
+                      ],
+                      "text": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1\\):",
+                      "type": "text"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  [Attachment - image.png](",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "attrs": {
+                            "href": "https://supportoutsystems.zendesk.com/attachments/token/tHH0TgQVQyBCJoxJcdudAmKBu/?name=image.png"
+                          },
+                          "type": "link"
+                        }
+                      ],
+                      "text": "https://supportoutsystems.zendesk.com/attachments/token/tHH0TgQVQyBCJoxJcdudAmKBu/?name=image.png",
+                      "type": "text"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            }
+          ],
+          "type": "bulletList"
+        },
+        {
+          "content": [
+            {
+              "text": "*",
+              "type": "text"
+            },
+            {
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ],
+              "text": "TROUBLESHOOTING STEPS \u0026 WORKAROUND",
+              "type": "text"
+            },
+            {
+              "text": "*",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "   We've suggested that a customer unassign and reassign the IdP to their Production Stage as an attempt to mitigate this, but the customer still hasn't gotten back to us to let us know if it worked, and beyond that, this error is completely unprecedented for us.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            }
+          ],
+          "type": "bulletList"
+        },
+        {
+          "content": [
+            {
+              "text": "*",
+              "type": "text"
+            },
+            {
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ],
+              "text": "TECH DATA OR ANY OTHER RELEVANT INFO",
+              "type": "text"
+            },
+            {
+              "text": "*",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Tenant ID",
+                      "type": "text"
+                    },
+                    {
+                      "text": "* (mandatory)*",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": ": Some affected Tenants:",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Munters: ccb27f16-21c9-4ac3-9708-17f208a559af",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Cordaan: 68dd6faa-1134-4947-8bb1-0a4bb2b02a3e",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Stage ID",
+                      "type": "text"
+                    },
+                    {
+                      "text": "* (mandatory*):*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Munters: 09313a00-3308-453a-bda4-e745d32af136",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Cordaan: 86f6a16d-647e-4009-b65b-ec9acac89406",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Timeline with start and end date/hour",
+                      "type": "text"
+                    },
+                    {
+                      "text": "* (mandatory)*",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": ":",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Earlier today",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Grafana dashboards",
+                      "type": "text"
+                    },
+                    {
+                      "text": "* (adjusted to timeline/tenant/environment/service)*",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": ":",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "  *",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "Grafana Dashboard showing occurrences of errors across all Tenants:",
+                      "type": "text"
+                    },
+                    {
+                      "text": "* [*",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "attrs": {
+                            "href": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1"
+                          },
+                          "type": "link"
+                        },
+                        {
+                          "type": "strong"
+                        }
+                      ],
+                      "text": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1",
+                      "type": "text"
+                    },
+                    {
+                      "text": "*](",
+                      "type": "text"
+                    },
+                    {
+                      "marks": [
+                        {
+                          "attrs": {
+                            "href": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1"
+                          },
+                          "type": "link"
+                        }
+                      ],
+                      "text": "https://outsystems.grafana.net/goto/df1mi4oviyosgc?orgId=1",
+                      "type": "text"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            }
+          ],
+          "type": "bulletList"
+        },
+        {
+          "content": [
+            {
+              "marks": [
+                {
+                  "type": "em"
+                }
+              ],
+              "text": "[! do not remove this line, this will be used to the trigger_ Technical Support::Send to R\u0026D - ODC _#trigger_send_to_r\u0026d_odc !]",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "text": "   Please see Zendesk Support tab for further comments and attachments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "type": "listItem"
+            }
+          ],
+          "type": "bulletList"
+        }
+      ],
+      "type": "doc",
+      "version": 1
+    },
+    "issuetype": {
+      "avatarId": 23618,
+      "description": "For system outages or incidents. Created by JIRA Service Desk.",
+      "hierarchyLevel": 0,
+      "iconUrl": "https://jira-prod-us-53-as-3.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/23618?size=medium",
+      "id": "10600",
+      "name": "Incident",
+      "self": "https://jira-prod-us-53-as-3.prod.atl-paas.net/rest/api/3/issuetype/10600",
+      "subtask": false
+    },
+    "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-53-as-3.prod.atl-paas.net/images/icons/statuses/generic.png",
+      "id": "15461",
+      "name": "Retrospective Completed",
+      "self": "https://jira-prod-us-53-as-3.prod.atl-paas.net/rest/api/3/status/15461",
+      "statusCategory": {
+        "colorName": "green",
+        "id": 3,
+        "key": "done",
+        "name": "Done",
+        "self": "https://jira-prod-us-53-as-3.prod.atl-paas.net/rest/api/3/statuscategory/3"
+      }
+    },
+    "summary": "502 Response when logging in with External IdPs (GET /api/user-information/v1/profiles/me)"
+  },
+  "fieldsToInclude": null,
+  "id": "1099875",
+  "key": "RDINC-60247",
+  "names": null,
+  "operations": null,
+  "properties": null,
+  "renderedFields": null,
+  "schema": null,
+  "self": "https://jira-prod-us-53-as-3.prod.atl-paas.net/rest/api/3/issue/1099875",
+  "transitions": null,
+  "versionedRepresentations": null
+}
