@@ -11,6 +11,16 @@
   - Definir goals pessoais: aumentar confiança em falar em público (remoto) e em inglês
   - Conectar goals pessoais com oportunidades nos profissionais (ex: apresentar M3.3)
 
+- [ ] **Retrospectives "Máquina de Melhoria" — MVP (próximos 15 dias)**
+  - **Framework de perguntas objetivas:** Criar matriz (pilar → perguntas → evidências esperadas)
+    - Focar em perguntas baseadas em evidência concreta (não opinião)
+    - Exemplos: "Customers foram notificados?" (Sim + evidência) vs "Comunicação foi eficaz?" (subjetivo)
+  - **Template de documento pré-preparado:** Estrutura para RCA sessions
+    - Seções: Factos conhecidos por pilar + Pontos em aberto + Recomendações de discussão + Participantes sugeridos
+  - **Pilot:** Testar framework com 2-3 retrospetivas existentes (post-mortems recentes)
+  - **Alinhamento com Parreira:** Validar integração da skill dele com framework (antes da saída)
+  - **Rever pilares contra industry standards** (Google SRE Book, Incident Review best practices)
+
 
 ---
 
