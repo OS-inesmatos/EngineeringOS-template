@@ -20,14 +20,14 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ### Key Questions
 
-1. **How was the incident initially detected?**
+1. **Is the detection method clearly documented?**
    - Customer report, internal alert, monitoring system, manual discovery, etc.
 
-2. **Did the detection happen before customer impact?**
+2. **Was the incident detected before customer impact?**
    - Proactive vs reactive detection
    - Customer-detected vs system-detected
 
-3. **How effective was the alert's clarity/actionability?**
+3. **Were alerts clear and actionable?**
    - Was the alert clear about what was wrong?
    - Did it provide enough context for rapid response?
    - Did it suggest actionable next steps?
@@ -69,22 +69,26 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ### Key Questions
 
-1. **Was incident declaration timely after detection?**
+1. **Was incident declaration timely?**
    - How long between issue detection and formal incident creation?
    - If delayed, what caused the delay?
    - Was escalation appropriate and timely?
 
-2. **Was communication effective?**
+2. **Was internal communication effective?**
    - Internal communication (team, leadership)
-   - External communication (customers, stakeholders)
    - Timely and clear updates?
 
-3. **Was MTTA (Mean Time to Acknowledge) documented and adequate?**
+3. **Was external communication effective?**
+   - Was the public status page updated promptly?
+   - Were customer-facing updates clear and accurate?
+   - Was Public MTTA documented?
+
+4. **Was MTTA (Mean Time to Acknowledge) documented and adequate?**
    - How long to acknowledge and start working on the incident?
    - Was the response time acceptable?
    - How does it compare to historical MTTA?
 
-4. **Was status page communication timely and clear?**
+5. **Was status page communication timely and clear?**
    - Was the public status page updated promptly?
    - Were customer-facing updates clear and accurate?
    - Was Public MTTA documented?
@@ -116,7 +120,7 @@ The RCA framework evaluates retrospective quality across six core pillars. These
    - Were troubleshooting tools adequate?
    - Were logs/metrics/traces helpful?
 
-2. **Is the technical root cause clear?**
+2. **Is the technical root cause clear documented?**
    - Root cause identified and documented?
    - Evidence-based analysis?
    - Avoid surface-level symptoms
@@ -147,7 +151,8 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ### Key Questions
 
-1. **Was MTTR adequate?**
+1. **Was MTTR assessed?**
+   - Is MTTR documented?
    - Was recovery time acceptable?
    - How does it compare to historical MTTR for similar incidents?
 
@@ -157,13 +162,14 @@ The RCA framework evaluates retrospective quality across six core pillars. These
    - Configuration change (feature flag, scaling)
    - Manual intervention/workaround
 
-3. **What slowed down recovery?**
+3. **Are recovery blockers identified?**
+   - What slowed down the recovery?
    - Missing information or context?
    - Tooling gaps?
    - Knowledge gaps?
    - Coordination issues?
 
-4. **Were runbooks or documentation used? Were they accurate and helpful?**
+4. **Were runbooks or documentation used and assessed?**
    - Did relevant runbooks exist?
    - Were they used during recovery?
    - Were they accurate and complete?
@@ -210,23 +216,23 @@ The RCA framework evaluates retrospective quality across six core pillars. These
    - Change Failure Rate (CFR) implications
    - Deployment process gaps?
 
-2. **Is this a recurring issue?**
+2. **Was recurrence analysis performed?**
    - Were there previous incidents with the same root cause?
    - Were action items from previous retrospectives completed?
    - What systemic issues were not addressed that allowed recurrence?
    - Is there a pattern indicating band-aids instead of systemic fixes?
 
-3. **What action items prevent recurrence?**
+3. **Are action items to prevent recurrence defined?**
    - Specific, actionable items defined?
    - Short-term fixes vs long-term improvements?
    - Address root cause, not just symptoms
 
-4. **Were the follow-up actions immediately owned and tracked?**
+4. **Are action items owned and tracked?**
    - Clear ownership assigned for each action item?
    - Tracking mechanism in place (Jira, Problem Management)?
    - Timeline/priority defined?
 
-5. **Did the team gain a significant new insight about the system?**
+5. **Are learnings documented?**
    - New understanding of system behavior?
    - Previously unknown risk or vulnerability discovered?
    - Learning value beyond fixing this specific issue?
@@ -255,7 +261,7 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ### Key Questions
 
-1. **Did the incident management process work?**
+1. **Was incident management process followed?**
    - Was incident declaration clear?
    - Were roles assigned effectively?
    - Was the Incident Commander effective?
