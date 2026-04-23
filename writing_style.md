@@ -154,6 +154,24 @@ Tentative [ ] [ ] [ ] [X] [ ] Assertive
 - End with "Thanks!" or "Thank you for your cooperation!"
 - Encourage questions: "Feel free to share any thoughts or questions you have"
 
+**Slack Announcements (process updates, policy changes):**
+- Header format: `:announcement: [Category] Title` with separator `---------------------`
+- Opening: "Hi everyone! :wave:" or "Hi all! :wave:"
+- Use "As you know" to contextualize existing awareness
+- Section structure with emoji headers:
+  - `:neo-warning: Important Heads-up:`
+  - `:information_source:` for explanatory notes
+  - `:mag: Monitoring your X:` for actionable follow-ups
+  - `:arrow_forward: We'd like to...` for CTAs
+- Bold for key concepts inline (not just headers)
+- Generous spacing between sections
+- Positive framing: "empowering", "fostering collaboration"
+- Call-to-action phrasing:
+  - "We'd like to get your input" (not "We'd love to")
+  - "Please check..." (not "Please review...")
+  - "let us know if..." (open invitation, not demanding)
+- Close with: "Thanks for your cooperation! :rocket:" or "Thanks! :wink:"
+
 **In DMs:**
 - Friendly but focused
 - Get to the point quickly
@@ -270,6 +288,44 @@ The Process Engineering team will be monitoring this rollout over the next few w
 Thanks!
 ```
 
+### Sample 3: Slack Announcement (Technical Change)
+
+```
+:announcement: [ODC CD Failures] CFR Evolution & Mandatory Field Updates
+
+---------------------
+
+Hi everyone! :wave:
+
+Our Change Failure Rate (CFR) calculation is evolving to include Deployment Failures in addition to incidents.
+To support this, starting tomorrow, we are making the following update in Jira:
+
+Mandatory field: The Impacted Asset(s) - the asset that caused the failure - field will now be mandatory whenever a Failure issue is moved to 'Solved'. This field captures the root cause asset (what caused the failure).
+Asset Missing: Just like with incidents, if you can't find the specific asset in the list, you can select 'Asset Missing' and describe it in the Specify Missing Asset field.
+
+:neo-warning: Important Heads-up:
+Because this field, Impacted Asset(s), is shared across multiple projects, the name 'Impacted Asset(s)' can be slightly misleading. Please remember that for both Failures and Incidents, we want to capture the Asset that caused the issue (Root Cause).
+:information_source: We've added several visual cues and help texts in Jira to guide you through this.
+
+:mag: Monitoring your Failures:
+We'd also like to remind everyone how important it is to regularly analyze the failures assigned to your team.
+To make this easier, you can use the following filter: :point_right: RDODCF - Open Failures
+
+Thanks for your cooperation! :rocket:
+```
+
+### Sample 4: Slack Message (Requesting Input)
+
+```
+Hi all! :wave:
+
+As you know, we are redesigning the Retrospectives process. The main goal is the shift from an SRE-led model to a Team-led approach, empowering R&D Teams to take full accountability for their quality and continuous learning while fostering better collaboration between areas.
+
+We are currently refining a framework to assess the Retrospective output, ensuring it addresses critical gaps and answers the right questions.
+
+:arrow_forward: We'd like to get your input on this! Please check the draft in the thread below and let us know if there's anything we missed or specific questions you think should be included. Thanks! :wink:
+```
+
 ---
 
 ## Anti-Patterns
@@ -316,4 +372,4 @@ Before sending anything Claude drafted, ask:
 
 ---
 
-*Last updated: 2026-03-14*
+*Last updated: 2026-04-23*
