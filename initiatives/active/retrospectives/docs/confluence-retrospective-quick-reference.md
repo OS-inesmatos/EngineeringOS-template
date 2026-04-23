@@ -1,7 +1,7 @@
 # Retrospective Process — Quick Reference
 
 **For:** Retrospective Commanders (EM/TL)  
-**Last Updated:** 2026-04-15
+**Last Updated:** 2026-04-23
 
 ---
 
@@ -30,9 +30,11 @@
 **Tool:** Koda skill `/assess-retrospective` OR manual review
 
 **Output:**
-- Score: 0-100%
+- Score: 0-100% (based on 26 questions)
 - Gaps: What's missing or weak
 - Focus areas for working session
+
+**Note:** Pre-assessment evaluates 26 questions (excludes Pillar 6 Q3-Q5, which require completed retrospective)
 
 **SLA:** <1 day from draft
 
@@ -63,24 +65,29 @@
 
 ---
 
-### ✅ Step 6: Post-Assessment (Day 16)
-**Tool:** Re-run assessment (same as Step 3)
+### 👍 Step 6: VSL Approval (Days 17-21)
+**Action:** Submit to VSL for approval  
+**VSL reviews:** Uses critical judgment to evaluate quality  
+**Evaluates:** Root cause clarity, action item quality, learnings gained
 
-**Check:**
-- Score improved? (e.g., 45% → 85%)
-- All gaps addressed?
-- Score >70%? → Ready for approval
-
-**If <70%:** Fix remaining gaps, re-assess
+**SLA:** <5 days from submission
 
 ---
 
-### 👍 Step 7: VSL Approval (Days 17-21)
-**Action:** Submit to VSL for approval  
-**VSL reviews:** Confirms quality, approves  
-**Done:** Retrospective closed, action items tracked
+### ✅ Step 7: Post-Assessment (Days 22-23)
+**When:** After VSL approves  
+**Tool:** Re-run assessment (same as Step 3)
 
-**SLA:** <5 days from submission
+**Purpose:**
+- Measure final quality score (all 29 questions)
+- Track improvement (pre vs post)
+- Identify team learning effectiveness
+
+**Note:** Post-assessment evaluates all 29 questions (includes Pillar 6 Q3-Q5: SLA compliance, documentation quality, process adherence)
+
+**This is for metrics, not approval** — VSL already approved.
+
+**SLA:** <2 days after approval
 
 ---
 
@@ -93,10 +100,10 @@
 | 3. Pre-assess | +1 | Day 4 |
 | 4. Session | +7-10 | Day 14 |
 | 5. Update | +2 | Day 16 |
-| 6. Post-assess | same | Day 16 |
-| 7. Approval | +5 | Day 21 |
+| 6. VSL Approval | +5 | Day 21 |
+| 7. Post-assess | +2 | Day 23 |
 
-**Target:** <45 days (21-day baseline + buffer)
+**Target:** <45 days (23-day baseline + buffer)
 
 ---
 
@@ -109,11 +116,11 @@ Your retrospective is scored against these:
 | 🕵️ **Detection** | Was detection effective? | How was incident detected? Before customer impact? |
 | 📣 **Response** | Was response timely? | Was incident declared quickly? MTTA acceptable? |
 | 🔍 **Troubleshooting** | Is root cause clear? | Is root cause documented with evidence? |
-| 🩹 **Recovery** | Was recovery fast? | Was MTTR adequate? What slowed us down? |
+| 🩹 **Recovery** | Was recovery fast? | Was MTTR adequate? What slowed us down? Did team lack confidence? |
 | 🧠 **Prevention** | How prevent recurrence? | Is this recurring? Action items defined with owners? |
 | ✅ **Process** | Was process followed? | Was retrospective completed in SLA? |
 
-**Target score:** >70% for approval
+**Quality evaluated by VSL using critical judgment**
 
 **Full details:** [RCA Framework Pillars](link)
 
@@ -121,14 +128,16 @@ Your retrospective is scored against these:
 
 ## Scoring Guide
 
-### What Does My Score Mean?
+### What Does My Pre-Assessment Score Mean?
 
 | Score | Level | What to Do |
 |-------|-------|------------|
-| **70-100%** 🟢 | **Excellent** | Ready for approval. May skip working session if all pillars strong. |
+| **70-100%** 🟢 | **Strong Start** | May skip working session if all pillars strong. Submit for VSL approval. |
 | **50-69%** 🟡 | **Good Progress** | Working session will help fill gaps. Focus on weak pillars. |
 | **30-49%** 🟡 | **Needs Work** | Significant gaps. Working session critical. Consider iteration. |
 | **0-29%** 🔴 | **Incomplete** | Major gaps across pillars. Gather more data before working session. |
+
+**Note:** Scores guide your work, but VSL evaluates quality using critical judgment, not fixed thresholds.
 
 ---
 
@@ -216,7 +225,6 @@ As your team matures, you gain independence:
 
 Before submitting to VSL, confirm:
 
-- ✅ Post-assessment score >70%
 - ✅ All 6 pillars addressed (no major gaps)
 - ✅ Root cause clearly documented with evidence
 - ✅ Action items defined with owners and dates
@@ -224,8 +232,11 @@ Before submitting to VSL, confirm:
 - ✅ Customer impact quantified
 - ✅ Recurrence check completed
 - ✅ Document clear and well-structured
+- ✅ Team gained meaningful insights
 
-**If all ✅ → Submit for approval**
+**If all ✅ → Submit for VSL approval**
+
+**Note:** VSL will evaluate quality using critical judgment. Post-assessment happens after approval for metrics tracking.
 
 ---
 
@@ -240,6 +251,19 @@ Before submitting to VSL, confirm:
 - **Koda skill:** Auto-generate draft
 - **Koda skill:** `/assess-retrospective`
 - **Dashboards:** Lead time, quality trends
+
+---
+
+## Changelog
+
+**2026-04-23:**
+- Corrected step order: VSL Approval (Step 6) → Post-Assessment (Step 7)
+- Removed fixed ">70% threshold" — VSL uses critical judgment
+- Post-assessment is for metrics tracking, not approval gate
+- Updated timeline baseline to Day 23
+- Added note: "Scores guide your work, but VSL evaluates quality using critical judgment"
+- Pre and post-assessment scores stored to measure improvement
+- **Assessment scope:** Pre-assessment evaluates 26 questions, post-assessment evaluates all 29 questions (includes Pillar 6 Q3-Q5)
 
 ---
 

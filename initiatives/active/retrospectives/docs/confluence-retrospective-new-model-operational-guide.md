@@ -2,7 +2,7 @@
 
 **Status:** Draft for Confluence  
 **Parent Page:** [WIP Retrospective Transformation Solution Proposed](https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6118113287/WIP+Retrospective+Transformation+Solution+Proposed)  
-**Last Updated:** 2026-04-15
+**Last Updated:** 2026-04-23
 
 ---
 
@@ -45,7 +45,7 @@ This guide provides step-by-step instructions for executing retrospectives under
 
 ```
 Incident Closed → Commander Assigned → Document Created → Pre-Assessment → 
-Working Session → Post-Assessment → VSL Approval → Closed
+Working Session → Document Update → VSL Approval → Post-Assessment → Closed
 ```
 
 **Timeline:** <45 days end-to-end
@@ -158,7 +158,8 @@ Framework-based evaluation that:
 
 **Pre-assessment report includes:**
 
-1. **Overall Score** — e.g., 45% (9 of 20 questions fully addressed)
+1. **Overall Score** — e.g., 45% (12 of 26 questions fully addressed)
+   - *Note:* Pre-assessment evaluates 26 questions (excludes Pillar 6 Q3-Q5, which can only be assessed post-approval)
 
 2. **Score by Pillar**
    - Detection & Monitoring: 🟢 83% (5/6)
@@ -298,9 +299,10 @@ Updated retrospective document with:
    - Link RPMs to retrospective
    - Assign owners in Jira
 
-3. **Prepare for post-assessment**
+3. **Prepare for VSL approval**
    - Document should now be complete
-   - All 6 pillars addressed
+   - All critical gaps addressed
+   - Ready for VSL review
 
 ### Who Does What
 
@@ -316,33 +318,76 @@ Updated retrospective document with:
 
 ---
 
-## Step 6: Post-Assessment & Validation
+## Step 6: VSL Approval
 
-**When:** After document updated
+**When:** After document updated following working session
+
+### What Happens
+
+1. **Submit for Approval**
+   - Retrospective Commander submits completed document to VSL
+   - Document should address all critical gaps identified in working session
+   - Action items defined with clear owners
+
+2. **VSL Review**
+   - Value Stream Leader reviews retrospective using **critical judgment**
+   - Evaluates completeness, depth of analysis, quality of learnings
+   - Assesses whether incident is sufficiently understood and prevented
+
+3. **Approval Decision**
+   - ✅ **Approved:** Retrospective moves to closure, action items tracked via Problem Management
+   - ❌ **Changes requested:** VSL provides feedback, document updated, resubmit
+
+### What VSL Evaluates
+
+**Key questions VSL should ask:**
+- Is the root cause clearly understood and evidence-based?
+- Are action items specific and likely to prevent recurrence?
+- Did the team gain meaningful insights from this incident?
+- Are there gaps that would prevent learning or improvement?
+- Is this retrospective complete enough to close?
+
+**VSL uses judgment, not just a score.** Quality is about depth of understanding, not checkbox completion.
+
+### Who Does What
+
+| Role | Responsibility |
+|------|---------------|
+| **EM/TL (Commander)** | Submit for approval when document is complete |
+| **VSL** | Review critically and approve or request changes within 5 days |
+| **Process Engineering** | Monitor approval timeline, escalate if delayed |
+
+### SLA
+
+**⏱️ Time to approval:** <5 days from submission
+
+---
+
+## Step 7: Post-Assessment & Closure
+
+**When:** After VSL approval
 
 ### What is Post-Assessment?
 
-Re-run framework assessment to measure improvement.
+Framework-based evaluation of the **final approved retrospective** to measure quality and improvement.
 
 **Purpose:**
-- Validate all gaps addressed
-- Calculate before/after score (e.g., 45% → 85%)
-- Confirm quality threshold met for approval
+- Measure final quality score (all 29 questions)
+- Calculate before/after improvement (pre vs post)
+- Track quality metrics over time
+- Identify team learning effectiveness
+
+**This is NOT a gate for approval** — VSL already approved using critical judgment. Post-assessment is for **metrics and learning**.
+
+**Assessment Scope:**
+- Post-assessment evaluates **all 29 questions** (including Pillar 6 Q3-Q5)
+- Pre-assessment evaluated **26 questions** (excluded Pillar 6 Q3-Q5, which require completed retrospective)
 
 ### How to Run
 
 Same process as pre-assessment (Step 3):
 - Run Koda skill `/assess-retrospective` OR
 - Manually review against framework pillars
-
-### Quality Threshold
-
-**Target for approval:** >70%
-
-**If <70%:**
-- Identify remaining gaps
-- Update document or schedule follow-up discussion
-- Re-assess until threshold met
 
 ### Before/After Comparison
 
@@ -362,47 +407,19 @@ Same process as pre-assessment (Step 3):
 
 ### What Happens Next
 
-**If score >70%:** Ready for VSL approval (Step 7)
-
-**If score <70%:** Additional work needed — update document, address gaps, re-assess
-
-### SLA
-
-**⏱️ Time to post-assess:** Same day as document update
-
----
-
-## Step 7: VSL Approval & Closure
-
-**When:** After post-assessment confirms >70% score
-
-### What Happens
-
-1. **VSL Review**
-   - Value Stream Leader reviews retrospective
-   - Confirms quality threshold met
-   - Approves or requests changes
-
-2. **Approval Decision**
-   - ✅ **Approved:** Retrospective closed, action items tracked via Problem Management
-   - ❌ **Changes requested:** Update document, address feedback, resubmit
-
-3. **Retrospective Closed**
+1. **Retrospective Closed**
    - Jira status: "Retrospective Completed"
    - Action items tracked separately in Problem Management
-   - Retrospective document published (if not already)
+   - Post-assessment score recorded for metrics
 
-### Who Does What
-
-| Role | Responsibility |
-|------|---------------|
-| **EM/TL (Commander)** | Submit for approval when ready |
-| **VSL** | Review and approve within 5 days |
-| **Process Engineering** | Monitor approval timeline, escalate if delayed |
+2. **Metrics Updated**
+   - Team quality score tracked over time
+   - Improvement delta added to dashboards
+   - Patterns identified for enablement
 
 ### SLA
 
-**⏱️ Time to approval:** <5 days from submission
+**⏱️ Time to post-assess:** <2 days after VSL approval
 
 ---
 
@@ -415,12 +432,12 @@ Same process as pre-assessment (Step 3):
 | 3 | Pre-assessment completed | 1 day | Day 7 |
 | 4 | RCA working session held | 7 days | Day 14 |
 | 5 | Document updated | 2 days | Day 16 |
-| 6 | Post-assessment completed | same day | Day 16 |
-| 7 | VSL approval | 5 days | Day 21 |
+| 6 | VSL approval | 5 days | Day 21 |
+| 7 | Post-assessment completed | 2 days | Day 23 |
 
-**Target: <45 days** (21 days baseline + buffer for iterations)
+**Target: <45 days** (23 days baseline + buffer for iterations)
 
-**Current average: 72 days** → Goal is 40% reduction
+**Current average: 72 days** → Goal is ~35% reduction
 
 ---
 
@@ -472,10 +489,11 @@ Each retrospective is assessed against these 6 pillars.
 **Key questions:**
 1. Was MTTR adequate?
 2. What was the primary mitigation method?
-3. What slowed down recovery?
-4. Were runbooks used? Were they accurate?
-5. Did dependencies or cascading failures delay recovery?
-6. Was customer impact quantified?
+3. Was rollback considered as a recovery option?
+4. What slowed down recovery? Did the team lack confidence or capability in any area?
+5. Were runbooks used? Were they accurate?
+6. Did dependencies or cascading failures delay recovery?
+7. Was customer impact quantified?
 
 ---
 
@@ -603,9 +621,14 @@ Each retrospective is assessed against these 6 pillars.
 
 4. **Dashboards (PowerBI)**
    - Retrospective lead time by team
-   - Quality scores over time
+   - Quality scores over time (pre and post-assessment)
+   - Improvement delta trends (working session effectiveness)
    - Action item completion rates
    - Recurrence patterns
+
+**Data Storage:**
+- Pre-assessment score, post-assessment score, and score-by-pillar stored in Jira custom fields
+- Enables longitudinal analysis: team improvement over time, pillar trends, working session ROI
 
 ---
 
@@ -619,9 +642,14 @@ Each retrospective is assessed against these 6 pillars.
 - % retrospectives completed within SLA
 
 **Quality metrics:**
-- Average quality score by team
-- % retrospectives meeting >70% threshold
+- Average quality score by team (post-assessment)
+- Quality score distribution (% scoring >70%, 40-70%, <40%)
 - Improvement delta (pre vs post-assessment)
+- **Pre-assessment and post-assessment scores stored per retrospective** — Track both scores to measure:
+  - Individual retrospective improvement (e.g., 45% → 85%)
+  - Working session effectiveness (average improvement delta)
+  - Score by pillar (before and after) to identify which pillars improve most
+  - Team learning effectiveness over time
 
 **Outcome metrics:**
 - Incident recurrence rate
@@ -675,25 +703,25 @@ Each retrospective is assessed against these 6 pillars.
 
 ### Q: Do I need to answer every framework question?
 
-**A:** No. The framework is guidance, not a rigid checklist. Answer questions **relevant to your incident**. Aim for >70% overall score, but focus on depth over breadth.
+**A:** No. The framework is guidance, not a rigid checklist. Answer questions **relevant to your incident**. Focus on depth of analysis over breadth of coverage.
 
 ---
 
-### Q: What if my score is <70% after working session?
+### Q: What quality standard do I need to meet?
 
-**A:** Address remaining gaps, update document, re-assess. If stuck, request another working session or Process Eng support. VSL can approve if close to threshold and critical gaps addressed.
+**A:** VSL evaluates quality using **critical judgment**, not a fixed score threshold. Focus on: clear root cause, evidence-based analysis, actionable prevention items, and meaningful learnings. If critical gaps remain, VSL will request changes.
 
 ---
 
 ### Q: How long are working sessions?
 
-**A:** 60-90 minutes. Focus on gaps identified in pre-assessment. Not every retrospective needs a full 90-minute session — depends on complexity and score.
+**A:** 60-90 minutes. Focus on gaps identified in pre-assessment. Not every retrospective needs a full 90-minute session — depends on complexity and gaps.
 
 ---
 
-### Q: Can I skip the working session if my pre-assessment score is high?
+### Q: Can I skip the working session if my pre-assessment looks strong?
 
-**A:** If your pre-assessment score is >70% and all pillars are strong, you can request to skip the working session. Process Eng will review and approve. This is part of **progressive autonomy** — high-maturity teams can operate more independently.
+**A:** If your pre-assessment shows strong coverage across all pillars, you can request to skip the working session. Process Eng will review and approve. This is part of **progressive autonomy** — high-maturity teams can operate more independently.
 
 ---
 
@@ -722,7 +750,7 @@ Each retrospective is assessed against these 6 pillars.
 4. **Run pre-assessment** — Manually review against framework pillars (or use skill when available)
 5. **Schedule working session** — Coordinate with Process Eng
 6. **Update document** — After working session
-7. **Submit for approval** — When score >70%
+7. **Submit for approval** — When document is complete and critical gaps addressed
 
 **Timeline:** Plan for 3-4 weeks total (well within 45-day SLA)
 
@@ -743,8 +771,8 @@ Each retrospective is assessed against these 6 pillars.
 
 **After working session:**
 - Support Commander with document update (if needed)
-- Track post-assessment score
-- Monitor VSL approval
+- Monitor VSL approval timeline
+- Run post-assessment after VSL approval to measure final quality
 
 ---
 
@@ -758,6 +786,16 @@ Each retrospective is assessed against these 6 pillars.
 ---
 
 ## Changelog
+
+**2026-04-23:** 
+- Corrected process flow: Post-assessment now happens **after** VSL approval (Step 7), not before
+- Clarified VSL approval uses **critical judgment**, not fixed score threshold
+- Post-assessment is for **metrics and learning**, not a gate for approval
+- Updated End-to-End Timeline to reflect correct step sequence (Day 23 baseline)
+- Removed references to ">70% score required for approval" — VSL evaluates quality holistically
+- **Added:** Pre and post-assessment scores stored per retrospective to measure improvement and working session effectiveness
+- **Added:** Data storage specification (Jira custom fields for scores)
+- **Assessment scope clarified:** Pre-assessment evaluates 26 questions (excludes Pillar 6 Q3-Q5), post-assessment evaluates all 29 questions
 
 **2026-04-15:** Initial operational guide created for Confluence publication
 

@@ -2,7 +2,7 @@
 
 **Status:** Active  
 **Effective:** Q2 2026 (Pilot: June 2026)  
-**Last Updated:** 2026-04-15 (v1.1 - Added mandatory criteria & Quality involvement)
+**Last Updated:** 2026-04-23 (v1.2 - Corrected approval flow: VSL approval before post-assessment)
 
 ---
 
@@ -40,10 +40,10 @@
 
 ```
 1. Commander Assigned (EM/TL) → 2. Draft Created → 3. Pre-Assessment → 
-4. Working Session → 5. Document Updated → 6. Post-Assessment → 7. VSL Approval
+4. Working Session → 5. Document Updated → 6. VSL Approval → 7. Post-Assessment
 ```
 
-**Timeline:** <45 days (40% faster than current 72 days)
+**Timeline:** <45 days (~35% faster than current 72 days)
 
 ---
 
@@ -68,7 +68,7 @@ Retrospectives are **mandatory** for:
 
 **Accountable for:**
 - Retrospective completion within <45 days
-- Quality threshold met (>70% score)
+- Quality sufficient for VSL approval
 - Action items defined with owners
 
 **Can delegate:**
@@ -89,13 +89,13 @@ Every retrospective assessed against **6 pillars:**
 1. 🕵️ **Detection & Monitoring** — How was incident detected?
 2. 📣 **Response & Communication** — Was response timely?
 3. 🔍 **Troubleshooting & Root Cause** — Is root cause clear?
-4. 🩹 **Recovery & Resolution** — How quickly recovered?
+4. 🩹 **Recovery & Resolution** — How quickly recovered? Did team lack confidence?
 5. 🧠 **Prevention & Learning** — What prevents recurrence?
 6. ✅ **Process Compliance** — Was process followed?
 
-**Score:** 0-100% based on questions addressed per pillar
+**Assessment:** Pre-assessment guides working session, post-assessment measures final quality
 
-**Approval threshold:** >70%
+**Approval:** VSL evaluates using critical judgment, not fixed score threshold
 
 ---
 
@@ -110,12 +110,14 @@ Every retrospective assessed against **6 pillars:**
 2. Working session focuses on filling gaps
 3. Process Eng facilitates discussion
 4. Document updated with insights
-5. Post-assessment confirms improvement
+5. VSL approves using critical judgment
+6. Post-assessment measures final quality (for metrics)
 
 **Example:**
 - Pre-score: 45% (many gaps)
 - Working session: Fill gaps, deepen analysis
-- Post-score: 85% (ready for approval)
+- VSL approves
+- Post-score: 85% (improvement measured)
 
 ---
 
@@ -153,7 +155,7 @@ Framework checks: **"Is this a recurring issue?"**
 - Run pre-assessment
 - Lead or delegate working session attendance
 - Update document within 2 days post-session
-- Submit for approval when >70% score
+- Submit for VSL approval when document is complete
 
 ### Process Engineering
 - Assign Commander within 3 days of incident closure
@@ -199,11 +201,11 @@ Framework checks: **"Is this a recurring issue?"**
 | Pre-assessment | <1 day | EM/TL |
 | Working session | <7 days | Process Eng + EM/TL |
 | Document updated | <2 days | EM/TL |
-| Post-assessment | same day | EM/TL |
 | VSL approval | <5 days | VSL |
+| Post-assessment | <2 days | Process Eng |
 | **Total** | **<45 days** | **End-to-end** |
 
-**Current average:** 72 days → **Target:** 45 days (40% reduction)
+**Current average:** 72 days → **Target:** 45 days (~35% reduction)
 
 ---
 
@@ -229,9 +231,10 @@ Framework checks: **"Is this a recurring issue?"**
 - % completed within SLA
 
 **Quality:**
-- Average score by team
-- % meeting >70% threshold
-- Pre vs post-assessment improvement
+- Average post-assessment score by team
+- Quality score distribution (>70%, 40-70%, <40%)
+- Pre vs post-assessment improvement delta
+- Both pre and post scores stored per retrospective to measure working session effectiveness
 
 **Outcome:**
 - Incident recurrence rate
@@ -250,7 +253,7 @@ Framework checks: **"Is this a recurring issue?"**
 3. **Create draft:** Use template, pull from incident data
 4. **Pre-assess:** Review against [6 pillars](link-to-pillars)
 5. **Working session:** Schedule with Process Eng
-6. **Update & submit:** When score >70%
+6. **Update & submit:** When document is complete and critical gaps addressed
 
 **First time?** Process Eng will guide you through each step.
 
@@ -285,8 +288,11 @@ A: Yes, you can delegate execution (writing, assessment) to team members. But ac
 **Q: What if I miss the SLA?**  
 A: Process Eng monitors and will flag delays. If blocked, reach out early. Repeated misses trigger support.
 
-**Q: Do I need a working session if my score is already >70%?**  
-A: High-maturity teams can request to skip if pre-score >70%. This is progressive autonomy.
+**Q: Do I need a working session if my pre-assessment looks strong?**  
+A: High-maturity teams can request to skip if pre-assessment shows good coverage. This is progressive autonomy.
+
+**Q: What quality standard must I meet for VSL approval?**  
+A: VSL evaluates using critical judgment: Is root cause clear? Are action items specific? Did the team learn? No fixed score threshold — focus on depth and quality.
 
 **Q: What if we find a recurring issue?**  
 A: Flag immediately. If previous action items weren't executed, escalate to your EM and VSL. This triggers problem management (M3.4).
@@ -299,6 +305,26 @@ A: Flag immediately. If previous action items weren't executed, escalate to your
 - **Process Engineering:** Inês Matos, Vera Branco
 - **SRE (advisory):** Pedro Charola Alves
 - **Slack:** #retrospectives-support (coming soon)
+
+---
+
+## Changelog
+
+**v1.2 (2026-04-23):**
+- Corrected process flow: Post-assessment now Step 7 (after VSL approval), not Step 6
+- Removed fixed ">70% threshold" for approval — VSL uses critical judgment
+- Clarified post-assessment is for metrics, not approval gate
+- Updated timeline: baseline changed from Day 21 to Day 23
+- Added FAQ: "What quality standard must I meet for VSL approval?"
+- Updated Pillar 4 to include "Did team lack confidence?"
+- **Added:** Pre and post scores stored per retrospective to measure working session effectiveness
+- **Assessment scope:** Pre-assessment evaluates 26 questions (excludes Pillar 6 Q3-Q5), post-assessment evaluates all 29 questions
+
+**v1.1 (2026-04-15):**
+- Added mandatory criteria & Quality involvement
+
+**v1.0 (2026-04-08):**
+- Initial version
 
 ---
 
