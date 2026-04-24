@@ -1,7 +1,7 @@
 # RCA Framework — Scoring Guide
 
-**Version:** 2.0
-**Last Updated:** 2026-04-23
+**Version:** 2.1
+**Last Updated:** 2026-04-24
 **Purpose:** Detailed scoring criteria for evaluating retrospective quality against RCA Framework (29 questions: 26 for pre-assessment, 29 for post-assessment)
 
 ---
@@ -35,6 +35,32 @@ Assess whether the answer provides:
 
 ### Step 4: Assign Score
 Use the criteria below for each question.
+
+### Step 5: Validate Action Items (Pillar 5, Q3)
+
+**For action items tracked in Jira, validate mandatory fields:**
+
+When evaluating "Are prevention action items defined with clear ownership and tracking?" (Pillar 5, Q3):
+
+1. **Extract Jira IDs** from the retrospective (e.g., RPLAT-3819, RDICE-5047)
+2. **Verify mandatory fields** in each Jira ticket:
+   - **Description** — Clear and specific?
+   - **Acceptance Criteria** — Measurable criteria present?
+   - **Assignee** — Owner assigned?
+   - **Due Date** — Due Date field populated? ⚠️ **MANDATORY**
+3. **Score based on completeness:**
+   - ✅ **1.0**: All action items have Jira IDs + all 4 mandatory fields complete
+   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory fields missing (especially Due Date)
+   - ❌ **0.0**: No Jira IDs OR Jira tickets don't exist
+
+**Why Due Date is mandatory:**
+- Without a Due Date, completion commitment is unclear
+- Cannot detect delays or prioritize effectively
+- Missing Due Date = incomplete action item tracking
+
+**Validation method:**
+- Use `acli jira workitem view <ISSUE-KEY>` to retrieve Jira ticket details
+- If Jira access unavailable, mark as "Inconclusive — manual verification required"
 
 ---
 
@@ -439,15 +465,23 @@ Use the criteria below for each question.
 - Address root cause, not just symptoms?
 - Clear ownership assigned for each action item?
 - Tracking mechanism in place (Jira, Problem Management)?
-- Timeline/priority defined?
+- **Due Date defined?** ⚠️ **MANDATORY**
+
+**Mandatory Jira Fields (when action items tracked in Jira):**
+1. **Description** — Clear and specific explanation of the action item
+2. **Acceptance Criteria** — Measurable criteria for completion (may be in Description field)
+3. **Assignee** — Owner assigned (not blank)
+4. **Due Date** — Target completion date populated ⚠️ **MANDATORY**
 
 **Scoring:**
 
 | Score | Criteria | Example |
 |-------|----------|---------|
-| ✅ **1.0** | Specific action items with clear owners, tracking, and timelines | "Action items: (1) RDICE-5047 (owner: ICE team, priority: High, timeline: Sprint 42, tracked in Jira): Create unit test to prevent NATS Trace Level activation. (2) RDMOT-2129 (owner: Observability, priority: Medium, Q2 2026, Problem Management): Implement Fluentbit throttling." |
-| ⚠️ **0.5** | Action items defined but ownership/tracking incomplete or action items vague | "Action items: (1) Improve monitoring, (2) Create runbook." (vague) OR "RDICE-5047 assigned to ICE team." (no timeline or tracking) |
+| ✅ **1.0** | Specific action items with clear owners, tracking, and **Due Date** populated. If Jira-tracked, all mandatory fields complete (Description, Acceptance Criteria, Assignee, Due Date). | "Action items: (1) RDICE-5047 (owner: ICE team, priority: High, due: 2026-04-30, tracked in Jira): Create unit test to prevent NATS Trace Level activation. Acceptance criteria: test fails when trace level enabled. (2) RDMOT-2129 (owner: Observability, priority: Medium, due: 2026-06-30, Problem Management): Implement Fluentbit throttling." |
+| ⚠️ **0.5** | Action items defined but **Due Date missing** or other mandatory Jira fields incomplete, OR action items vague | "Action items: (1) Improve monitoring, (2) Create runbook." (vague) OR "RDICE-5047 assigned to ICE team." (no Due Date or acceptance criteria) OR Jira ticket exists but Due Date field is blank. |
 | ❌ **0.0** | No action items defined or only generic mentions | No prevention measures proposed |
+
+**Note:** Due Date is mandatory for all action items. Without a Due Date, completion cannot be tracked and delays cannot be identified.
 
 ---
 
@@ -714,6 +748,13 @@ To ensure consistency across reviewers:
 ---
 
 ## Version History
+
+**Version 2.1 (2026-04-24)**
+- **Pillar 5, Q3: Due Date now mandatory** — Action items must have Due Date populated to score ✅ 1.0
+- Added "Step 5: Validate Action Items" in "How to Score" section with Jira validation instructions
+- Updated Q3 scoring criteria to include mandatory Jira fields: Description, Acceptance Criteria, Assignee, **Due Date**
+- Added rationale: Due Date is mandatory for tracking commitment and detecting delays
+- Validation method: Use `acli jira workitem view <ISSUE-KEY>` to verify fields
 
 **Version 2.0 (2026-04-23)**
 - **Pillar 6, Q3-Q5 marked as "Post-Assessment Only"** — These questions evaluate the completed retrospective process
