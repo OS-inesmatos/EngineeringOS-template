@@ -23,7 +23,7 @@
 | 🔍 Troubleshooting & Root Cause | 50/100 | 🟡 | Root cause is hypothesis, not confirmed with evidence; troubleshooting documented |
 | 🩹 Recovery & Resolution | 50/100 | 🟡 | MTTR documented but no acceptability analysis; rollback not considered; blockers weak |
 | 🧠 Prevention & Learning | 50/100 | 🟡 | Change correlation absent; action item present but vague; recurrence analysis missing |
-| ✅ Process Compliance | 50/100 | 🟡 | RFC usage documented but compliance not evaluated (2 questions only) |
+| ✅ Process Compliance | 50/100 | 🟡 | RFC usage documented but compliance not evaluated |
 
 **Overall Pre-Assessment:** 10.0/26 questions fully addressed
 
@@ -225,7 +225,7 @@
 
 ### ✅ Pillar 6: Process Compliance (50/100)
 
-**Score:** 1.0 / 2.0 points (pre-assessment evaluates Q1-Q2 only)
+**Score:** 1.0 / 2.0 points
 
 #### ✅ Fully Addressed (1 question)
 

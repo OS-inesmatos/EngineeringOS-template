@@ -23,7 +23,7 @@
 | 🔍 Troubleshooting & Root Cause | 50/100 | 🟡 | Root cause partially identified; team acknowledges incomplete understanding |
 | 🩹 Recovery & Resolution | 50/100 | 🟡 | Mitigation documented; rollback consideration and runbooks missing |
 | 🧠 Prevention & Learning | 50/100 | 🟡 | Change correlation clear; recurrence analysis missing, action items weak |
-| ✅ Process Compliance | 50/100 | 🟡 | Roles documented; RFC compliance not fully assessed (2 questions only) |
+| ✅ Process Compliance | 50/100 | 🟡 | Roles documented; RFC compliance not fully assessed |
 
 **Overall Pre-Assessment:** 11.5/26 points earned (5 fully addressed, 11 weak, 4 missing, 0 N/A)
 
@@ -217,7 +217,9 @@
 
 ---
 
-### ✅ Pillar 6: Process Compliance (50/100) - 2 questions only (pre-assessment)
+### ✅ Pillar 6: Process Compliance (50/100)
+
+**Score:** 1.0 / 2.0 points
 
 #### ⚠️ Present but Weak (2 questions)
 

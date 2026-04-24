@@ -23,7 +23,7 @@
 | 🔍 Troubleshooting & Root Cause | 100/100 | 🟢 | Excellent depth with 5-Whys, evidence-based analysis, architectural issues identified |
 | 🩹 Recovery & Resolution | 64/100 | 🟡 | MTTR documented, rollback justified, but runbook usage and dependency analysis weak |
 | 🧠 Prevention & Learning | 63/100 | 🟡 | Change correlation strong, action items present but lack specificity and tracking |
-| ✅ Process Compliance | 50/100 | 🟡 | Incident management covered but RFC compliance not evaluated (2 questions only) |
+| ✅ Process Compliance | 50/100 | 🟡 | Incident management covered but RFC compliance not evaluated |
 
 **Overall Pre-Assessment:** 16.5/26 questions fully addressed
 
@@ -207,7 +207,7 @@
 
 ### ✅ Pillar 6: Process Compliance (50/100)
 
-**Score:** 1.0 / 2.0 points (pre-assessment evaluates Q1-Q2 only)
+**Score:** 1.0 / 2.0 points
 
 #### ✅ Fully Addressed (1 question)
 

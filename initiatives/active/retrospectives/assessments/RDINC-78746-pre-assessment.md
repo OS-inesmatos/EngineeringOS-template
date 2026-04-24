@@ -206,7 +206,9 @@
 
 ---
 
-### ✅ Pillar 6: Process Compliance (75/100) — 2 questions only (pre-assessment)
+### ✅ Pillar 6: Process Compliance (75/100)
+
+**Score:** 1.5 / 2.0 points
 
 #### ✅ Fully Addressed (1 question)
 
