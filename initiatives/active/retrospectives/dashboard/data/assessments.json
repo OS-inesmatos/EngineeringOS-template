@@ -114,10 +114,137 @@
       "customerImpact": "3 EA tenants",
       "reviewer": "Koda Pre-Assessment v2.0"
     }
+    ,
+    {
+      "id": "RDINC-77259",
+      "title": "SEV2 - Database Scripts Generation failures in OSALL/EA",
+      "severity": "SEV2",
+      "teams": ["SRE", "Maestro", "Runtime Data Model"],
+      "assessmentDate": "2026-04-24",
+      "incidentDate": "2026-03-17",
+      "assessmentType": "pre",
+      "overallScore": 65,
+      "status": "needs-work",
+      "pillarScores": {
+        "detection": 67,
+        "response": 25,
+        "troubleshooting": 100,
+        "recovery": 64,
+        "prevention": 63,
+        "compliance": 50
+      },
+      "questionsScored": {
+        "total": 26,
+        "fullyAddressed": 16,
+        "presentButWeak": 8,
+        "missing": 2,
+        "notApplicable": 0
+      },
+      "topGaps": [
+        {
+          "pillar": "Response & Communication",
+          "question": "Was external communication effective?",
+          "priority": "high",
+          "status": "missing"
+        },
+        {
+          "pillar": "Prevention & Learning",
+          "question": "Are prevention action items defined with clear ownership?",
+          "priority": "high",
+          "status": "weak"
+        },
+        {
+          "pillar": "Process Compliance",
+          "question": "If mitigation required RFC, did it follow Change Management policy?",
+          "priority": "high",
+          "status": "weak"
+        },
+        {
+          "pillar": "Response & Communication",
+          "question": "Was MTTA adequate?",
+          "priority": "medium",
+          "status": "missing"
+        },
+        {
+          "pillar": "Recovery & Resolution",
+          "question": "Are recovery blockers identified?",
+          "priority": "medium",
+          "status": "missing"
+        }
+      ],
+      "confluenceUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6094454826/",
+      "assessmentUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6270058649/",
+      "mttr": 6.2,
+      "customerImpact": "~30 tenants (20 OSALL, 10 EA)",
+      "reviewer": "Koda Pre-Assessment v2.0"
+    },
+    {
+      "id": "RDINC-78158",
+      "title": "SEV2 - Few requests failing on ingestion API with 503 errors",
+      "severity": "SEV2",
+      "teams": ["Global Routing And Security", "Data Platform", "SRE"],
+      "assessmentDate": "2026-04-24",
+      "incidentDate": "2026-04-02",
+      "assessmentType": "pre",
+      "overallScore": 48,
+      "status": "needs-work",
+      "pillarScores": {
+        "detection": 50,
+        "response": 13,
+        "troubleshooting": 50,
+        "recovery": 50,
+        "prevention": 50,
+        "compliance": 50
+      },
+      "questionsScored": {
+        "total": 26,
+        "fullyAddressed": 10,
+        "presentButWeak": 11,
+        "missing": 5,
+        "notApplicable": 0
+      },
+      "topGaps": [
+        {
+          "pillar": "Troubleshooting & Root Cause",
+          "question": "What is the technical root cause?",
+          "priority": "high",
+          "status": "weak"
+        },
+        {
+          "pillar": "Prevention & Learning",
+          "question": "Was the incident caused by a recent change?",
+          "priority": "high",
+          "status": "missing"
+        },
+        {
+          "pillar": "Prevention & Learning",
+          "question": "Are prevention action items defined with clear ownership?",
+          "priority": "high",
+          "status": "weak"
+        },
+        {
+          "pillar": "Response & Communication",
+          "question": "Was external communication effective?",
+          "priority": "medium",
+          "status": "missing"
+        },
+        {
+          "pillar": "Response & Communication",
+          "question": "Was MTTA adequate?",
+          "priority": "medium",
+          "status": "missing"
+        }
+      ],
+      "confluenceUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6161990125/",
+      "assessmentUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6270419052/",
+      "mttr": 2.0,
+      "customerImpact": "1% of requests in GA us-east-1",
+      "reviewer": "Koda Pre-Assessment v2.0"
+    }
   ],
   "metadata": {
     "lastUpdated": "2026-04-24T00:00:00Z",
-    "totalAssessments": 2,
+    "totalAssessments": 4,
     "frameworkVersion": "2.0"
   }
 }
