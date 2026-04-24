@@ -43,14 +43,15 @@ Use the criteria below for each question.
 When evaluating "Are prevention action items defined with clear ownership and tracking?" (Pillar 5, Q3):
 
 1. **Extract Jira IDs** from the retrospective (e.g., RPLAT-3819, RDICE-5047)
-2. **Verify mandatory fields** in each Jira ticket:
-   - **Description** — Clear and specific?
-   - **Acceptance Criteria** — Measurable criteria present?
-   - **Assignee** — Owner assigned?
-   - **Due Date** — Due Date field populated? ⚠️ **MANDATORY**
-3. **Score based on completeness:**
-   - ✅ **1.0**: All action items have Jira IDs + all 4 mandatory fields complete
-   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory fields missing (especially Due Date)
+2. **Use `acli jira workitem view <ISSUE-KEY>`** to retrieve ticket details
+3. **Verify mandatory fields** in each Jira ticket:
+   - **Description (Jira field)** — Clear and specific explanation present?
+   - **Acceptance Criteria (within Description)** — Look for measurable completion criteria (e.g., section labeled "Acceptance Criteria", "AC:", "Success criteria:", or clear bullet points defining "done")
+   - **Assignee (Jira field)** — Owner assigned (not blank)?
+   - **Due Date (Jira field)** — Due Date populated? ⚠️ **MANDATORY**
+4. **Score based on completeness:**
+   - ✅ **1.0**: All action items have Jira IDs + all 4 mandatory elements complete (Description clear, Acceptance Criteria present in Description, Assignee assigned, Due Date populated)
+   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory elements missing (especially Due Date) OR Description lacks measurable acceptance criteria
    - ❌ **0.0**: No Jira IDs OR Jira tickets don't exist
 
 **Why Due Date is mandatory:**
@@ -468,10 +469,10 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 - **Due Date defined?** ⚠️ **MANDATORY**
 
 **Mandatory Jira Fields (when action items tracked in Jira):**
-1. **Description** — Clear and specific explanation of the action item
-2. **Acceptance Criteria** — Measurable criteria for completion (may be in Description field)
-3. **Assignee** — Owner assigned (not blank)
-4. **Due Date** — Target completion date populated ⚠️ **MANDATORY**
+1. **Description** — Clear and specific explanation of the action item (Jira field)
+2. **Acceptance Criteria** — Measurable criteria for completion (**within Description field** — look for "Acceptance Criteria", "AC:", "Success criteria:", or clear completion criteria)
+3. **Assignee** — Owner assigned (Jira field, not blank)
+4. **Due Date** — Target completion date populated (Jira field) ⚠️ **MANDATORY**
 
 **Scoring:**
 

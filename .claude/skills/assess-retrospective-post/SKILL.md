@@ -37,11 +37,11 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 1. **Extract Jira IDs** from action items section (regex: `[A-Z]+-\d+`)
 2. **For each Jira ID**, run: `acli jira workitem view <ISSUE-KEY>`
-3. **Check mandatory fields:**
-   - **Description** — Clear and specific?
-   - **Acceptance Criteria** — Measurable and present in Description?
-   - **Assignee** — Owner assigned? (not blank)
-   - **Due Date** — Due Date field populated? ⚠️ **MANDATORY**
+3. **Check mandatory elements:**
+   - **Description (Jira field)** — Clear and specific?
+   - **Acceptance Criteria (within Description field)** — Look for section labeled "Acceptance Criteria", "AC:", "Success criteria:", or clear completion criteria. Must be measurable.
+   - **Assignee (Jira field)** — Owner assigned? (not blank)
+   - **Due Date (Jira field)** — Due Date populated? ⚠️ **MANDATORY**
 
 4. **Scoring:**
    - ✅ **1.0**: All action items have Jira IDs + all mandatory fields complete (Description, Acceptance Criteria, Assignee, **Due Date**)

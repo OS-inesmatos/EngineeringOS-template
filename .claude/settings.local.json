@@ -16,7 +16,13 @@
       "Bash(analyze_19_incidents.py:*)",
       "WebFetch(domain:rootly.com)",
       "Bash(python generate_table_image.py)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Skill(confluence)",
+      "mcp__playwright__browser_click",
+      "Bash(claude mcp *)",
+      "mcp__playwright__browser_close",
+      "Skill(assess-retrospective-pre)",
+      "Bash(start index.html)"
     ]
   }
 }
