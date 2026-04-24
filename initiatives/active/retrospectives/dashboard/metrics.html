@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retrospective Metrics</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Retrospective Metrics</h1>
+      <p class="subtitle">Aggregate Quality Analysis</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-content">
+      <a href="index.html" class="nav-link">Dashboard</a>
+      <a href="metrics.html" class="nav-link active">Metrics</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Score Distribution -->
+    <div class="chart-container">
+      <h2 class="chart-title">Score Distribution</h2>
+      <canvas id="scoreDistributionChart"></canvas>
+    </div>
+
+    <!-- Pillar Averages -->
+    <div class="chart-container">
+      <h2 class="chart-title">Average Score by Pillar</h2>
+      <canvas id="pillarAveragesChart"></canvas>
+    </div>
+
+    <!-- Score Over Time -->
+    <div class="chart-container">
+      <h2 class="chart-title">Quality Score Over Time</h2>
+      <canvas id="scoreOverTimeChart"></canvas>
+    </div>
+
+    <!-- Common Gaps -->
+    <div class="chart-container">
+      <h2 class="chart-title">Most Common Gaps</h2>
+      <div class="gap-list" id="common-gaps-list">
+        <!-- Gaps will be rendered here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/metrics.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{
+  "assessments": [
+    {
+      "id": "RDINC-78746",
+      "title": "SEV1 - Users unable to log into the ODC Portal",
+      "severity": "SEV1",
+      "teams": ["Identity Core", "SRE Global"],
+      "assessmentDate": "2026-04-24",
+      "incidentDate": "2026-04-13",
+      "assessmentType": "pre",
+      "overallScore": 77,
+      "status": "ready-for-approval",
+      "pillarScores": {
+        "detection": 83,
+        "response": 38,
+        "troubleshooting": 100,
+        "recovery": 86,
+        "prevention": 75,
+        "compliance": 75
+      },
+      "questionsScored": {
+        "total": 26,
+        "fullyAddressed": 17,
+        "presentButWeak": 5,
+        "missing": 4,
+        "notApplicable": 0
+      },
+      "topGaps": [
+        {
+          "pillar": "Response & Communication",
+          "question": "Was external communication effective?",
+          "priority": "high",
+          "status": "missing"
+        },
+        {
+          "pillar": "Response & Communication",
+          "question": "Was MTTA adequate?",
+          "priority": "high",
+          "status": "missing"
+        },
+        {
+          "pillar": "Prevention & Learning",
+          "question": "Was recurrence analysis performed?",
+          "priority": "medium",
+          "status": "missing"
+        }
+      ],
+      "confluenceUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6206062623/",
+      "assessmentUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6270681159/",
+      "mttr": 2.0,
+      "customerImpact": "186 tenants",
+      "reviewer": "Koda Pre-Assessment v2.0"
+    },
+    {
+      "id": "RDINC-77260",
+      "title": "SEV2 - OS-DPL-40802 errors on 1CP publish and deploy in EA",
+      "severity": "SEV2",
+      "teams": ["Maestro", "ICE", "SRE"],
+      "assessmentDate": "2026-04-24",
+      "incidentDate": "2026-03-19",
+      "assessmentType": "pre",
+      "overallScore": 44,
+      "status": "needs-work",
+      "pillarScores": {
+        "detection": 42,
+        "response": 25,
+        "troubleshooting": 50,
+        "recovery": 50,
+        "prevention": 50,
+        "compliance": 50
+      },
+      "questionsScored": {
+        "total": 26,
+        "fullyAddressed": 5,
+        "presentButWeak": 11,
+        "missing": 4,
+        "notApplicable": 0
+      },
+      "topGaps": [
+        {
+          "pillar": "Troubleshooting & Root Cause",
+          "question": "What is the technical root cause?",
+          "priority": "high",
+          "status": "weak"
+        },
+        {
+          "pillar": "Prevention & Learning",
+          "question": "Are prevention action items defined with clear ownership?",
+          "priority": "high",
+          "status": "weak"
+        },
+        {
+          "pillar": "Response & Communication",
+          "question": "Was external communication effective?",
+          "priority": "medium",
+          "status": "missing"
+        },
+        {
+          "pillar": "Response & Communication",
+          "question": "Was MTTA adequate?",
+          "priority": "medium",
+          "status": "missing"
+        },
+        {
+          "pillar": "Prevention & Learning",
+          "question": "Was recurrence analysis performed?",
+          "priority": "medium",
+          "status": "missing"
+        }
+      ],
+      "confluenceUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6094454826/",
+      "assessmentUrl": "https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6269370635/",
+      "mttr": 3.0,
+      "customerImpact": "3 EA tenants",
+      "reviewer": "Koda Pre-Assessment v2.0"
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2026-04-24T00:00:00Z",
+    "totalAssessments": 2,
+    "frameworkVersion": "2.0"
+  }
+}

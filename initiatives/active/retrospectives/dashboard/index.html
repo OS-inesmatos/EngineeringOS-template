@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retrospective Quality Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Retrospective Quality Dashboard</h1>
+      <p class="subtitle">Process Engineering - RCA Framework v2.0</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-content">
+      <a href="index.html" class="nav-link active">Dashboard</a>
+      <a href="metrics.html" class="nav-link">Metrics</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Search and Filters -->
+    <div class="filters">
+      <div class="filter-group">
+        <div style="flex: 1; max-width: 400px;">
+          <label class="filter-label">Search by Incident ID</label>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="RDINC-XXXXX"
+            style="width: 100%;"
+          />
+        </div>
+        <div>
+          <label class="filter-label">Severity</label>
+          <select id="severity-filter">
+            <option value="">All</option>
+            <option value="SEV1">SEV1</option>
+            <option value="SEV2">SEV2</option>
+            <option value="SEV3">SEV3</option>
+          </select>
+        </div>
+        <div>
+          <label class="filter-label">Status</label>
+          <select id="status-filter">
+            <option value="">All</option>
+            <option value="ready-for-approval">Ready for Approval</option>
+            <option value="needs-work">Needs Work</option>
+            <option value="in-progress">In Progress</option>
+          </select>
+        </div>
+        <div>
+          <label class="filter-label">Team</label>
+          <select id="team-filter">
+            <option value="">All</option>
+          </select>
+        </div>
+        <div style="display: flex; align-items: flex-end;">
+          <button class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Info -->
+    <div class="results-info" id="results-info" style="display: none;">
+      <span class="results-count" id="results-count"></span>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Assessments</div>
+        <div class="stat-value" id="total-assessments">-</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Average Score</div>
+        <div class="stat-value" id="avg-score">-</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Ready for Approval</div>
+        <div class="stat-value" id="ready-count">-</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Needs Work</div>
+        <div class="stat-value" id="needs-work-count">-</div>
+      </div>
+    </div>
+
+    <!-- Assessments List -->
+    <div class="assessments-grid" id="assessments-container">
+      <!-- Cards will be rendered here by JavaScript -->
+    </div>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
