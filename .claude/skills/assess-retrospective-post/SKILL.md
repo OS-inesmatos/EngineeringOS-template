@@ -27,6 +27,7 @@ Read the following before starting evaluation — these calibrate gap detection 
 
 - `initiatives/active/retrospectives/docs/INCIDENT-RESPONSE-PROCESS-REFERENCE.md` — OutSystems incident response process rules (scenarios, roles, severity SLAs, recovery sequence, Jira workflow)
 - `initiatives/active/retrospectives/docs/RCA-FRAMEWORK-SCORING-GUIDE.md` — Scoring criteria
+- `initiatives/active/retrospectives/docs/change-management-official.md` — Change Management policy (for P6 Q2: RFC compliance evaluation)
 
 ### Step 1c: Check external status page
 
@@ -34,6 +35,21 @@ Navigate to `https://status.outsystems.com/history` using Playwright and search 
 
 - **If found:** extract title, start/end timestamps, and public description. Use this to evaluate **Pillar 2 Q3** (external communication) with concrete evidence. Calculate the lag between incident start time (from retrospective) and first status page entry.
 - **If not found:** note in Q3 assessment — either no external communication was published, or the entry has expired from history (~3 months retention).
+
+### Step 1d: Identify incident scenario
+
+Before evaluating, determine the incident scenario from the retrospective content:
+
+- **Scenario 1** — Without system-wide impact (1 tenant only) → Retrospective optional; IC: Dev Team
+- **Scenario 2** — With system-wide impact (>1 tenant or full region) → Retrospective mandatory; IC: SRE
+- **Scenario 3** — Late detection of system-wide impact (started as Sc1, escalated) → Retrospective mandatory; IC: SRE
+
+**State the scenario at the top of the assessment header.** This anchors evaluation for:
+- **P2 Q1** (declaration timely — SRE involvement is mandatory for Sc2/3; no such requirement for Sc1)
+- **P4 Q3** (rollback — mandatory consideration per process in all scenarios)
+- **P6 Q1** (process followed — IC role, Slack channel creation, and Jira as single source of truth are required for Sc2/3)
+
+---
 
 ### Step 2: Analyze against RCA Framework v2.0
 
