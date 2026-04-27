@@ -52,7 +52,7 @@ Before evaluating, determine the incident scenario from the retrospective conten
 
 ### Step 2: Analyze against RCA Framework v2.0
 
-Evaluate **28 questions** across **6 pillars** (Pillar 5 has 3 questions; includes Pillar 6 Q3-Q5 for post-assessment).
+Evaluate **29 questions** across **6 pillars** (Pillar 5 has 4 questions; includes Pillar 6 Q3-Q5 for post-assessment).
 
 **Scoring:**
 - ✅ **1.0 — Fully Addressed**: Question explicitly answered with depth, evidence, and analysis
@@ -143,11 +143,12 @@ If MCP Atlassian fails or not available:
 6. Did dependencies or cascading failures significantly delay recovery?
 7. Was customer impact quantified?
 
-### Pillar 5: Prevention & Learning 🧠 (3 questions)
+### Pillar 5: Prevention & Learning 🧠 (4 questions)
 
 1. Was the incident caused by a recent change?
 2. Was recurrence analysis performed?
 3. Are prevention action items defined with clear ownership and tracking? ⚠️ **JIRA VALIDATION REQUIRED**
+4. Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?
 
 ### Pillar 6: Process Compliance ✅ (5 questions — all included in post-assessment)
 

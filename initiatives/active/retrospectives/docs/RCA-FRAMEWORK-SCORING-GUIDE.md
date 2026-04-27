@@ -1,8 +1,8 @@
 # RCA Framework — Scoring Guide
 
-**Version:** 2.1
-**Last Updated:** 2026-04-24
-**Purpose:** Detailed scoring criteria for evaluating retrospective quality against RCA Framework (29 questions: 26 for pre-assessment, 29 for post-assessment)
+**Version:** 2.3
+**Last Updated:** 2026-04-27
+**Purpose:** Detailed scoring criteria for evaluating retrospective quality against RCA Framework (30 questions: 26 for pre-assessment, 29 for post-assessment)
 
 ---
 
@@ -429,7 +429,7 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 ---
 
-## Pillar 5: Prevention & Learning 🧠 (3 questions, 3 points max)
+## Pillar 5: Prevention & Learning 🧠 (4 questions, 4 points max)
 
 ### Q1: Was the incident caused by a recent change?
 
@@ -493,6 +493,24 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 | ❌ **0.0**  | No action items defined or only generic mentions                                                                                      | No prevention measures proposed                                                                                                                |
 
 **Note:** Acceptance Criteria format is a team decision — do not validate or score it.
+
+---
+
+### Q4: Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?
+
+**What we're looking for:**
+- Did existing tests (unit, integration, end-to-end) catch the issue before production?
+- If not, why? What gap existed in test coverage?
+- Are new tests or test improvements defined as tracked action items?
+
+**Scoring:**
+
+| Score | Criteria | Example |
+|-------|----------|---------|
+| ✅ **1.0** | Test coverage explicitly assessed — identifies which tests existed and why they failed (or confirms no tests applied), AND new tests are defined as tracked action items | "No tests covered the NATS consumer rename scenario. Existing integration tests mocked the NATS layer. Action item RCQA-6580 created to add end-to-end deployment tests with consumer rename validation." |
+| ⚠️ **0.5** | Test gap mentioned but not analyzed, OR new tests referenced without explaining why existing tests failed | "Tests did not catch this. New tests to be added." |
+| ❌ **0.0** | No mention of test coverage or whether new tests are needed | No analysis of test coverage or testing improvements |
+| 🚫 **N/A** | Incident not caused by a code/deployment change where automated tests would apply | "Infrastructure failure: EKS node crash — automated tests would not have prevented this." |
 
 ---
 
@@ -624,10 +642,10 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 ```
 
 **Pre-Assessment vs Post-Assessment:**
-- **Pre-Assessment:** Evaluates 25 questions (excludes Pillar 5 Q4 removed, Pillar 6 Q3-Q5)
-  - Maximum possible: 25 points
-- **Post-Assessment:** Evaluates all 28 questions (includes Pillar 6 Q3-Q5; Pillar 5 Q4 removed)
-  - Maximum possible: 28 points
+- **Pre-Assessment:** Evaluates 26 questions (Pillars 1-5 full + Pillar 6 Q1-Q2 only)
+  - Maximum possible: 26 points
+- **Post-Assessment:** Evaluates all 29 questions (includes Pillar 6 Q3-Q5)
+  - Maximum possible: 29 points
 
 **Example — Post-Assessment (Full Framework)**
 - Pillar 1: 2.5 / 5 points
@@ -648,8 +666,8 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 
 **Calculation:**
 - Total Earned: 16.5 + 1.5 = 18.0
-- Total Possible: 5 + 4 + 3 + 7 + 4 + 2 = 25
-- Pre-Assessment Score: 18.0 / 25 = 72% → **72/100**
+- Total Possible: 5 + 4 + 3 + 7 + 4 + 2 = 26
+- Pre-Assessment Score: 18.0 / 26 = 69.2% → **69/100**
 
 ---
 
@@ -742,6 +760,11 @@ To ensure consistency across reviewers:
 ---
 
 ## Version History
+
+**Version 2.3 (2026-04-27)**
+- **Pillar 5, Q4 added (tests)** — "Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?" added to force explicit test coverage analysis
+- **Pre-assessment: 26 questions (was 25); Post-assessment: 29 questions (was 28)**
+- Replaces the previously removed "learnings" Q4 with a more actionable test coverage question
 
 **Version 2.2 (2026-04-27)**
 - **Pillar 5, Q4 removed** — "What learnings did the team gain?" eliminated; learnings are already captured through P3 Q2 (root cause), P3 Q3 (architectural issues), P5 Q2 (recurrence), and P5 Q3 (action items)
