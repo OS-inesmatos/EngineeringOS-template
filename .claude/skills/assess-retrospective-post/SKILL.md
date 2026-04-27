@@ -45,7 +45,6 @@ Before evaluating, determine the incident scenario from the retrospective conten
 - **Scenario 3** — Late detection of system-wide impact (started as Sc1, escalated) → Retrospective mandatory; IC: SRE
 
 **State the scenario at the top of the assessment header.** This anchors evaluation for:
-- **P2 Q1** (declaration timely — SRE involvement is mandatory for Sc2/3; no such requirement for Sc1)
 - **P4 Q3** (rollback — mandatory consideration per process in all scenarios)
 - **P6 Q1** (process followed — IC role, Slack channel creation, and Jira as single source of truth are required for Sc2/3)
 
@@ -53,7 +52,7 @@ Before evaluating, determine the incident scenario from the retrospective conten
 
 ### Step 2: Analyze against RCA Framework v2.0
 
-Evaluate **29 questions** across **6 pillars** (includes Pillar 6 Q3-Q5 for post-assessment).
+Evaluate **28 questions** across **6 pillars** (Pillar 5 has 3 questions; includes Pillar 6 Q3-Q5 for post-assessment).
 
 **Scoring:**
 - ✅ **1.0 — Fully Addressed**: Question explicitly answered with depth, evidence, and analysis
@@ -68,7 +67,7 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 1. **Extract Jira IDs** from action items section (regex: `[A-Z]+-\d+`)
 2. **For each Jira ID**, use `mcp__claude_ai_Atlassian__getJiraIssue` (preferred — acli does not return `duedate` reliably)
 3. **Check mandatory fields:**
-   - **Assignee (Jira field)** — Owner assigned? (not blank) ⚠️ **MANDATORY**
+   - **Assignee (Jira field)** — Owner assigned in Jira? (field not blank) ⚠️ **MANDATORY** — do NOT flag mismatches between retrospective text and Jira assignee; only check that the Jira field is populated
    - **Due Date (Jira field)** — Due Date populated? ⚠️ **MANDATORY**
      - ⚠️ **RPOR project exception:** For tickets in the RPOR project, Due Date is stored as **"Target end"** (`customfield_15486`), not `duedate`. Request both fields when calling `getJiraIssue`.
    - **RDINC Link** — Ticket must have a Jira link of type **"reviews"** pointing to the RDINC issue of this retrospective ⚠️ **MANDATORY**
@@ -144,12 +143,11 @@ If MCP Atlassian fails or not available:
 6. Did dependencies or cascading failures significantly delay recovery?
 7. Was customer impact quantified?
 
-### Pillar 5: Prevention & Learning 🧠 (4 questions)
+### Pillar 5: Prevention & Learning 🧠 (3 questions)
 
 1. Was the incident caused by a recent change?
 2. Was recurrence analysis performed?
 3. Are prevention action items defined with clear ownership and tracking? ⚠️ **JIRA VALIDATION REQUIRED**
-4. What learnings did the team gain?
 
 ### Pillar 6: Process Compliance ✅ (5 questions — all included in post-assessment)
 
@@ -280,6 +278,28 @@ Generate assessment report in this format:
 - **Due Date is mandatory** — Missing Due Date always results in ⚠️ 0.5 or lower
 - **N/A when appropriate** — Not every question applies to every incident
 - **Pillar 6 Q3-Q5** — These evaluate the retrospective process itself (meta-questions)
+
+## Calibration Rules
+
+### N/A decision rules
+
+Use 🚫 N/A when the **question genuinely doesn't apply to this incident type** — not when the answer is missing from the document. ❌ 0.0 means the document failed to address something relevant; N/A removes it from the denominator entirely.
+
+**Common N/A scenarios:**
+- **P2 Q3 (external communication):** N/A for infrastructure-only incidents with no customer-facing app impact. "System-wide impact: Yes" in Rootly means infra scope, not customer visibility. Status page entries are for outages visible to end-users. A telemetry/ingestion infra incident ≠ customer app degradation.
+- **P5 Q1 (caused by recent change):** N/A when evidence clearly points to environmental drift, stale state, or infrastructure causes — not triggered by a deployment, config change, or code release. If the retrospective treats it as drift and there is no evidence of a recent change, the question doesn't apply.
+
+### No double-penalization
+
+Identify the most direct question for a gap and penalize it there. Do not use the same weakness to justify low scores across multiple questions.
+
+**Example:** If detection was downstream/symptomatic rather than at the source:
+- Penalize in **Q3** (alerts didn't target the right signal) and/or **Q6** (improvement opportunity)
+- Do NOT also penalize **Q2** for the same reason — Q2 asks about timing relative to customer impact, not detection quality
+
+### Re-read before scoring ❌
+
+Before assigning ❌ 0.0 to any question, do a targeted re-read of the document searching specifically for evidence of that question. Cascading effects, impact quantification, and process steps are often documented in narrative sections (executive summary, resolution, timeline) rather than in dedicated headers. Missing something that is present is a scoring error.
 
 ---
 

@@ -203,11 +203,13 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 **Scoring:**
 
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Internal communication effectiveness explicitly assessed with specific analysis | "Slack channel created immediately. IC provided updates every 30min. RDM and ICE teams added to channel within 15min. Communication was effective." |
-| ⚠️ **0.5** | Internal communication mentioned but effectiveness not assessed | "Slack channel created, teams notified." |
-| ❌ **0.0** | No assessment of internal communication effectiveness | No mention of internal communication |
+| Score      | Criteria                                                                         | Example                                                                                                                                             |
+| ---------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **1.0**  | Internal communication effectiveness explicitly assessed with specific analysis  | "Slack channel created immediately. IC provided updates every 30min. RDM and ICE teams added to channel within 15min. Communication was effective." |
+| ⚠️ **0.5** | Internal communication described with some detail, but no effectiveness judgment | "Slack channel created at 02:06. Cross-team coordination involved SRE and Identity Core."                                                           |
+| ❌ **0.0**  | No mention of internal communication                                             | No mention of internal communication                                                                                                                |
+
+**Decision rule:** ✅ requires either (a) an explicit effectiveness judgment ("communication was effective/ineffective") OR (b) assessment of at least two aspects (e.g., update frequency + stakeholder coverage + gap analysis). Describing *what happened* without evaluating *whether it was sufficient* = ⚠️.
 
 ---
 
@@ -312,11 +314,13 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 **Scoring:**
 
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | MTTR quantified with analysis of acceptability (considering severity, complexity, blockers, or historical comparison) | "MTTR: OSALL 6.8h, EA 1h. OSALL longer than typical (4h) due to race condition complexity requiring manual intervention across 24 stamps. EA faster due to fix-forward strategy already developed. Acceptable given complexity." |
-| ⚠️ **0.5** | MTTR value mentioned but analysis superficial or missing context | "MTTR: 6.8h. Was acceptable." (no explanation why) |
-| ❌ **0.0** | MTTR not mentioned | No mention of recovery time |
+| Score      | Criteria                                                                                                              | Example                                                                                                                                                                                                                          |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **1.0**  | MTTR quantified with analysis of acceptability (considering severity, complexity, blockers, or historical comparison) | "MTTR: OSALL 6.8h, EA 1h. OSALL longer than typical (4h) due to race condition complexity requiring manual intervention across 24 stamps. EA faster due to fix-forward strategy already developed. Acceptable given complexity." |
+| ⚠️ **0.5** | MTTR value mentioned and delay cause analyzed, BUT no explicit acceptability judgment                                 | "MTTR: ~2h. Detection gap caused 1h32min delay due to SEV3 misclassification." (explains why but doesn't assess if acceptable)                                                                                                   |
+| ❌ **0.0**  | MTTR not mentioned                                                                                                    | No mention of recovery time                                                                                                                                                                                                      |
+
+**Decision rule:** Analyzing the *cause* of delay is not sufficient for ✅. The retrospective must also make an explicit acceptability judgment — either comparing to the SEV target (e.g., "SEV1 target <30min; actual 2h — unacceptable") or explaining why the duration was acceptable given circumstances. Cause without judgment = ⚠️.
 
 ---
 
@@ -425,7 +429,7 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 ---
 
-## Pillar 5: Prevention & Learning 🧠 (4 questions, 4 points max)
+## Pillar 5: Prevention & Learning 🧠 (3 questions, 3 points max)
 
 ### Q1: Was the incident caused by a recent change?
 
@@ -489,23 +493,6 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 | ❌ **0.0**  | No action items defined or only generic mentions                                                                                      | No prevention measures proposed                                                                                                                |
 
 **Note:** Acceptance Criteria format is a team decision — do not validate or score it.
-
----
-
-### Q4: What learnings did the team gain?
-
-**What we're looking for:**
-- New understanding of system behavior?
-- Previously unknown risk or vulnerability discovered?
-- Learning value beyond fixing this specific issue?
-
-**Scoring:**
-
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Significant learnings captured with broader implications | "Key learnings: (1) Race conditions are probabilistic—validation in lower environments insufficient. (2) NATS Operator concurrency limitations require expand-contract deployment strategy. (3) Log volume can trigger Grafana rate-limiting (new understanding)." |
-| ⚠️ **0.5** | Learnings mentioned but not analyzed for broader implications | "We learned about NATS permissions." |
-| ❌ **0.0** | No learnings captured | No insights beyond immediate fix |
 
 ---
 
@@ -637,10 +624,10 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 ```
 
 **Pre-Assessment vs Post-Assessment:**
-- **Pre-Assessment:** Evaluates 26 questions (excludes Pillar 6 Q3, Q4, Q5)
-  - Maximum possible: 26 points
-- **Post-Assessment:** Evaluates all 29 questions (includes Pillar 6 Q3, Q4, Q5)
-  - Maximum possible: 29 points
+- **Pre-Assessment:** Evaluates 25 questions (excludes Pillar 5 Q4 removed, Pillar 6 Q3-Q5)
+  - Maximum possible: 25 points
+- **Post-Assessment:** Evaluates all 28 questions (includes Pillar 6 Q3-Q5; Pillar 5 Q4 removed)
+  - Maximum possible: 28 points
 
 **Example — Post-Assessment (Full Framework)**
 - Pillar 1: 2.5 / 5 points
@@ -755,6 +742,12 @@ To ensure consistency across reviewers:
 ---
 
 ## Version History
+
+**Version 2.2 (2026-04-27)**
+- **Pillar 5, Q4 removed** — "What learnings did the team gain?" eliminated; learnings are already captured through P3 Q2 (root cause), P3 Q3 (architectural issues), P5 Q2 (recurrence), and P5 Q3 (action items)
+- **Pre-assessment: 25 questions (was 26); Post-assessment: 28 questions (was 29)**
+- **P4 Q1 decision rule added** — Cause analysis without acceptability judgment = ⚠️, not ✅
+- **P2 Q2 decision rule added** — Describing what happened without effectiveness judgment = ⚠️, not ✅
 
 **Version 2.1 (2026-04-24)**
 - **Pillar 5, Q3: Due Date now mandatory** — Action items must have Due Date populated to score ✅ 1.0

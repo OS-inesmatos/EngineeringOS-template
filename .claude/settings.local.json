@@ -22,7 +22,15 @@
       "Bash(claude mcp *)",
       "mcp__playwright__browser_close",
       "Skill(assess-retrospective-pre)",
-      "Bash(start index.html)"
+      "Bash(start index.html)",
+      "mcp__claude_ai_Atlassian__getConfluencePage",
+      "mcp__claude_ai_Atlassian__createConfluencePage",
+      "mcp__claude_ai_Atlassian__getJiraIssue",
+      "mcp__claude_ai_Atlassian__updateConfluencePage",
+      "mcp__claude_ai_Atlassian__getConfluencePageDescendants",
+      "WebFetch(domain:status.outsystems.com)",
+      "mcp__claude_ai_Atlassian__getConfluenceSpaces",
+      "mcp__claude_ai_Atlassian__searchConfluenceUsingCql"
     ]
   }
 }
