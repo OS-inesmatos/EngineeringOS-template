@@ -505,12 +505,12 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 **Scoring:**
 
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Test coverage explicitly assessed — identifies which tests existed and why they failed (or confirms no tests applied), AND new tests are defined as tracked action items | "No tests covered the NATS consumer rename scenario. Existing integration tests mocked the NATS layer. Action item RCQA-6580 created to add end-to-end deployment tests with consumer rename validation." |
-| ⚠️ **0.5** | Test gap mentioned but not analyzed, OR new tests referenced without explaining why existing tests failed | "Tests did not catch this. New tests to be added." |
-| ❌ **0.0** | No mention of test coverage or whether new tests are needed | No analysis of test coverage or testing improvements |
-| 🚫 **N/A** | Incident not caused by a code/deployment change where automated tests would apply | "Infrastructure failure: EKS node crash — automated tests would not have prevented this." |
+| Score      | Criteria                                                                                                                                                                 | Example                                                                                                                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **1.0**  | Test coverage explicitly assessed — identifies which tests existed and why they failed (or confirms no tests applied), AND new tests are defined as tracked action items | "No tests covered the NATS consumer rename scenario. Existing integration tests mocked the NATS layer. Action item RCQA-6580 created to add end-to-end deployment tests with consumer rename validation." |
+| ⚠️ **0.5** | Test gap mentioned but not analyzed, OR new tests referenced without explaining why existing tests failed                                                                | "Tests did not catch this. New tests to be added."                                                                                                                                                        |
+| ❌ **0.0**  | No mention of test coverage or whether new tests are needed                                                                                                              | No analysis of test coverage or testing improvements                                                                                                                                                      |
+| 🚫 **N/A** | Incident not caused by a code/deployment change where automated tests would apply                                                                                        | "Infrastructure failure: EKS node crash — automated tests would not have prevented this."                                                                                                                 |
 
 ---
 
