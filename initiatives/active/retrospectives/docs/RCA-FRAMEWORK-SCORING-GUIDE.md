@@ -43,24 +43,28 @@ Use the criteria below for each question.
 When evaluating "Are prevention action items defined with clear ownership and tracking?" (Pillar 5, Q3):
 
 1. **Extract Jira IDs** from the retrospective (e.g., RPLAT-3819, RDICE-5047)
-2. **Use `acli jira workitem view <ISSUE-KEY>`** to retrieve ticket details
+2. **Use `mcp__claude_ai_Atlassian__getJiraIssue`** to retrieve ticket details (⚠️ do NOT use `acli` — it does not return the `duedate` field reliably)
 3. **Verify mandatory fields** in each Jira ticket:
-   - **Description (Jira field)** — Clear and specific explanation present?
-   - **Acceptance Criteria (within Description)** — Look for measurable completion criteria (e.g., section labeled "Acceptance Criteria", "AC:", "Success criteria:", or clear bullet points defining "done")
-   - **Assignee (Jira field)** — Owner assigned (not blank)?
+   - **Assignee (Jira field)** — Owner assigned (not blank)? ⚠️ **MANDATORY**
    - **Due Date (Jira field)** — Due Date populated? ⚠️ **MANDATORY**
-4. **Score based on completeness:**
-   - ✅ **1.0**: All action items have Jira IDs + all 4 mandatory elements complete (Description clear, Acceptance Criteria present in Description, Assignee assigned, Due Date populated)
-   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory elements missing (especially Due Date) OR Description lacks measurable acceptance criteria
+     - ⚠️ **RPOR project exception:** For RPOR tickets, Due Date is stored as **"Target end"** (`customfield_15486`), not `duedate`. Request both fields when calling `getJiraIssue`.
+   - **RDINC Link** — Ticket must have a Jira link of type **"reviews"** pointing to the RDINC issue of this retrospective ⚠️ **MANDATORY**
+     - Check the `issuelinks` field in the `getJiraIssue` response (include `issuelinks` in `fields` param)
+4. **Red flags — flag but do not auto-fail:**
+   - **Discarded status** — action item may not be executed; requires explanation of replacement or rationale
+5. **Score based on completeness:**
+   - ✅ **1.0**: All action items have Jira IDs + all mandatory fields complete (Assignee + Due Date + RDINC link) + no Discarded tickets without documented explanation
+   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory fields missing OR any ticket Discarded without documented replacement/rationale
    - ❌ **0.0**: No Jira IDs OR Jira tickets don't exist
 
-**Why Due Date is mandatory:**
-- Without a Due Date, completion commitment is unclear
-- Cannot detect delays or prioritize effectively
-- Missing Due Date = incomplete action item tracking
+**Why these fields are mandatory:**
+- **Assignee**: Without a named owner, accountability is unclear
+- **Due Date**: Without a Due Date, completion commitment is unclear; delays cannot be detected
+- **RDINC Link ("reviews")**: Without the link, action items are disconnected from the incident; traceability is broken
+- **Discarded**: A Discarded action item that isn't replaced leaves the root cause unaddressed
 
 **Validation method:**
-- Use `acli jira workitem view <ISSUE-KEY>` to retrieve Jira ticket details
+- Use `mcp__claude_ai_Atlassian__getJiraIssue` with `fields: ["duedate", "assignee", "status", "summary", "issuelinks", "customfield_15486"]`
 - If Jira access unavailable, mark as "Inconclusive — manual verification required"
 
 ---
@@ -469,20 +473,22 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 - **Due Date defined?** ⚠️ **MANDATORY**
 
 **Mandatory Jira Fields (when action items tracked in Jira):**
-1. **Description** — Clear and specific explanation of the action item (Jira field)
-2. **Acceptance Criteria** — Measurable criteria for completion (**within Description field** — look for "Acceptance Criteria", "AC:", "Success criteria:", or clear completion criteria)
-3. **Assignee** — Owner assigned (Jira field, not blank)
-4. **Due Date** — Target completion date populated (Jira field) ⚠️ **MANDATORY**
+1. **Assignee** — Owner assigned (Jira field, not blank) ⚠️ **MANDATORY**
+2. **Due Date** — Target completion date populated (Jira field) ⚠️ **MANDATORY**
+3. **RDINC Link** — Jira link of type **"reviews"** pointing to the RDINC issue ⚠️ **MANDATORY**
+
+**Red flags (flag, do not auto-fail):**
+- **Discarded status** — action item may not be executed; requires explanation of replacement or rationale
 
 **Scoring:**
 
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Specific action items with clear owners, tracking, and **Due Date** populated. If Jira-tracked, all mandatory fields complete (Description, Acceptance Criteria, Assignee, Due Date). | "Action items: (1) RDICE-5047 (owner: ICE team, priority: High, due: 2026-04-30, tracked in Jira): Create unit test to prevent NATS Trace Level activation. Acceptance criteria: test fails when trace level enabled. (2) RDMOT-2129 (owner: Observability, priority: Medium, due: 2026-06-30, Problem Management): Implement Fluentbit throttling." |
-| ⚠️ **0.5** | Action items defined but **Due Date missing** or other mandatory Jira fields incomplete, OR action items vague | "Action items: (1) Improve monitoring, (2) Create runbook." (vague) OR "RDICE-5047 assigned to ICE team." (no Due Date or acceptance criteria) OR Jira ticket exists but Due Date field is blank. |
-| ❌ **0.0** | No action items defined or only generic mentions | No prevention measures proposed |
+| Score      | Criteria                                                                                                                              | Example                                                                                                                                        |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **1.0**  | All action items have Jira IDs + Assignee + Due Date + RDINC link ("reviews") populated, and no Discarded tickets without explanation | "RDICE-5047 (owner: ICE team, due: 2026-04-30, reviews RDINC-78746). RDMOT-2129 (owner: Observability, due: 2026-06-30, reviews RDINC-78746)." |
+| ⚠️ **0.5** | Jira IDs present but any mandatory field missing on 1+ tickets, OR any ticket Discarded without documented replacement/rationale      | "RDICE-5047 — no assignee." OR "RDMOT-2129 — Due Date blank." OR "RDICE-5047 — no RDINC link." OR ticket Discarded with no explanation.        |
+| ❌ **0.0**  | No action items defined or only generic mentions                                                                                      | No prevention measures proposed                                                                                                                |
 
-**Note:** Due Date is mandatory for all action items. Without a Due Date, completion cannot be tracked and delays cannot be identified.
+**Note:** Acceptance Criteria format is a team decision — do not validate or score it.
 
 ---
 
@@ -507,21 +513,21 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 **Note:** Questions 3, 4, and 5 are **post-assessment only** — they evaluate the completed retrospective and can only be scored after VSL approval.
 
-### Q1: Was incident management process followed?
+### Q1: Did the incident management process work as expected, and were any gaps identified?
 
 **What we're looking for:**
-- Was incident declaration clear?
-- Were roles assigned effectively?
-- Was the Incident Commander effective?
+- Were roles assigned (Incident Commander, engineers, stakeholders)?
+- Was incident management tooling used (e.g. Rootly)?
 - Were escalation paths followed?
+- If gaps occurred: were they identified and analyzed?
 
-**Scoring:**
+**Scoring logic:** Inverted burden of proof — assume the process worked unless evidence of failure exists. Structural evidence (roles documented, tooling used) is sufficient for ✅. Only penalise when gaps are present but unacknowledged, or when there is no evidence of process at all.
 
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Incident management process explicitly assessed | "Roles assigned: IC (Juan de Miguel), Stakeholder (RDM Lead), Engineer (ICE team). Escalation: SRE → RDM → ICE within 30min. Process effective, clear ownership." |
-| ⚠️ **0.5** | Roles mentioned but process not assessed | "IC assigned." |
-| ❌ **0.0** | No assessment of incident management process | No mention of roles or process |
+| Score      | Criteria                                                                        | Example                                                                                                                                                                                                          |
+| ---------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **1.0**  | Roles assigned + tooling used + any gaps identified AND analyzed                | "Roles assigned: Incident Commander (Juan de Miguel), Stakeholder, Engineers. Rootly used. Declaration delayed 1h48m — root cause analyzed (SEV3 classification prevented on-call paging). Action item created." |
+| ⚠️ **0.5** | Roles assigned + tooling used, BUT gaps present and not analyzed                | "Roles documented. Declaration was delayed but no explanation provided."                                                                                                                                         |
+| ❌ **0.0**  | No evidence of incident management process (no roles, no tooling, no structure) | No mention of roles, tooling, or incident process                                                                                                                                                                |
 
 ---
 

@@ -21,6 +21,20 @@ Accept:
 
 If given Confluence URL, fetch content and save the URL for the report.
 
+### Step 1b: Load process reference documents
+
+Read the following before starting evaluation — these calibrate gap detection for Pillars 2 and 6:
+
+- `initiatives/active/retrospectives/docs/INCIDENT-RESPONSE-PROCESS-REFERENCE.md` — OutSystems incident response process rules (scenarios, roles, severity SLAs, recovery sequence, Jira workflow)
+- `initiatives/active/retrospectives/docs/RCA-FRAMEWORK-SCORING-GUIDE.md` — Scoring criteria
+
+### Step 1c: Check external status page
+
+Navigate to `https://status.outsystems.com/history` using Playwright and search for entries matching the incident date.
+
+- **If found:** extract title, start/end timestamps, and public description. Use this to evaluate **Pillar 2 Q3** (external communication) with concrete evidence. Calculate the lag between incident start time (from retrospective) and first status page entry.
+- **If not found:** note in Q3 assessment — either no external communication was published, or the entry has expired from history (~3 months retention).
+
 ### Step 2: Analyze against RCA Framework v2.0
 
 Evaluate **29 questions** across **6 pillars** (includes Pillar 6 Q3-Q5 for post-assessment).
@@ -36,46 +50,46 @@ Evaluate **29 questions** across **6 pillars** (includes Pillar 6 Q3-Q5 for post
 When evaluating "Are prevention action items defined with clear ownership and tracking?":
 
 1. **Extract Jira IDs** from action items section (regex: `[A-Z]+-\d+`)
-2. **For each Jira ID**, run: `acli jira workitem view <ISSUE-KEY>`
-3. **Check mandatory elements:**
-   - **Description (Jira field)** — Clear and specific?
-   - **Acceptance Criteria (within Description field)** — Look for section labeled "Acceptance Criteria", "AC:", "Success criteria:", or clear completion criteria. Must be measurable.
-   - **Assignee (Jira field)** — Owner assigned? (not blank)
+2. **For each Jira ID**, use `mcp__claude_ai_Atlassian__getJiraIssue` (preferred — acli does not return `duedate` reliably)
+3. **Check mandatory fields:**
+   - **Assignee (Jira field)** — Owner assigned? (not blank) ⚠️ **MANDATORY**
    - **Due Date (Jira field)** — Due Date populated? ⚠️ **MANDATORY**
+     - ⚠️ **RPOR project exception:** For tickets in the RPOR project, Due Date is stored as **"Target end"** (`customfield_15486`), not `duedate`. Request both fields when calling `getJiraIssue`.
+   - **RDINC Link** — Ticket must have a Jira link of type **"reviews"** pointing to the RDINC issue of this retrospective ⚠️ **MANDATORY**
+     - Check the `issuelinks` field in the `getJiraIssue` response (include `issuelinks` in `fields` param)
+4. **Red flags (flag but do not auto-fail):**
+   - **Discarded status** — action item may not be executed; requires explanation
 
-4. **Scoring:**
-   - ✅ **1.0**: All action items have Jira IDs + all mandatory fields complete (Description, Acceptance Criteria, Assignee, **Due Date**)
-   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory fields missing (especially **Due Date**) OR action items vague
+5. **Scoring:**
+   - ✅ **1.0**: All action items have Jira IDs + all mandatory fields complete (Assignee + Due Date + RDINC link) + no Discarded tickets without explanation
+   - ⚠️ **0.5**: Jira IDs present but 1+ mandatory fields missing OR any ticket in Discarded without documented replacement/rationale
    - ❌ **0.0**: No Jira IDs OR Jira tickets don't exist
 
-5. **Output format** for Q3:
+6. **Output format** for Q3:
 ```markdown
 ### Q3: Are prevention action items defined with clear ownership and tracking?
 
 **Jira Validation:**
 
-| Ticket | Description | Acceptance Criteria | Owner | Due Date | Score |
-|--------|-------------|---------------------|-------|----------|-------|
-| RPLAT-3819 | ✅ Clear | ✅ Present | ✅ Pedro Cardoso | ❌ **Missing** | ⚠️ |
-| RPLAT-3823 | ✅ Clear | ✅ Present | ✅ Marco Barbosa | ❌ **Missing** | ⚠️ |
+| Ticket | Assignee | Due Date | RDINC Link | Status | Score |
+|--------|----------|----------|------------|--------|-------|
+| RPLAT-3819 | ✅ Pedro Cardoso | ✅ 2026-06-30 | ✅ reviews RDINC-78746 | To Do | ✅ |
+| RPLAT-3823 | ❌ **Unassigned** | ✅ 2026-06-30 | ❌ **Missing** | To Do | ⚠️ |
 
-**Overall:** ⚠️ **Present but Weak** — Action items have clear descriptions and acceptance criteria, but **Due Date is missing** on all tickets. Due Date is mandatory for tracking commitment and detecting delays.
-
-**Evidence from Jira:**
-- RPLAT-3819: [Summary from Jira]
-- RPLAT-3823: [Summary from Jira]
+**Overall:** ⚠️ **Present but Weak** — RPLAT-3823 has no assignee and no RDINC link. Both are mandatory.
 ```
 
-If `acli` fails or not available:
+If MCP Atlassian fails or not available:
 ```markdown
 ### Q3: Are prevention action items defined with clear ownership and tracking?
 
 ⚠️ **INCONCLUSIVE** — Jira IDs referenced (RPLAT-3819, RPLAT-3823) but unable to validate. Manual verification required.
 
 **Recommendation:** Verify that all action items have:
-- Clear Description and Acceptance Criteria
-- Assigned Owner
+- Assigned Owner ⚠️ **MANDATORY**
 - **Due Date populated** ⚠️ **MANDATORY**
+- **Jira link type "reviews" pointing to the RDINC issue** ⚠️ **MANDATORY**
+- Status is not Discarded (or if so, document why)
 ```
 
 ---
@@ -123,7 +137,7 @@ If `acli` fails or not available:
 
 ### Pillar 6: Process Compliance ✅ (5 questions — all included in post-assessment)
 
-1. Was incident management process followed?
+1. Did the incident management process work as expected, and were any gaps identified?
 2. If the mitigation required a change (RFC), did it follow Change Management policy?
 3. **Was the retrospective completed within SLA (<14 days)?** 📊 *Post-assessment only*
 4. **Is the retrospective documentation clear, complete, and actionable?** 📊 *Post-assessment only*

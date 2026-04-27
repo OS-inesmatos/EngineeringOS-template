@@ -267,11 +267,11 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ### Key Questions
 
-1. **Was incident management process followed?**
-   - Was incident declaration clear?
-   - Were roles assigned effectively?
-   - Was the Incident Commander effective?
+1. **Did the incident management process work as expected, and were any gaps identified?**
+   - Were roles assigned (Incident Commander, engineers, stakeholders)?
+   - Was incident management tooling used (e.g. Rootly)?
    - Were escalation paths followed?
+   - If gaps occurred (e.g. delayed declaration, missed escalation): were they identified and analyzed?
 
 2. **If the mitigation required a change (RFC), did it follow Change Management policy?**
    - Was Emergency RFC usage appropriate (system-wide impact declared)?
