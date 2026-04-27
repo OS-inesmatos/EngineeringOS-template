@@ -1,7 +1,7 @@
 # RCA Framework — Quality Pillars
 
-**Version:** 2.0
-**Last Updated:** 2026-04-23
+**Version:** 2.3
+**Last Updated:** 2026-04-27
 **Purpose:** Define quality criteria for retrospective auditing (AI/Koda-assisted + sampling-based review)
 
 ---
@@ -238,10 +238,10 @@ The RCA framework evaluates retrospective quality across six core pillars. These
    - Tracking mechanism in place (Jira, Problem Management)?
    - Timeline/priority defined?
 
-4. **What learnings did the team gain?**
-   - New understanding of system behavior?
-   - Previously unknown risk or vulnerability discovered?
-   - Learning value beyond fixing this specific issue?
+4. **Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?**
+   - Did existing tests (unit, integration, end-to-end) catch the issue before production?
+   - If not, why? What gap existed in test coverage?
+   - Are new tests or test improvements defined as tracked action items?
 
 ### Quality Signals
 
@@ -249,13 +249,13 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 - Change correlation analyzed
 - Recurrence analysis performed (checked for similar past incidents)
 - Specific, actionable prevention items defined with clear owners, tracking, and timelines
-- Learning insights captured (new understanding, broader implications)
+- Test coverage gap identified and new tests defined as action items (when applicable)
 
 **Red flags:**
 - Change correlation not investigated
 - No check for previous similar incidents or recurring patterns
 - Action items generic, vague ("improve monitoring"), or missing ownership/tracking
-- No evidence of learning beyond immediate fix
+- No mention of test coverage analysis or whether new tests are needed
 
 ---
 
@@ -373,6 +373,15 @@ Use this framework to assess quality:
 ---
 
 ## Changelog
+
+**Version 2.3 (2026-04-27)**
+- **Pillar 5, Q4 replaced** — "What learnings did the team gain?" replaced with "Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?"
+- Pre-assessment: 26 questions; Post-assessment: 29 questions (unchanged counts)
+- Updated Quality Signals for Pillar 5 to reflect test coverage focus
+
+**Version 2.2 (2026-04-27)**
+- **Pillar 5, Q4 removed** — "What learnings did the team gain?" eliminated; learnings captured through P3 Q2, P3 Q3, P5 Q2, P5 Q3
+- Pre-assessment: 25 questions (was 26); Post-assessment: 28 questions (was 29)
 
 **Version 2.0 (2026-04-23)**
 - **Pillar 6, Q3-Q5 marked as "Post-Assessment Only"** — These questions evaluate the completed retrospective process (SLA adherence, documentation quality, process compliance) and can only be answered after VSL approval
