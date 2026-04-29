@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ops Review — Retrospectives</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #ffffff;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+  }
+
+  .full-width { width: 900px; }
+
+  /* ── CARD SHELL ── */
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+    border: 1px solid #e5e7eb;
+  }
+
+  .card-header {
+    background: #1e293b;
+    padding: 12px 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .card-title { font-size: 13px; font-weight: 600; color: #f8fafc; letter-spacing: .01em; }
+  .card-sub   { font-size: 11px; color: #94a3b8; }
+
+  /* ── STAT CARDS ── */
+  .stat-row {
+    background: #fff;
+    padding: 16px 20px;
+    display: flex;
+    align-items: stretch;
+  }
+  .stat-group { display: flex; gap: 10px; align-items: stretch; }
+  .stat-divider {
+    width: 1px;
+    background: #e2e8f0;
+    margin: 0 18px;
+    flex-shrink: 0;
+  }
+  .stat {
+    border-radius: 9px;
+    padding: 12px 16px;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-gray  { background: #f1f5f9; }
+  .stat-gray  .stat-label { color: #64748b; }
+  .stat-gray  .stat-value { color: #1e293b; }
+  .stat-blue  { background: #dbeafe; }
+  .stat-blue  .stat-label { color: #1d4ed8; }
+  .stat-blue  .stat-value { color: #1d4ed8; }
+  .stat-amber { background: #fef9c3; }
+  .stat-amber .stat-label { color: #92400e; }
+  .stat-amber .stat-value { color: #b45309; }
+  .stat-green { background: #dcfce7; }
+  .stat-green .stat-label { color: #166534; }
+  .stat-green .stat-value { color: #16a34a; }
+
+  /* ── BOTTOM ROW: two tables side by side ── */
+  .table-row {
+    width: 900px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .card-retro  { flex: 1 1 0; }
+  .card-action { flex: 0 0 260px; }
+
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; background: #fff; }
+  thead tr { background: #f8fafc; border-bottom: 2px solid #e2e8f0; }
+  th {
+    padding: 9px 16px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #64748b;
+    text-align: left;
+    white-space: nowrap;
+  }
+  th.num { text-align: right; }
+  tbody tr { border-bottom: 1px solid #f1f5f9; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #f8fafc; }
+  td {
+    padding: 11px 16px;
+    font-size: 13px;
+    color: #1e293b;
+    vertical-align: middle;
+  }
+  td.num    { text-align: right; font-variant-numeric: tabular-nums; }
+  td.metric { font-weight: 500; color: #0f172a; }
+  td.val    { color: #334155; font-variant-numeric: tabular-nums; }
+
+  .change {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: 600;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .change.good    { color: #16a34a; }
+  .change.bad     { color: #dc2626; }
+  .change.neutral { color: #64748b; }
+
+  .status {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .status.stable   { background: #eff6ff; color: #2563eb; }
+  .status.improved { background: #dcfce7; color: #16a34a; }
+  .status.veryhigh { background: #fee2e2; color: #dc2626; }
+</style>
+</head>
+<body>
+
+  <!-- ── WORKFLOW STATUS ── -->
+  <div class="card full-width">
+    <div class="card-header">
+      <span class="card-title">Retrospectives Workflow Status</span>
+      <span class="card-sub">as of Apr 28, 2026</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-group">
+        <div class="stat stat-gray">
+          <div class="stat-label">Retrospectives</div>
+          <div class="stat-value">169</div>
+        </div>
+        <div class="stat stat-gray">
+          <div class="stat-label">Active</div>
+          <div class="stat-value">19</div>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-group">
+        <div class="stat stat-gray">
+          <div class="stat-label">In Backlog</div>
+          <div class="stat-value">4</div>
+        </div>
+        <div class="stat stat-blue">
+          <div class="stat-label">In Progress</div>
+          <div class="stat-value">11</div>
+        </div>
+        <div class="stat stat-amber">
+          <div class="stat-label">Pending Review</div>
+          <div class="stat-value">2</div>
+        </div>
+        <div class="stat stat-green">
+          <div class="stat-label">Pending Approval</div>
+          <div class="stat-value">2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TABLES SIDE BY SIDE ── -->
+  <div class="table-row">
+
+    <!-- Retrospectives -->
+    <div class="card card-retro">
+      <div class="card-header">
+        <span class="card-title">Retrospectives</span>
+        <span class="card-sub">Apr 14 → Apr 28</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="num">Apr 14</th>
+            <th class="num">Apr 28</th>
+            <th class="num">Change</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric">Active retrospectives</td>
+            <td class="val num">21</td>
+            <td class="val num">19</td>
+            <td class="num"><span class="change good">↓ 2</span></td>
+            <td><span class="status stable">Stable</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Incidents waiting for action item closure</td>
+            <td class="val num">91</td>
+            <td class="val num">94</td>
+            <td class="num"><span class="change bad">↑ 3</span></td>
+            <td><span class="status stable">Stable</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Unassigned Retrospective Commanders</td>
+            <td class="val num">50.0%</td>
+            <td class="val num">26.3%</td>
+            <td class="num"><span class="change good">↓ 23.7 pp</span></td>
+            <td><span class="status improved">Improved</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Avg lead time (days)</td>
+            <td class="val num">88.9</td>
+            <td class="val num">88.5</td>
+            <td class="num"><span class="change neutral">↓ 0.4</span></td>
+            <td><span class="status veryhigh">Very high</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Action Items -->
+    <div class="card card-action">
+      <div class="card-header">
+        <span class="card-title">Action Items</span>
+        <span class="card-sub">as of Apr 28</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="num">Apr 28</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric">Overdue</td>
+            <td class="val num">18</td>
+          </tr>
+          <tr>
+            <td class="metric">No due date</td>
+            <td class="val num">8</td>
+          </tr>
+          <tr>
+            <td class="metric">Completeness</td>
+            <td class="val num">85.71%</td>
+          </tr>
+          <tr>
+            <td class="metric">Avg time to complete (days)</td>
+            <td class="val num">39.72</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+</html>

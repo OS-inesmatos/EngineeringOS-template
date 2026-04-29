@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retrospectives Assessments</title>
+<style>
+:root {
+  --green:#16a34a;--green-bg:#dcfce7;--green-light:#bbf7d0;
+  --yellow:#b45309;--yellow-bg:#fef9c3;--yellow-light:#fef08a;
+  --red:#dc2626;--red-bg:#fee2e2;--red-light:#fecaca;
+  --border:#e5e7eb;--text:#111827;--muted:#6b7280;
+  --bg:#f9fafb;--white:#ffffff;
+  --sev1-c:#7c3aed;--sev1-bg:#ede9fe;
+  --sev2-c:#2563eb;--sev2-bg:#dbeafe;
+  --nav-h:52px;--sidebar-w:300px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:var(--nav-h);display:flex;align-items:center;padding:0 28px;gap:0;}
+.nav-brand{font-size:14px;font-weight:600;margin-right:28px;white-space:nowrap;}
+.nav-tab{padding:0 14px;height:var(--nav-h);display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;user-select:none;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:#2563eb;border-bottom-color:#2563eb;}
+
+/* VIEWS */
+.view{display:none;}
+.view.active{display:block;}
+
+/* ── DASHBOARD ── */
+.dash{padding:32px 28px;max-width:960px;margin:0 auto;}
+.sec{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:32px 0 14px;}
+.sec:first-child{margin-top:0;}
+.c-green{color:var(--green);} .c-yellow{color:#d97706;} .c-red{color:var(--red);} .c-blue{color:#2563eb;}
+.bg-green{background:var(--green);} .bg-yellow{background:#f59e0b;} .bg-red{background:var(--red);} .bg-blue{background:#2563eb;}
+
+/* Overall score hero */
+.overall-hero{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:32px 36px;display:flex;align-items:center;gap:36px;}
+.overall-left{flex-shrink:0;}
+.overall-num{font-size:72px;font-weight:700;line-height:1;}
+.overall-denom{font-size:20px;font-weight:400;color:var(--muted);}
+.overall-right{flex:1;}
+.overall-title{font-size:18px;font-weight:600;margin-bottom:4px;}
+.overall-meta{font-size:13px;color:var(--muted);margin-bottom:16px;}
+.overall-bar-track{height:10px;background:var(--bg);border-radius:5px;overflow:hidden;}
+.overall-bar-fill{height:100%;border-radius:5px;transition:width .4s ease;}
+.overall-legend{display:flex;gap:16px;margin-top:10px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
+
+/* Pillar averages */
+.pillar-avgs{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.pa-row{display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border);}
+.pa-row:last-child{border-bottom:none;}
+.pa-row:hover{background:#fafafa;}
+.pa-left{display:flex;align-items:center;gap-8px;width:260px;flex-shrink:0;gap:8px;}
+.pa-icon{font-size:18px;flex-shrink:0;}
+.pa-name{font-size:13px;font-weight:500;flex:1;line-height:1.3;}
+.pa-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0;}
+.tag-green{background:var(--green-bg);color:var(--green);}
+.tag-yellow{background:var(--yellow-bg);color:var(--yellow);}
+.tag-red{background:var(--red-bg);color:var(--red);}
+.pa-bar-wrap{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden;}
+.pa-bar-fill{height:100%;border-radius:4px;transition:width .4s ease;}
+.pa-pct{font-size:18px;font-weight:700;width:52px;text-align:right;flex-shrink:0;}
+
+/* Compact incident table */
+.inc-table-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.inc-table{width:100%;border-collapse:collapse;}
+.inc-table th{padding:10px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--bg);border-bottom:1px solid var(--border);text-align:left;}
+.inc-table td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.inc-table tr:last-child td{border-bottom:none;}
+.inc-table tr:hover td{background:#fafafa;cursor:pointer;}
+.badge{font-size:11px;font-weight:600;padding:2px 7px;border-radius:10px;}
+.sev1{background:var(--sev1-bg);color:var(--sev1-c);}
+.sev2{background:var(--sev2-bg);color:var(--sev2-c);}
+.score-pill{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;}
+.mini-bar{width:60px;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:8px;}
+.mini-bar-fill{height:100%;border-radius:3px;}
+.open-btn{font-size:12px;color:#2563eb;font-weight:500;cursor:pointer;white-space:nowrap;}
+.open-btn:hover{text-decoration:underline;}
+
+/* Heatmap — incidents as rows */
+.heatmap{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow-x:auto;}
+.hm-table{width:100%;border-collapse:collapse;min-width:600px;}
+.hm-table th{padding:9px 14px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:center;border-bottom:1px solid var(--border);background:var(--bg);white-space:nowrap;}
+.hm-table th:first-child{text-align:left;width:160px;}
+.hm-table td{padding:8px 14px;border-bottom:1px solid var(--border);text-align:center;vertical-align:middle;}
+.hm-table td:first-child{text-align:left;font-size:12px;font-weight:600;cursor:pointer;color:var(--text);}
+.hm-table td:first-child:hover{color:#2563eb;text-decoration:underline;}
+.hm-table tr:last-child td{border-bottom:none;}
+.hm-table tr.avg-row td{background:#f0f9ff;font-weight:700;}
+.hm-cell{display:inline-flex;align-items:center;justify-content:center;border-radius:4px;font-size:12px;font-weight:600;padding:3px 10px;min-width:50px;}
+.hm-green{background:var(--green-light);color:#15803d;}
+.hm-yellow{background:var(--yellow-light);color:#92400e;}
+.hm-red{background:var(--red-light);color:#b91c1c;}
+.hm-blue{background:#dbeafe;color:#1d4ed8;}
+
+/* ── INCIDENTS VIEW ── */
+.inc-layout{display:flex;height:calc(100vh - var(--nav-h));}
+
+/* Sidebar */
+.sidebar{width:var(--sidebar-w);flex-shrink:0;border-right:1px solid var(--border);background:var(--white);display:flex;flex-direction:column;overflow:hidden;}
+.sidebar-top{padding:14px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:8px;}
+.sidebar-search{position:relative;}
+.sidebar-search input{width:100%;padding:7px 10px 7px 30px;font-size:13px;border:1px solid var(--border);border-radius:6px;outline:none;background:var(--bg);}
+.sidebar-search input:focus{border-color:#93c5fd;background:var(--white);}
+.sidebar-search::before{content:'🔍';position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:12px;pointer-events:none;}
+.filter-row{display:flex;gap:6px;}
+.filter-btn{flex:1;padding:5px 0;font-size:11px;font-weight:600;border:1px solid var(--border);border-radius:5px;background:var(--white);cursor:pointer;color:var(--muted);transition:all .15s;}
+.filter-btn:hover{border-color:#93c5fd;color:var(--text);}
+.filter-btn.active{background:#eff6ff;border-color:#93c5fd;color:#2563eb;}
+.sort-row{display:flex;gap:6px;align-items:center;}
+.sort-row span{font-size:11px;color:var(--muted);}
+.sort-row select{flex:1;font-size:11px;padding:4px 6px;border:1px solid var(--border);border-radius:5px;background:var(--white);cursor:pointer;}
+.sidebar-count{font-size:11px;color:var(--muted);padding:8px 14px;border-bottom:1px solid var(--border);}
+.sidebar-list{flex:1;overflow-y:auto;}
+.sidebar-item{padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;}
+.sidebar-item:hover{background:var(--bg);}
+.sidebar-item.active{background:#eff6ff;border-left:3px solid #2563eb;}
+.si-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.si-id{font-size:12px;font-weight:700;}
+.si-score{font-size:13px;font-weight:700;}
+.si-title{font-size:11px;color:var(--muted);line-height:1.3;}
+.si-date{font-size:10px;color:var(--muted);margin-top:3px;}
+
+/* Detail pane */
+.inc-detail{flex:1;overflow-y:auto;padding:24px 28px;}
+.inc-panel{display:none;}
+.inc-panel.active{display:block;}
+.empty-state{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:14px;}
+
+/* Incident header */
+.inc-header{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin-bottom:16px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
+.inc-meta{flex:1;min-width:200px;}
+.inc-title{font-size:16px;font-weight:700;margin-bottom:3px;}
+.inc-subtitle{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.inc-meta-row{font-size:12px;color:var(--muted);margin-bottom:2px;}
+.inc-meta-row strong{color:var(--text);}
+.ext-link{color:#2563eb;text-decoration:none;font-size:12px;}
+.ext-link:hover{text-decoration:underline;}
+.status-tag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;background:var(--yellow-bg);color:var(--yellow);}
+.status-tag-ready{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;background:var(--green-bg);color:var(--green);}
+.inc-score-block{text-align:right;flex-shrink:0;}
+.inc-score-big{font-size:44px;font-weight:700;line-height:1;}
+.inc-score-label{font-size:12px;color:var(--muted);}
+
+/* Pillars */
+.pillar-block{background:var(--white);border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;}
+.pillar-hdr{padding:12px 18px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
+.pillar-hdr:hover{background:var(--bg);}
+.pillar-icon{font-size:16px;}
+.pillar-name{font-size:13px;font-weight:600;flex:1;}
+.pillar-pct{font-size:14px;font-weight:700;}
+.pillar-pts{font-size:11px;color:var(--muted);font-weight:400;margin-left:4px;}
+.pillar-chev{font-size:11px;color:var(--muted);transition:transform .2s;margin-left:4px;}
+.pillar-chev.open{transform:rotate(90deg);}
+.pillar-body{display:none;padding:2px 18px 14px;border-top:1px solid var(--border);}
+.pillar-body.open{display:block;}
+.q-group{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:12px 0 6px;}
+.q-item{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);}
+.q-item:last-child{border-bottom:none;}
+.q-ico{font-size:13px;flex-shrink:0;margin-top:1px;}
+.q-body{flex:1;}
+.q-title{font-size:12px;font-weight:600;margin-bottom:3px;}
+.q-text{font-size:12px;color:var(--text);line-height:1.5;}
+.q-note{font-size:11px;color:#7c3aed;font-style:italic;margin-top:4px;}
+
+/* Agenda */
+.agenda{background:var(--white);border:1px solid var(--border);border-radius:8px;margin-bottom:10px;overflow:hidden;}
+.agenda-hdr{padding:12px 18px;background:var(--bg);display:flex;justify-content:space-between;font-size:13px;font-weight:600;}
+.agenda-hdr span:last-child{font-weight:400;color:var(--muted);font-size:12px;}
+.agenda-body{padding:14px 18px;}
+.ai{display:flex;gap:8px;margin-bottom:10px;}
+.ai:last-child{margin-bottom:0;}
+.ai-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.ai-content strong{font-size:12px;font-weight:600;display:block;margin-bottom:2px;}
+.ai-content p{font-size:12px;color:var(--muted);line-height:1.4;}
+
+/* Jira table */
+.jira-tbl{width:100%;border-collapse:collapse;margin-top:8px;font-size:11px;}
+.jira-tbl th{background:var(--bg);padding:5px 8px;text-align:left;font-weight:600;color:var(--muted);border:1px solid var(--border);}
+.jira-tbl td{padding:5px 8px;border:1px solid var(--border);vertical-align:top;}
+.jira-tbl a{color:#2563eb;text-decoration:none;}
+.jira-tbl a:hover{text-decoration:underline;}
+.ok{color:var(--green);} .warn{color:#d97706;} .err{color:var(--red);}
+
+@media(max-width:900px){
+  .stats-row{grid-template-columns:repeat(4,1fr);}
+  .cards-grid{grid-template-columns:repeat(2,1fr);}
+  .inc-layout{flex-direction:column;height:auto;}
+  .sidebar{width:100%;height:auto;border-right:none;border-bottom:1px solid var(--border);}
+  .sidebar-list{max-height:280px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── DATA ─── -->
+<script>
+const PILLARS = [
+  {key:'d', label:'Detection & Monitoring',    icon:'🕵️'},
+  {key:'r', label:'Response & Communication',  icon:'📣'},
+  {key:'t', label:'Troubleshooting & RCA',     icon:'🔍'},
+  {key:'rec',label:'Recovery & Resolution',    icon:'🩹'},
+  {key:'p', label:'Prevention & Learning',     icon:'🧠'},
+  {key:'c', label:'Process Compliance',        icon:'✅'},
+];
+
+const INCIDENTS = [
+  {
+    id:'78746', sev:'SEV1', score:68,
+    title:'Users unable to log into the ODC Portal',
+    desc:'186 tenants, all 13 GA regions, ~2h duration',
+    date:'2026-04-27', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6278479895',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6206062623',
+    pillars:{d:83,r:50,t:83,rec:64,p:63,c:50},
+    status:'Needs working session'
+  },
+  {
+    id:'78158', sev:'SEV2', score:59,
+    title:'503 errors on Ingestion API (datap-ga-us-east-1-01)',
+    desc:'~1% failure rate, GA / us-east-1, ~2h',
+    date:'2026-04-27', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6280380726',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6161990125',
+    pillars:{d:67,r:17,t:67,rec:71,p:25,c:75},
+    status:'Needs working session'
+  },
+  {
+    id:'77260', sev:'SEV2', score:56,
+    title:'OS-DPL-40802 on 1CP publish/deploy in EA',
+    desc:'3 EA tenants, us-east-1 + eu-central-1, ~5h disruption',
+    date:'2026-04-27', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6279856344',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6094454826',
+    pillars:{d:58,r:50,t:67,rec:57,p:50,c:50},
+    status:'Needs working session'
+  },
+  {
+    id:'63277', sev:'SEV1', score:48,
+    title:'OSALL Personals 401 in /api/identity/v1/users/me',
+    desc:'136 tenants (OSALL), 3h — recurrence of RDINC-53480',
+    date:'2026-04-27', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6280151403',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/5531500606',
+    pillars:{d:70,r:25,t:33,rec:50,p:50,c:50},
+    status:'Needs working session'
+  },
+  {
+    id:'74811', sev:'SEV2', score:76,
+    title:'me-central-1 NATS availability (AWS AZ outage)',
+    desc:'System-wide, me-central-1 GA, 8h41m — AWS AZ physical infrastructure failure',
+    date:'2026-04-29', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6295879684',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6292144277',
+    pillars:{d:75,r:63,t:100,rec:92,p:25,c:75},
+    status:'Close to ready'
+  },
+  {
+    id:'78058', sev:'SEV2', score:72,
+    title:'OSALL tenant-provisioning-success-rate (Terraform Controller)',
+    desc:'~62 rundev environments, OSALL, 13h34m — tofu controller 0 replicas after upgrade',
+    date:'2026-04-29', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6292471829',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6287458426',
+    pillars:{d:90,r:75,t:50,rec:79,p:50,c:75},
+    status:'Close to ready'
+  },
+  {
+    id:'78404', sev:'SEV2', score:67,
+    title:'GA morpheus_ai_llm_gw_error_rate (LLM Gateway)',
+    desc:'Single region (sa-east-1), 47min — GCP credential loss on LLM gateway pod',
+    date:'2026-04-29', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6292078606',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6287229179',
+    pillars:{d:80,r:50,t:50,rec:90,p:25,c:75},
+    status:'Needs working session'
+  },
+  {
+    id:'76734', sev:'SEV2', score:65,
+    title:'OSALL tenant-provisioning-success-rate (Terraform state corruption)',
+    desc:'9 environments stuck in DatabaseReady across 6 OSALL stamps — TF state corruption',
+    date:'2026-04-29', assessUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6291783685',
+    retroUrl:'https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6287360122',
+    pillars:{d:90,r:63,t:50,rec:83,p:25,c:50},
+    status:'Needs working session'
+  },
+];
+
+function scoreColor(v){return v>=70?'c-green':v>=40?'c-yellow':'c-red';}
+function scoreClass(v){return v>=70?'hm-green':v>=40?'hm-yellow':'hm-red';}
+function barClass(v){return v>=70?'bg-green':v>=40?'bg-yellow':'bg-red';}
+
+function avg(arr){return Math.round(arr.reduce((a,b)=>a+b,0)/arr.length);}
+
+function buildDashboard(){
+  const n = INCIDENTS.length;
+  const avgTotal = avg(INCIDENTS.map(i=>i.score));
+  const pillarAvgs = {};
+  PILLARS.forEach(p=>{ pillarAvgs[p.key]=avg(INCIDENTS.map(i=>i.pillars[p.key])); });
+
+  // Pillar status label
+  function pillarTag(v){
+    if(v>=70) return {text:'Good',cls:'tag-green'};
+    if(v>=40) return {text:'Needs work',cls:'tag-yellow'};
+    return {text:'Critical gap',cls:'tag-red'};
+  }
+
+  // ── Overall hero ──
+  const sev1 = INCIDENTS.filter(i=>i.sev==='SEV1').length;
+  const sev2 = INCIDENTS.filter(i=>i.sev==='SEV2').length;
+  const lastDate = [...INCIDENTS].sort((a,b)=>b.date.localeCompare(a.date))[0].date;
+  document.getElementById('dash-hero').innerHTML=`
+    <div class="overall-hero">
+      <div class="overall-left">
+        <div class="overall-num ${scoreColor(avgTotal)}">${avgTotal}<span class="overall-denom">/100</span></div>
+      </div>
+      <div class="overall-right">
+        <div class="overall-title">Average Retrospective Quality Score</div>
+        <div class="overall-meta">${n} incident${n!==1?'s':''} assessed · ${sev1} SEV1, ${sev2} SEV2 · last updated ${lastDate}</div>
+        <div class="overall-bar-track">
+          <div class="overall-bar-fill ${barClass(avgTotal)}" style="width:${avgTotal}%"></div>
+        </div>
+        <div class="overall-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>≥70 Ready for VSL</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>40–69 Needs working session</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>&lt;40 Critical gaps</span>
+        </div>
+      </div>
+    </div>`;
+
+  // ── Pillar averages — sorted weakest first ──
+  const sorted = [...PILLARS].sort((a,b)=>pillarAvgs[a.key]-pillarAvgs[b.key]);
+  let html='<div class="pillar-avgs">';
+  sorted.forEach(p=>{
+    const v=pillarAvgs[p.key];
+    const tag=pillarTag(v);
+    html+=`<div class="pa-row">
+      <div class="pa-left">
+        <span class="pa-icon">${p.icon}</span>
+        <span class="pa-name">${p.label}</span>
+        <span class="pa-tag ${tag.cls}">${tag.text}</span>
+      </div>
+      <div class="pa-bar-wrap"><div class="pa-bar-fill ${barClass(v)}" style="width:${v}%"></div></div>
+      <span class="pa-pct ${scoreColor(v)}">${v}%</span>
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('dash-pillars').innerHTML=html;
+
+  // ── Compact incident table ──
+  const byScore=[...INCIDENTS].sort((a,b)=>b.score-a.score);
+  let tbl=`<div class="inc-table-wrap"><table class="inc-table">
+    <thead><tr><th>Incident</th><th>Severity</th><th>Score</th><th>Date</th><th>Weakest pillar</th><th></th></tr></thead><tbody>`;
+  byScore.forEach(inc=>{
+    const weakKey=Object.keys(inc.pillars).reduce((a,b)=>inc.pillars[a]<inc.pillars[b]?a:b);
+    const weakP=PILLARS.find(p=>p.key===weakKey);
+    const weakV=inc.pillars[weakKey];
+    tbl+=`<tr onclick="openIncident('${inc.id}')">
+      <td style="font-weight:600">RDINC-${inc.id}</td>
+      <td><span class="badge ${inc.sev.toLowerCase()}">${inc.sev}</span></td>
+      <td>
+        <span class="score-pill ${scoreColor(inc.score)}">${inc.score}/100</span>
+        <span class="mini-bar"><span class="mini-bar-fill ${barClass(inc.score)}" style="width:${inc.score}%"></span></span>
+      </td>
+      <td style="color:var(--muted);font-size:12px">${inc.date}</td>
+      <td style="font-size:12px">${weakP.icon} ${weakP.label} <span style="color:var(--red);font-weight:600">${weakV}%</span></td>
+      <td><span class="open-btn">Open →</span></td>
+    </tr>`;
+  });
+  tbl+=`</tbody></table></div>`;
+  document.getElementById('dash-inctable').innerHTML=tbl;
+}
+
+// Sidebar
+let activeFilter='all', activeSort='score-desc', searchVal='';
+
+function buildSidebar(){
+  let list=[...INCIDENTS];
+  if(activeFilter!=='all') list=list.filter(i=>i.sev.toLowerCase()===activeFilter);
+  if(searchVal) list=list.filter(i=>
+    i.id.includes(searchVal)||i.title.toLowerCase().includes(searchVal)||i.desc.toLowerCase().includes(searchVal)
+  );
+  if(activeSort==='score-desc') list.sort((a,b)=>b.score-a.score);
+  else if(activeSort==='score-asc') list.sort((a,b)=>a.score-b.score);
+  else if(activeSort==='date-desc') list.sort((a,b)=>b.date.localeCompare(a.date));
+  else if(activeSort==='id') list.sort((a,b)=>b.id.localeCompare(a.id));
+
+  document.getElementById('sidebar-count').textContent=`${list.length} incident${list.length!==1?'s':''}`;
+
+  const currentPanel=document.querySelector('.inc-panel.active');
+  const currentId=currentPanel?currentPanel.id.replace('panel-',''):'';
+
+  let html='';
+  list.forEach(inc=>{
+    const active=inc.id===currentId?'active':'';
+    html+=`<div class="sidebar-item ${active}" id="si-${inc.id}" onclick="showIncident('${inc.id}')">
+      <div class="si-top">
+        <span class="si-id"><span class="badge ${inc.sev.toLowerCase()}" style="margin-right:5px">${inc.sev}</span>RDINC-${inc.id}</span>
+        <span class="si-score ${scoreColor(inc.score)}">${inc.score}/100</span>
+      </div>
+      <div class="si-title">${inc.title}</div>
+      <div class="si-date">${inc.date}</div>
+    </div>`;
+  });
+  if(!html) html='<div style="padding:20px;font-size:12px;color:var(--muted);text-align:center">No incidents match</div>';
+  document.getElementById('sidebar-list').innerHTML=html;
+}
+
+function setFilter(f){
+  activeFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.f===f));
+  buildSidebar();
+}
+function setSort(v){activeSort=v;buildSidebar();}
+function setSearch(v){searchVal=v.toLowerCase();buildSidebar();}
+
+function showView(view,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  el.classList.add('active');
+  if(view==='incidents') buildSidebar();
+}
+
+function openIncident(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('view-incidents').classList.add('active');
+  document.querySelector('[data-view="incidents"]').classList.add('active');
+  showIncident(id);
+  buildSidebar();
+}
+
+function showIncident(id){
+  document.querySelectorAll('.inc-panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id);
+  if(panel){panel.classList.add('active');panel.scrollIntoView?panel.parentElement.scrollTop=0:null;}
+  document.querySelectorAll('.sidebar-item').forEach(s=>s.classList.toggle('active',s.id==='si-'+id));
+  buildSidebar();
+}
+
+function togglePillar(hdr){
+  const body=hdr.nextElementSibling;
+  const chev=hdr.querySelector('.pillar-chev');
+  const open=body.classList.contains('open');
+  body.classList.toggle('open',!open);
+  chev.classList.toggle('open',!open);
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  buildDashboard();
+  buildSidebar();
+  // Open first incident by default
+  const first=document.querySelector('.inc-panel');
+  if(first) first.classList.add('active');
+  buildSidebar();
+});
+</script>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-brand">Retrospectives Assessments</div>
+  <div class="nav-tab active" data-view="dashboard" onclick="showView('dashboard',this)">Dashboard</div>
+  <div class="nav-tab" data-view="incidents" onclick="showView('incidents',this)">Incidents</div>
+</nav>
+
+<!-- ═══════════════════════ DASHBOARD ═══════════════════════ -->
+<div id="view-dashboard" class="view active">
+<div class="dash">
+
+  <div class="sec">Overall Quality</div>
+  <div id="dash-hero"></div>
+
+  <div class="sec">Average Score by Pillar — weakest first</div>
+  <div id="dash-pillars"></div>
+
+  <div class="sec">Incidents</div>
+  <div id="dash-inctable"></div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════ INCIDENTS ═══════════════════════ -->
+<div id="view-incidents" class="view">
+<div class="inc-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search by ID or title…" oninput="setSearch(this.value)">
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn active" data-f="all"    onclick="setFilter('all')">All</button>
+        <button class="filter-btn"        data-f="sev1"   onclick="setFilter('sev1')">SEV1</button>
+        <button class="filter-btn"        data-f="sev2"   onclick="setFilter('sev2')">SEV2</button>
+      </div>
+      <div class="sort-row">
+        <span>Sort:</span>
+        <select onchange="setSort(this.value)">
+          <option value="score-desc">Score ↓</option>
+          <option value="score-asc">Score ↑</option>
+          <option value="date-desc">Date ↓</option>
+          <option value="id">ID</option>
+        </select>
+      </div>
+    </div>
+    <div class="sidebar-count" id="sidebar-count"></div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </aside>
+
+  <!-- Detail -->
+  <main class="inc-detail">
+
+    <!-- ── RDINC-78746 ── -->
+    <div class="inc-panel" id="panel-78746">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-78746 — Users unable to log into the ODC Portal</div>
+          <div class="inc-subtitle">SEV1 · Scenario 2 · 186 tenants, all 13 GA regions, ~2h</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-27 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.3</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> ICS DU 1.0.291 referenced columns not yet present (IBB schema migration paused 2026-04-09)</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6278479895" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6206062623" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-78746" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag">Needs working session</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-yellow">68</div>
+          <div class="inc-score-label">/100 · 17.0/25 pts · 1 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-green">83%</span><span class="pillar-pts">(5.0/6)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident detected?</div><div class="q-text">Automated SLO alerts fired at 01:02 UTC (7min after first errors). Customer Zendesk #3332189 at 02:07 UTC. All timestamps, sources, and escalation path documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">First errors 00:55, SLO alert 01:02 — concurrent with impact. Finding 2 analyzes on-call paging never triggered despite detection.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts clear and actionable?</div><div class="q-text">Finding 2 full 5-Whys: "severity rules did not distinguish partial degradation from total failure." Gap identified and actioned via RDPIDT-3598.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: What can be improved in detection?</div><div class="q-text">"Recalibrate ICS and CAS alert severity thresholds so total service failure creates SEV1." Specific, owned, RDPIDT-3598.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: System-wide SLO error budget?</div><div class="q-text">8 SLO incidents auto-created, all regions impacted — % error budget not stated.</div><div class="q-note">Translate error counts into % of monthly error budget per SLO.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q5: Service-specific SLO error budget?</div><div class="q-text">ICS/CAS SLO alerts documented with error counts. Budget % not quantified.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(2.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Was declaration timely?</div><div class="q-text">Declared 02:50 UTC — 1h48m after first alert. Delay documented, root cause analyzed (SEV3 prevented on-call paging), RDPIDT-3598 created.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Internal communication effective?</div><div class="q-text">Slack 02:06 UTC, cross-team coordination effective. But no analysis of stakeholder coverage between 01:02 (alert) and 02:06 (channel creation).</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA adequate?</div><div class="q-text">~1h48m from first alert to declaration. SEV1 target &lt;30min. Not computed or compared.</div><div class="q-note">Compute MTTA explicitly and compare to SEV1 target.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: External communication?</div><div class="q-text">Status page "Login Access Issue" published ~02:24 UTC — 1h29min lag from incident start (00:55 UTC). Not documented or analyzed in the retrospective.</div><div class="q-note">Is 1h29min lag acceptable for SEV1 affecting all GA regions?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-green">83%</span><span class="pillar-pts">(2.5/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">Two complete 5-Whys. ICS DU 1.0.291 referenced columns (remarks, allow_portfolios, portfolio) absent because IBB schema migration paused since 2026-04-09. Evidence: PR #1215, PR #2308, exact timestamps.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">ICS and IBB share the same database tables — violates domain boundary best practices. Domain consolidation proposed: RPOR-21881, RPOR-24336.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps effective?</div><div class="q-text">Root cause found ~9min after team engagement. No description of how — which logs or hypotheses led there.</div><div class="q-note">What diagnostic path was followed? Was the IBB pipeline pause immediately visible?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-yellow">64%</span><span class="pillar-pts">(4.5/7)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation?</div><div class="q-text">Failing the bake on GA ring → automatic rollback from DU 1.0.293 to DU 1.0.287. Mechanism, timing, and outcome documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">Rollback was the actual mitigation via automatic bake-failure — process mandate satisfied by design.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">186 tenants, all 13 GA regions, ~2h. Per-region table with tenant counts and CAS 5xx errors. ICS peak 1,768 errors/5min; total ~19,185 CAS 502s.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: MTTR and acceptability?</div><div class="q-text">~2h documented. SEV3 misclassification caused the delay. No explicit acceptability judgment vs SEV1 target.</div><div class="q-note">Add: "SEV1 target &lt;30min; actual ~2h — not acceptable. Engage-to-mitigation (28min) within target."</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: Recovery blockers?</div><div class="q-text">Structural blocker documented (SEV3 prevented paging). Team confidence angle not addressed.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Cascading failures?</div><div class="q-text">ICS→CAS cascade documented as trigger. Cascade impact on recovery timeline not analyzed.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q5: Runbooks used?</div><div class="q-text">Not mentioned. Did a runbook exist for ICS schema-dependency failure or CAS cascade diagnosis?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-yellow">63%</span><span class="pillar-pts">(2.5/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Caused by a recent change?</div><div class="q-text">ICS DU 1.0.291, PR #1215, RDPIDT-3442. Deployment at 00:55, first errors at 00:55. Direct causal link with commit-level evidence.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q4: Were existing tests sufficient?</div><div class="q-text">Test gap central to 5-Whys: no contract tests for schema dependencies. CF-1a → RDPIDT-3596 created. Note: RDPIDT-3596 is currently Discarded — flagged in Q3.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Action items with ownership?</div>
+            <table class="jira-tbl">
+              <tr><th>Ticket</th><th>Summary</th><th>Assignee</th><th>Due Date</th><th>RDINC Link</th><th>Status</th></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDPIDT-3596" target="_blank">RDPIDT-3596</a></td><td>Add contract tests for schema deps</td><td class="ok">Emanuel Brici</td><td class="ok">2026-09-30</td><td class="ok">reviews ✓</td><td class="err">Discarded ❌</td></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDPIDT-3597" target="_blank">RDPIDT-3597</a></td><td>Verify schema before deploying</td><td class="ok">Emanuel Brici</td><td class="ok">2026-09-30</td><td class="ok">reviews ✓</td><td>To Do ✅</td></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDPIDT-3598" target="_blank">RDPIDT-3598</a></td><td>Recalibrate ICS/CAS alert thresholds</td><td class="err">Unassigned ❌</td><td class="ok">2026-06-30</td><td class="ok">reviews ✓</td><td>Ready</td></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RPOR-21881" target="_blank">RPOR-21881</a></td><td>Sunset IBS Proxy Layer</td><td class="ok">Patrícia Sobreira</td><td class="ok">2026-12-21</td><td class="err">links RDINC-39382 only ❌</td><td>Development</td></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RPOR-24336" target="_blank">RPOR-24336</a></td><td>Consolidate Identity Domains</td><td class="ok">Patrícia Sobreira</td><td class="ok">2026-12-21</td><td class="err">links RDINC-65318 only ❌</td><td>Development</td></tr>
+            </table>
+          </div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">RPOR-21881 and RPOR-24336 already link to prior incidents (RDINC-39382, RDINC-65318) — same architectural issue. At least 3rd occurrence. Not acknowledged.</div><div class="q-note">Candidate for Problem Management escalation (M3.4).</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(0.5/1)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Process followed?</div><div class="q-text">Rootly, Slack 02:06, SEV3 gap analyzed with RDPIDT-3598. IC role mismatch not acknowledged: Sc2 mandates SRE as IC; Yang Yang (Identity Core) was IC — consequence of SEV3 preventing SRE paging.</div><div class="q-note">Document: "IC was IC Core, not SRE. Corrective: RDPIDT-3598."</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q2: RFC Change Management?</div><div class="q-text">N/A — mitigation was automatic bake-failure rollback. Automatic rollbacks do not require RFC.</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🔴 Working Session Priorities — 60–90 min</span><span>Target: &gt;70/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Recurrence analysis & architectural escalation (P5 Q2 + P3 Q3)</strong><p>RPOR-21881 and RPOR-24336 link to prior incidents — 3rd+ occurrence of same root cause. Candidate for Problem Management. Add "reviews RDINC-78746" to both tickets.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. IC role gap (P6 Q1)</strong><p>IC was Identity Core, not SRE (Sc2 mandate). When SEV is upgraded mid-incident, who escalates to SRE? Does RDPIDT-3598 correctly route SEV1 to SRE on-call?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Explain RDPIDT-3596 Discarded</strong><p>Primary prevention measure (contract tests for schema deps) abandoned with no documented replacement or rationale.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. MTTR judgment (P4 Q1)</strong><p>Add: "SEV1 target &lt;30min; actual ~2h — not acceptable; engage-to-mitigation (28min) was within target."</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. External communication — status page lag (P2 Q3)</strong><p>1h29min lag from incident start to status page publication. Document and assess acceptability for SEV1.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /78746 -->
+
+
+    <!-- ── RDINC-78158 ── -->
+    <div class="inc-panel" id="panel-78158">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-78158 — 503 errors on Ingestion API</div>
+          <div class="inc-subtitle">SEV2 · Scenario 2 · GA / us-east-1, infra layer · ~1% failure, ~2h</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-27 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.2 · Framework v2.2</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> Stale xDS endpoint state → gateway-proxy circuit breaker exhaustion (unconfirmed hypothesis)</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6280380726" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6161990125" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-78158" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag">Needs working session</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-yellow">59</div>
+          <div class="inc-score-label">/100 · 13.5/23 pts · 2 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-yellow">67%</span><span class="pillar-pts">(4.0/6)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident detected?</div><div class="q-text">Rootly alert 12:15 PM, GRS On Call (Gustavo de Castro Salvador) acknowledged 12:16 PM. Data Platform reported in Slack. Fluentbit logs showed HTTP 503 with upstream connect failures.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">Infra-only impact — no direct customer-facing app impact. Retrospective explicitly acknowledges reactive detection via downstream symptoms.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts actionable?</div><div class="q-text">Alert fired, acknowledged in 1min, triggered active investigation. Improvement opportunity in Q6.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">"Set up monitoring for xDS desynchronization: checks on glooe_solo_io_xds_insync vs glooe_solo_io_xds_total_entities." RDGRS-2150 created.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4 + Q5: SLO error budgets?</div><div class="q-text">System-wide and service-specific SLO impact not addressed. Does a SLO cover Ingestion API or gateway-proxy availability? Should circuit breaker health be added to SLO coverage?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-red">17%</span><span class="pillar-pts">(0.5/3, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Internal communication?</div><div class="q-text">Slack 1:16 PM, IC Leader paged 1:23 PM, first update 1:33 PM. Activity described but effectiveness not assessed. 53min GRS→SRE gap not discussed.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q1: Declaration timely?</div><div class="q-text">Alert 12:15 → GRS ack 12:16 → SRE 1:09 PM (53min gap) → declared 1:16 → system-wide 1:23. 68min from first signal to declaration. Never analyzed.</div><div class="q-note">Was this a process gap or intentional assessment window?</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4: MTTA adequate?</div><div class="q-text">Raw data in timeline but no MTTA analysis. Initial ack fast (1min); time-to-correct-team (GRS→SRE) was 53min.</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q3: External communication?</div><div class="q-text">N/A — telemetry infra incident, no customer-facing impact. No status page entry (confirmed).</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-yellow">67%</span><span class="pillar-pts">(2.0/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps?</div><div class="q-text">Systematic: initial hypothesis (RFC-4726 scale-up) tested and abandoned, UF/UO flags analyzed, Solo/Gloo consulted, problem isolated to specific pod, RFC-4728 restart applied. Resolution within ~2h.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">Retrospective explicitly states: "This hypothesis could not be fully confirmed — relevant proxy state and control plane logs not collected before restart." Root cause is an unconfirmed hypothesis.</div><div class="q-note">Can Solo/Gloo confirm retroactively? Prevention actions are built on an unverified explanation.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">"Review circuit breaker and retry behavior." Identified but not analyzed in depth. No separate tracked action beyond monitoring ticket.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-green">71%</span><span class="pillar-pts">(5.0/7)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation?</div><div class="q-text">RFC-4728 restart of gateway-proxy pods. After restart, HTTP 503 errors stopped. Confirmed by Data Platform and Observability.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q4: Recovery blockers?</div><div class="q-text">Proxy state and Gloo control plane logs needed to validate stale endpoints were not collected before restart. Capability gap explicitly acknowledged with specific commands for next time.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Cascading failures?</div><div class="q-text">Fluentbit dropped records and exporter queues increased until mitigation. Confirmed resolved by Data Platform, Observability, and consumers.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">~1% of incoming requests failing with HTTP 503. Fluentbit dropped records and growing consumer queues documented.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: MTTR?</div><div class="q-text">Started 1:17 PM, Resolved 3:19 PM → ~2h2min. Computable from timeline but not stated. No acceptability judgment vs SEV2 target.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">Not discussed. Was rollback of gateway-proxy evaluated before attempting RFC-4726 scaling? Per process, rollback-first assessment is mandatory.</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q5: Runbooks used?</div><div class="q-text">No reference to runbooks. Does GRS have a runbook for gateway-proxy 503? Would Envoy config dump commands have accelerated diagnosis?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-red">25%</span><span class="pillar-pts">(0.5/2, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Action items?</div>
+            <table class="jira-tbl">
+              <tr><th>Ticket</th><th>Assignee</th><th>Due Date</th><th>RDINC Link</th><th>Status</th></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDGRS-2150" target="_blank">RDGRS-2150</a></td><td class="err">Unassigned ❌</td><td class="err">Missing ❌</td><td class="err">Missing ❌</td><td>To Do</td></tr>
+            </table>
+            <div style="margin-top:6px;font-size:11px;color:var(--muted)">All 3 mandatory fields missing. Fix before working session.</div>
+          </div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">No analysis of similar prior gateway-proxy or xDS incidents. Pull RDINC tickets with UF/UO flags or gateway-proxy 503s.</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q1: Recent change?</div><div class="q-text">N/A — environmental drift (stale xDS state). No deployment triggered the incident.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-green">75%</span><span class="pillar-pts">(1.5/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Process followed?</div><div class="q-text">IC: SRE (Luís Rocha) ✓ · Slack 1:16 PM ✓ · RDINC created ✓ · IC Leader paged ✓ · System-wide declared ✓ · Status updates ✓</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: RFC Change Management?</div><div class="q-text">RFC-4726 and RFC-4728 referenced. "Emergency RFC raised" stated but compliance with emergency process not confirmed.</div><div class="q-note">Confirm: approvals documented? Rollback plan included in both RFCs?</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🔴 Working Session Priorities — 60–90 min</span><span>Target: &gt;70/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Fix RDGRS-2150 now (P5 Q3)</strong><p>Assign GRS owner, set Due Date, add "reviews RDINC-78158" link. All 3 mandatory fields missing. Zero effort, high impact — do this before the session.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Declaration timing (P2 Q1)</strong><p>53min GRS→SRE gap and 68min total to declaration — never analyzed. Process gap for Sc2 system-wide SEV2?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Recurrence analysis (P5 Q2)</strong><p>No prior incident search. Pull RDINC with UF/UO flags or gateway-proxy 503s before the session.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. MTTA + MTTR explicit (P2 Q4, P4 Q1)</strong><p>State MTTA explicitly (1min initial, 53min to correct team). State MTTR ~2h2min vs SEV2 target.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. Root cause confirmation status (P3 Q2)</strong><p>Can Solo/Gloo confirm the xDS hypothesis retroactively? If not, note it remains unconfirmed.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /78158 -->
+
+
+    <!-- ── RDINC-77260 ── -->
+    <div class="inc-panel" id="panel-77260">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-77260 — OS-DPL-40802 on 1CP publish/deploy in EA</div>
+          <div class="inc-subtitle">SEV2 · Scenario 2 · 3 EA tenants, us-east-1 + eu-central-1 · ~5h disruption</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-27 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.2</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> PS bake fail left in-flight publishes in inconsistent AppDeployment CR state not handled by NATS2CRD</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6279856344" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/6094454826" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-77260" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag">Needs working session</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-yellow">56</div>
+          <div class="inc-score-label">/100 · 14.0/25 pts · 0 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-yellow">58%</span><span class="pillar-pts">(3.5/6)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident detected?</div><div class="q-text">Maestro alert ~5:30 PM WET (not prioritized), customer cases #3321111/05/22 via Global Support, Rootly alert 8:04 PM. Both missed-alarm and customer-driven paths visible.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts actionable?</div><div class="q-text">Gap identified: Maestro alert not prioritized alongside support work. Root cause: alert-handling capacity and alarm noise. Action item created with owner.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">Alarm-noise review for positive rings (Sara Gonçalves); NATS2CRD error improvement (RDMAST-2693, Done). Specific and owned.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">Customer cases triggered declaration — ~3h after errors started. Not explicitly assessed.</div><div class="q-note">Frame: "The 5:30 PM alarm could have detected pre-impact, but was missed due to noise and competing workload."</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4 + Q5: SLO error budgets?</div><div class="q-text">Not addressed. Were 1CP publish success rate SLOs affected? Did Publish Service or DC have an SLO that fired?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(2.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (all 4)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Declaration timely?</div><div class="q-text">Detected 8:04 PM → IC 8:05 PM → declared 9:19 PM: 1h13m lag. Not assessed against any target, delay unexplained.</div><div class="q-note">Was EA scope initially not considered system-wide? Add explicit justification.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Internal communication?</div><div class="q-text">Slack 8:05 ✓, Maestro 9min ✓, ICE 48min. IC handover Sam Audu → Kevin Tek at 9:42 PM undocumented. IC Leader paging took 1h31min to be acknowledged — after resolution.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: External communication?</div><div class="q-text">3 Zendesk cases linked but not analyzed. Were 3 EA customers proactively updated? Was resolution communicated back?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA?</div><div class="q-text">SRE primary ack ~1min (excellent). Maestro effective MTTA from root-cause alarm: ~2.5h. IC Leader MTTA: 1h31min. Not discussed or assessed.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-yellow">67%</span><span class="pillar-pts">(2.0/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">3-level analysis: bake fail at ~5:00 PM left in-flight publishes in inconsistent AppDeployment CR state → NATS2CRD didn't handle null vs empty → contract tests between PS and DC didn't detect this state. DUV 1.0.265 fixed it.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps?</div><div class="q-text">5 actions listed. "No error logs found in 1CP Logs — only warnings." No efficiency assessment.</div><div class="q-note">How was the bake-fail correlation established? How long from "only warnings" to hypothesis?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">Test-coverage gap mentioned (RCQA-6580). But bake-fail process risk, PS↔DC↔NATS2CRD reliability, and publish state model not analyzed.</div><div class="q-note">Is the bake-fail mechanism inherently risky for in-flight ops? Should AppDeployment CR have a "draining" state?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-yellow">57%</span><span class="pillar-pts">(4.0/7)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation?</div><div class="q-text">DUV 1.0.265 deployed — subsequent publishes in EA started succeeding. DC deployment planned for following morning for CSP secondary impact.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q4: Recovery blockers?</div><div class="q-text">At 10:29 PM: attempted emergency RFC for DC deployment — blocked because RFC tooling required ticket linked to system-wide incident. Already resolved (action item ✅). Specific event, timing, root cause, and resolution all documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">3 EA tenants (case numbers, tenant IDs, prefixes, regions). Duration: ~3h formal, ~5h+ from root cause. "Development completely blocked." Business risk: reaching GA.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: MTTR?</div><div class="q-text">8:06 PM → mitigated 10:17 PM (2h11min) → resolved 11:19 PM. SEV2 target &lt;8h — within target. But missed 5:30 PM alarm added ~3h to effective disruption.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Cascading failures?</div><div class="q-text">PS bake fail also blocked DC from reaching EA → CSP secondary impact requiring next-day deployment. Cross-team coordination impact not quantified.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">Not mentioned anywhere. Mitigation was a forward deployment. Process mandates rollback-first evaluation.</div><div class="q-note">Was rollback of PS to pre-bake-fail state feasible given in-flight inconsistent state? Document the decision.</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q5: Runbooks used?</div><div class="q-text">Not mentioned. Did a runbook exist for OS-DPL-40802 or PS bake-fail recovery?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.5/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Recent change?</div><div class="q-text">Bake fail of Publish Service at ~5:00 PM. Direct causal link explicitly documented.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Action items?</div>
+            <table class="jira-tbl">
+              <tr><th>Ticket</th><th>Summary</th><th>Assignee</th><th>Due Date (Jira)</th><th>RDINC Link</th><th>Status</th></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDMAST-2693" target="_blank">RDMAST-2693</a></td><td>PS: Check nats2crd response status</td><td class="ok">Tiago Cardoso</td><td class="err">NULL ❌</td><td class="err">None ❌</td><td>Done</td></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RCQA-6580" target="_blank">RCQA-6580</a></td><td>E2E test: Continuous publish detection</td><td class="ok">Fábio Rodrigues</td><td class="err">NULL ❌</td><td class="err">None ❌</td><td>Backlog</td></tr>
+              <tr><td>(no Jira)</td><td>Internal team improvements (alarm review)</td><td class="warn">Sara Gonçalves</td><td class="err">No ticket ❌</td><td class="err">No ticket ❌</td><td>Untracked</td></tr>
+            </table>
+          </div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">No search for prior bake-fail or NATS2CRD incidents. Is the PS↔DC coupling a recurring source of issues?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.0/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (both)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Process gaps?</div><div class="q-text">IC SRE ✓, Slack ✓, Rootly ✓, RFC tooling blocker identified (fixed ✅). NOT identified: IC Leader paging took 1h31min unacknowledged; IC swap Sam→Kevin undocumented; 1h13m triage→declare gap.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: RFC Change Management?</div><div class="q-text">RFC tooling blocker for DC fix documented. But primary mitigation (DUV 1.0.265 at 10:17 PM) RFC trail not addressed.</div><div class="q-note">Was an emergency RFC raised for DUV 1.0.265? Which CM exception applied?</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🔴 Working Session Priorities — 60–90 min</span><span>Target: &gt;70/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Rollback consideration (P4 Q3)</strong><p>Not mentioned anywhere. Process mandates rollback-first. Was rolling back PS feasible given in-flight inconsistent state? Document: "Rollback [was evaluated / not feasible because X]. Fix-forward chosen because Y."</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Recurrence analysis (P5 Q2)</strong><p>No prior bake-fail incident search. Pull RDINC for "bake fail", "NATS2CRD", "PS inconsistent state" before the session.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Jira fields — before the session</strong><p>Populate Due Date for RDMAST-2693 and RCQA-6580. Add "reviews RDINC-77260" to both. Create Jira ticket for "Internal team improvements" (alarm-handling).</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. Declaration timing + IC handover (P2 Q1, Q2)</strong><p>1h13m to formal declaration. IC swap Sam→Kevin undocumented. IC Leader unreachable for 1h31min — what is the escalation fallback?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. Primary RFC compliance (P6 Q2)</strong><p>Document RFC trail for DUV 1.0.265, or state which CM exception applied.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /77260 -->
+
+
+    <!-- ── RDINC-63277 ── -->
+    <div class="inc-panel" id="panel-63277">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-63277 — OSALL Personals 401 in /api/identity/v1/users/me</div>
+          <div class="inc-subtitle">SEV1 · Scenario 2 · 136 tenants (OSALL), 3h · Recurrence of RDINC-53480</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-27 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.2</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> KCM cleanup removed /certs endpoint still needed by old-format OSALL tenants (pre-10/10/2025)</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6280151403" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/RKB/pages/5531500606" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-63277" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag">Needs working session</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-yellow">48</div>
+          <div class="inc-score-label">/100 · 11.5/24 pts · 1 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-yellow">70%</span><span class="pillar-pts">(3.5/5, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident detected?</div><div class="q-text">Rootly alert 12:24 PM WET, SRE paged 12:31 PM, incident started 12:40 PM. Zendesk #3264687. Finding 2: "Triggered based on customer reports, not M&O event." All documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">Detection purely reactive. Finding 2 explains WHY no automated alert fired: "401 code was same as invalid authentication, which is expected."</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">Gap identified (401s indistinguishable from expected auth failures). But no specific improvement proposed and no action item for detection.</div><div class="q-note">What alert would have caught this? Rate-based alert on 401s from OSALL tenants created before 10/10/2025?</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4 + Q5: SLO error budgets?</div><div class="q-text">136 tenants unable to authenticate for ~3h in OSALL. No SLO or error budget impact mentioned. No service-specific SLO (KCM, Identity Business) mentioned.</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q3: Were alerts actionable?</div><div class="q-text">N/A — no automated alert fired. Absence of alert is the gap, addressed in Q2 and Q6.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-red">25%</span><span class="pillar-pts">(1.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Declaration timely?</div><div class="q-text">Rootly 12:24 → incident 12:40 → declared 1:09 PM (45min after IC). SEV escalated SEV2→SEV1 at 2:40 PM — AFTER rollback at 2:27 PM. Managed as SEV2 throughout response. Not analyzed.</div><div class="q-note">Should initial classification have been SEV1? Why was severity only upgraded post-mitigation?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA?</div><div class="q-text">Alert 12:24, SRE paged 12:31, IC assigned 12:40 — ~16min from alert to IC. Fast. But right team (Identity Core) not engaged until 1:04 PM (~40min from alert). Not stated.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q2: Internal communication?</div><div class="q-text">IC swapped twice in 3 minutes (Juan → Luís 1:09 PM → Rúben 1:12 PM), no handover. IB → IC swap at 1:04 PM unexplained. Release Engineering escalated 1:29 PM — why?</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: External communication?</div><div class="q-text">SEV1, 136 tenants, 3h. Only one Zendesk message at 2:40 PM — 2h after incident start. Not assessed.</div><div class="q-note">Was the message sent to all 136 affected tenants? Was a status page entry published?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-red">33%</span><span class="pillar-pts">(1.0/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps?</div><div class="q-text">"Quickly identified based on customer reports, confirmed with existing logs." "Quickly identified" is not an assessment. Diagnosis took ~1.5h. No detail on what was done.</div><div class="q-note">Which logs? How was cleanup identified as cause? Was /certs the immediate diagnostic clue?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">Finding 1 5-Why: "dependencies not accounted for" — process failure, not the technical dependency. The actual technical detail (old OSALL tenants needed KCM /certs) is only in the Resolution section.</div><div class="q-note">Move to Finding 1: "KCM /certs removed; old-format OSALL tenants (pre-10/10/2025) still needed it; migration status not verified before cleanup."</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">System had "migration in progress" state with old and new auth coexisting, but no safeguard prevented cleanup before full migration was verified.</div><div class="q-note">Should migration be gated by: "all OSALL tenants migrated before removing old KCM resources"?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(3.5/7)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation?</div><div class="q-text">Rollback to previous KCM version including /certs. RFC-3919 executed. Mechanism, reasoning, and result documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">Rollback was the chosen mitigation ("immediate decision was to rollback"). Explicitly documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">136 tenants, Total Downtime: 3h, "Users of OSALL tenants created before 10/10/2025 couldn't authenticate." Specific and quantified.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: MTTR?</div><div class="q-text">"Total Downtime: 3h." MTTR: 12:40 PM → 3:13 PM = ~2h33min. SEV1 target &lt;30min. No acceptability judgment.</div><div class="q-note">Add: "SEV1 target &lt;30min; actual ~2h33min — not acceptable. Most delay in diagnosis phase (12:40–2:27 PM)."</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4: Recovery blockers?</div><div class="q-text">~1.5h diagnosis-to-rollback gap unexplained. IB 12:45 → IC 1:04 → RE 1:29 → rollback 2:27 PM. Was 401 ambiguity the key blocker?</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q5: Runbooks used?</div><div class="q-text">Not mentioned. Was a KCM rollback runbook consulted? Given recurrence with RDINC-53480, should one be created?</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q6: Cascading failures?</div><div class="q-text">3 team swarms and 2 IC swaps. Multi-team coordination may have contributed to the 1.5h diagnosis gap. Not addressed.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.5/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Recent change?</div><div class="q-text">ICE and Identity teams started cleanup of resources deemed not in use. "All developments completed to move from old to new mechanism." Cleanup is the direct cause — explicitly documented.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Action items?</div>
+            <table class="jira-tbl">
+              <tr><th>Ticket</th><th>Summary</th><th>Assignee</th><th>Due Date</th><th>RDINC Link</th><th>Status</th></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDPIDT-3378" target="_blank">RDPIDT-3378</a></td><td>Reinforce teams: careful rollout planning</td><td class="ok">Patrícia Sobreira</td><td class="err">NULL ❌</td><td class="err">"relates to" ❌ (needs "reviews")</td><td>Done</td></tr>
+              <tr><td><a href="https://outsystemsrd.atlassian.net/browse/RDPIB-3158" target="_blank">RDPIB-3158</a></td><td>Reinforce teams: careful rollout planning</td><td class="ok">Patrícia Sobreira</td><td class="err">NULL ❌</td><td class="err">"relates to" ❌ (needs "reviews")</td><td>Done</td></tr>
+            </table>
+            <div style="margin-top:6px;font-size:11px;color:var(--muted)">Both tickets identical — behavioral, not a technical prevention measure. Neither prevents "verify old tenants migrated before cleanup."</div>
+          </div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">Title explicitly references RDINC-53480 ("similar as") — but body contains ZERO analysis. Why did it happen again? What was done after RDINC-53480? Were RDPIDT-3378/RDPIB-3158 created from that incident?</div><div class="q-note">If same action items existed from RDINC-53480 and same failure recurred → Problem Management escalation warranted.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.0/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (both)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Process gaps?</div><div class="q-text">Rootly ✓, Slack 12:31 PM ✓, SRE as initial IC ✓. NOT documented: IC changed twice in 3 minutes without rationale; severity escalated to SEV1 only post-mitigation (2:40 PM, after rollback 2:27 PM).</div><div class="q-note">Were Luís Rocha and Rúben Nunes Capitão from SRE? Why was SEV upgraded post-mitigation?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: RFC Change Management?</div><div class="q-text">RFC-3919 listed under "Tasks performed." But retrospective doesn't assess: Emergency RFC type? System-wide impact declared before RFC creation?</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🔴 Working Session Priorities — 60–90 min</span><span>Target: &gt;70/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Recurrence analysis — RDINC-53480 (P5 Q2)</strong><p>Most critical gap. Title says "similar as RDINC-53480" but body has zero analysis. Same root cause? What prevention failed? Consider Problem Management escalation.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Technical root cause depth (P3 Q2 + Q3)</strong><p>Move technical dependency into Finding 1: "KCM /certs removed; old-format OSALL tenants still needed it; migration status not verified." Add architectural question: migration readiness check before cleanup.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. External communication (P2 Q3)</strong><p>SEV1, 136 tenants, 3h. First (only) Zendesk message at 2:40 PM — 2h after start. Sent to all 136? Status page entry published?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. MTTR + diagnosis gap (P4 Q1)</strong><p>"SEV1 target &lt;30min; actual ~2h33min — not acceptable." What consumed the 1.5h diagnosis window (12:40–2:27 PM)?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. Jira traceability — before session (P5 Q3)</strong><p>Change link type on RDPIDT-3378 and RDPIB-3158 from "relates to" → "reviews RDINC-63277". Add Due Dates retroactively.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /63277 -->
+
+    <!-- ── RDINC-74811 ── -->
+    <div class="inc-panel" id="panel-74811">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-74811 — me-central-1 NATS availability (AWS AZ outage)</div>
+          <div class="inc-subtitle">SEV2 · System-wide me-central-1 GA · 8h 41m · AWS physical infrastructure failure</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-29 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.2</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> AWS AZ power failure → NATS pod PVC stuck in failed AZ; Kubernetes topology constraint prevented cross-AZ rescheduling</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6295879684" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6292144277" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-74811" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag-ready">Close to ready</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-green">76</div>
+          <div class="inc-score-label">/100 · 17.5/23 pts · 3 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-green">75%</span><span class="pillar-pts">(4.5/6)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident initially detected?</div><div class="q-text">SLO alert <code>nats-availability</code> (sys-wide-ga-cloud-platform) fired at 13:20 UTC — avg burn rate ≥30× for 10 min. Auto-created RDINC-74811 and paged SRE on-call. William Hindes acknowledged within 1 minute.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">Alert at 13:20 UTC (~50 min after AZ failure at ~12:30) — before the single customer Zendesk ticket (MIM-2031) was filed. Detection was automated and faster than customer escalation.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts clear and actionable?</div><div class="q-text">Alert auto-created the Jira issue and paged on-call; ICE engaged at 13:42 UTC (within 2 min of alert). Alert-to-action pipeline worked as designed.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: System-wide SLO error budget impact?</div><div class="q-text"><code>nats-availability</code> in <code>sys-wide-ga-cloud-platform</code> named and burn rate (≥30×) stated. Error budget consumption not quantified — % consumed, budget remaining, annualized impact.</div><div class="q-note">State how much of the system-wide error budget was consumed by 8h 41m of violation. Is the Q1 budget depleted?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q5: Service-specific SLO error budget?</div><div class="q-text">Unclear whether <code>nats-availability</code> is system-wide or a NATS-specific SLO. No service-specific error budget discussed.</div><div class="q-note">Clarify whether a NATS-specific SLO exists separately. If yes, quantify consumption.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">Detection was fast (~50 min) and noted in "What went well." No explicit reflection on whether earlier detection is possible — AWS Health API integration could detect AZ failure at ~12:30 UTC instead of 13:20 UTC.</div><div class="q-note">Could AWS Health event integration reduce the ~50 min detection lag? Adjacent to CF-2 action item.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-yellow">63%</span><span class="pillar-pts">(2.5/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Internal communication effective?</div><div class="q-text">Full role chain documented — ICL Klaudia Cichocka, IC William Hindes acknowledged immediately, ICE engaged via Rootly swarm at 13:42 UTC and released at 15:19 UTC once scope confirmed as external AWS failure.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Incident declaration timely?</div><div class="q-text">MTTA stated as ~39 min, but document also states William Hindes "acknowledged within 1 minute." These figures are contradictory — unclear what each measures (auto-created alert vs. formal system-wide scope declaration).</div><div class="q-note">Clarify: is ~39 min from incident start to system-wide scope confirmation (14:00 UTC)? Compare against SEV2 target.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: External communication effective?</div><div class="q-text">Status page posted at 16:33 UTC — 2h 12m after formal declaration (14:00 UTC). Document acknowledges the delay and root-causes it (incorrect redundancy assessment). No CF action item specifically tracks this gap.</div><div class="q-note">Create CF action item: mandatory status-page check at system-wide declaration for customer-visible incidents.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA adequate?</div><div class="q-text">~39 min stated but no adequacy analysis. Ambiguity between "1 min acknowledgement" and "39 min MTTA" makes assessment impossible without definition alignment.</div><div class="q-note">Once MTTA calculation is clarified, assess against internal target for system-wide SEV2.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-green">100%</span><span class="pillar-pts">(3.0/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed (all 3)</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps effective?</div><div class="q-text">Full path documented: node identification → RFC-4500 drain → premature closure (ineffective, 1h+ delay) → PVC diagnosis → RFC-4501 PVC deletion <code>kubectl delete pvc -n kube-nats nats-js-pvc-nats-1</code> + Karpenter topology patch (effective). Both effective and ineffective steps documented with timestamps.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">NATS pod <code>nats-1</code> JetStream PVC backed by EBS volume in failed AZ. Kubernetes topology constraints prevent scheduling a pod in a different AZ than its persistent volume. 5-Whys chain reaches architectural decision: no AZ-failure simulation had been conducted. Specific pod, namespace, and PVC name all identified.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">NATS JetStream deployed assuming 3-pod quorum + K8s rescheduling would handle AZ failures, without accounting for PVC topology constraint preventing cross-AZ migration. CF-1 explicitly targets topology-aware storage class as remediation.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-green">92%</span><span class="pillar-pts">(5.5/6, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: MTTR and acceptability?</div><div class="q-text">MTTM of 8h 41m significantly exceeds targets for a system-wide incident — driven by PVC architectural constraint (no runbook) and premature closure that delayed the PVC fix by over 1 hour. Explicitly flagged as not acceptable.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation method?</div><div class="q-text">RFC-4500 (Standard Change — node drain) + RFC-4501 (Emergency RFC — PVC deletion <code>kubectl delete pvc -n kube-nats nats-js-pvc-nats-1</code>) + Karpenter topology patch. Both RFCs linked and confirmed completed.</div></div></div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">N/A — external AWS physical infrastructure failure. Not triggered by an OutSystems code or config change. Rollback is not a relevant recovery mechanism.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q4: Recovery blockers identified?</div><div class="q-text">No runbook existed for NATS PVC deletion or Karpenter AZ exclusion — recovery was improvised. Premature closure explicitly named as a blocker (1+ hour lost). Action items target runbook creation.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q5: Runbooks used and assessed?</div><div class="q-text">RFC-4500 runbook used for node drain; limitations noted. Absence of NATS-specific runbook explicitly named as gap; creation tracked in CF-1 and CF-2 action items.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Cascading failures?</div><div class="q-text">Karpenter continuing to schedule to failed AZ (requiring manual patch), premature closure (structural delay), and 5 stamps affected all documented. Finding 2 and Finding 3 each address specific cascading delays.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">1 customer Zendesk ticket (MIM-2031) documented. Impact table has [TODO] for tenant count, customer name, occurrences, and Grafana source.</div><div class="q-note">Pull tenant data from Grafana for me-central-1 GA during 13:20–22:02 UTC on 2026-03-01. "Where we got lucky" suggests actual impact may be broader than the single ticket.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-red">25%</span><span class="pillar-pts">(0.5/2, 2 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q1: Caused by a recent change?</div><div class="q-text">N/A — external AWS physical infrastructure failure (power outage from objects striking the datacenter). No OutSystems change triggered this.</div></div></div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q4: Automated test coverage sufficient?</div><div class="q-text">N/A — external AZ failure. Automated code/integration tests are not the relevant prevention mechanism. Chaos engineering / AZ failure simulation addressed in Findings.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Action items defined with ownership?</div><div class="q-text">All 5 action items have team-level ownership (SRE Global / Process Eng), but ALL tickets are [TODO]. No single named owner per item.</div><div class="q-note">Create Jira tickets for all 5 items before the working session. Assign individual owners (not team-level) with due dates and "reviews" link to RDINC-74811.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">[TODO: Search RDINC for prior incidents with keywords: 'NATS', 'nats-availability', 'AZ failure', 'me-central-1', 'PVC stuck', 'Karpenter']. Has a NATS availability incident occurred before in any region?</div><div class="q-note">Were there prior action items for NATS topology resilience that went unimplemented? Has Karpenter's AZ-scheduling gap been identified before?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-green">75%</span><span class="pillar-pts">(1.5/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Change Management followed?</div><div class="q-text">RFC-4500 (Standard Change — node drain) executed correctly. RFC-4501 (Emergency RFC) raised, approved by Renato Armani at 18:01 UTC, formally closed 2026-04-15. Both followed correct RFC paths.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Incident management process followed?</div><div class="q-text">IC, ICL, SRE on-call, severity, and two RFCs all followed process. BUT: premature closure at 16:38 UTC is a documented deviation — "the Rootly incident was not formally reopened after the premature closure." Four roles remain [TODO].</div><div class="q-note">Assign Retrospective Commander, Reviewer, Approver. Address whether the re-opening procedure gap is tracked separately from CF-3.</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🟢 Close-to-Ready Checklist — 60 min</span><span>Target: &gt;85/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Create all 5 action-item Jira tickets (P5 Q3)</strong><p>ALL CF tickets are [TODO]. Create tickets, assign individual owners within SRE Global, add due dates and "reviews" link to RDINC-74811. Biggest blocker to approval.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Complete recurrence analysis (P5 Q2)</strong><p>Search RDINC for "NATS", "nats-availability", "PVC", "Karpenter", "AZ failure". Were there prior action items for NATS topology resilience that should have prevented this?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Impact quantification — Grafana (P4 Q7)</strong><p>Pull tenant data for me-central-1 GA during 13:20–22:02 UTC on 2026-03-01. Required before VSL approval — single Zendesk ticket may not capture full scope.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. Status page communication gap (P2 Q3)</strong><p>2h 12m delay is acknowledged and root-caused but has no CF action item. Create one: mandatory status-page check at system-wide declaration for customer-visible incidents.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. MTTA clarification (P2 Q1 + Q4)</strong><p>"1 min acknowledgement" vs "~39 min MTTA" — contradictory. Define: is MTTA from incident start to scope confirmation? Compare against SEV2 target once resolved.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>6. Assign open incident roles (P6 Q1)</strong><p>Retrospective Commander, Reviewer, Approver, RCA participants all [TODO]. These can be assigned without waiting for the session.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--green)"></div><div class="ai-content"><strong>7. Error budget impact (P1 Q4, Q5)</strong><p>Quantify how much of the sys-wide-ga-cloud-platform error budget was consumed by 8h 41m at ≥30× burn rate. Relevant for quarterly budget health.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /74811 -->
+
+    <!-- ── RDINC-78058 ── -->
+    <div class="inc-panel" id="panel-78058">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-78058 — OSALL tenant-provisioning-success-rate (Terraform Controller)</div>
+          <div class="inc-subtitle">SEV2 · ~62 rundev environments, OSALL · 13h 34m · tofu controller 0 replicas after upgrade</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-29 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.3</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> <code>flux-stamp-config-core-stack v0.37.424</code> upgrade → tofu controller sidecar image failure → 0 replicas → all Terraform-dependent provisioning blocked; alarm missed old K8s deployment name</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6292471829" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6287458426" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-78058" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag-ready">Close to ready</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-green">72</div>
+          <div class="inc-score-label">/100 · 18.0/25 pts · 1 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-green">90%</span><span class="pillar-pts">(4.5/5, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident initially detected?</div><div class="q-text">SLO alert <code>tenant-provisioning-success-rate</code> on Sys-Wide-OSALL-PaaS fired (avg burn rate ≥5× for 10 min on OSALL ring) at 20:01 UTC. Detection method, source, trigger condition, and timestamp all present.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">Detection lag of 5h 11m explicitly tracked. Rundev-only impact means customer impact never materialized. Finding 2 analyses why the direct alarm failed (watching old K8s deployment name).</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts clear and actionable?</div><div class="q-text">Finding 2 explicitly diagnoses why the most-direct alert ("no replicas for Terraform Controller") didn't fire — it was watching the old K8s deployment name. Alert failure root-caused, not just mentioned.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">CF-1 (post-deployment readiness validation for infrastructure controller upgrades) and CF-2 (alarm coverage validation step in upgrade checklists). Specific, owned, targeted.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: System-wide SLO error budget impact?</div><div class="q-text">System-wide SLO named and burn rate mentioned (≥5×, <1× at mitigation). Error budget consumption not quantified.</div><div class="q-note">Quantify the budget burn during the 10h+ active window (e.g., "X% of monthly budget consumed").</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q5: Service-specific SLO error budget?</div><div class="q-text">N/A — no service-specific SLO involved; affected SLO is system-wide.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-green">75%</span><span class="pillar-pts">(3.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Internal communication effective?</div><div class="q-text">ICL's status summary "allowed incoming responders to ramp up without requiring extended briefing." ICs and ICLs named; three IC handoffs analysed for coordination overhead. Explicit effectiveness judgment present.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: External communication effective?</div><div class="q-text">"No entry posted — correct decision: only rundev environments affected, zero customer production impact." Status page absence explicitly verified and justified.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Incident declaration timely?</div><div class="q-text">Alert 20:01, declared 20:49 (48 min). No analysis of whether 48 min is acceptable for SEV2 system-wide. Did confirmation of system-wide scope drive the delay?</div><div class="q-note">Was 48 min process-driven (severity assessment, scenario classification) or ambiguity in the signal? Compare to declaration target.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA adequate?</div><div class="q-text">MTTA = 48 min documented; "What went well" notes Sam Audu responded "within minutes." No explicit assessment against SEV2 expectations. Acknowledge time vs. declare time not distinguished.</div><div class="q-note">Distinguish acknowledge time (when on-call started working) from declare time. State whether 48 min is acceptable.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.5/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (all 3)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps effective?</div><div class="q-text">"What didn't go well" notes root cause identification took ~2h after declaration (20:49 → 23:02 UTC). Tools, dashboards, and what slowed investigation not analysed.</div><div class="q-note">Which dashboards surfaced the 0-replicas state? Were there missing signals that would have shortened the 2h?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">Two findings with 5-Whys, but multiple critical whys still [TODO: validate]: F1 Why-3 (why did new controller version fail to start — sidecar image suspected, unconfirmed), F1 Why-5 (why both versions shared same number), F2 Why-3 &amp; Why-4 (alarm coverage process gap, unconfirmed).</div><div class="q-note">Working session must close all four [TODO: validate] whys with ICE/RDO confirmation before root cause story is complete.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">Two structural patterns surface (versioning system allowing duplicate identifiers blocking rollback; alarms decoupled from resource names) but neither is explicitly framed as architectural.</div><div class="q-note">Decide: are these one-off process fixes, or systemic gaps (release pipeline missing unique-version invariant, alarm-as-code missing, observability not regenerated on infra upgrade)?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-green">79%</span><span class="pillar-pts">(5.5/7)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: MTTR and acceptability?</div><div class="q-text">MTTR 13h34m vs SEV2 target &lt;8h — driven by 5h11m detection lag + rollback failure requiring new fix propagation (~6h). Quantified, target compared, drivers attributed.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation method?</div><div class="q-text">Fix-forward via PR #610 (sidecar image fix) + self-heal via RDODCP-905 for 62 stuck environments. Both paths documented with timestamps.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">"Rollback attempted but failed — new and old controller versions shared the same version number." Considered, attempted, failed, and documented.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q4: Recovery blockers identified?</div><div class="q-text">Rollback impossibility (version collision), ~6h fix propagation, 3 IC handoffs across timezones, ~2h to root cause identification. Multiple blockers explicitly listed.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">"~62 affected rundev environments... 0 customer production environments impacted." Tenant table included.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Cascading failures delayed recovery?</div><div class="q-text">Terraform controller down → all Terraform-dependent provisioning blocked. Cross-team coordination (RDO + ICE + SRE) and ~6h propagation time not quantified for recovery delay impact.</div><div class="q-note">Quantify how cross-team coordination and propagation latency contributed to the 13.5h total.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q5: Runbooks used and assessed?</div><div class="q-text">No mention of runbooks, troubleshooting guides, or recovery playbooks anywhere in the document.</div><div class="q-note">Did a runbook exist for "Terraform controller has 0 replicas"? For "rollback failed due to version collision"? Add action item if not.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(2.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Caused by a recent change?</div><div class="q-text">Direct correlation: deployment of <code>flux-stamp-config-core-stack v0.37.424</code> (RDICE-5369) at 14:50 UTC; alert at 20:01 UTC (5h11m later). Trigger and time gap explicit.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">Strong — prior SLO firing on same ring (RDINC-77462, 8 days before), open ticket RDPIB-3379 ("Preparing Refinement"), and a table of 5 prior terraform-controller-no-replicas incidents across rings.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: Action items with ownership and tracking?</div><div class="q-text">Three of four prevention actions are [TODO: Create ticket] — CF-1 (post-deployment readiness validation), CF-1b (unique version identifiers), CF-2 process step (alarm coverage validation). No Jira IDs, no Assignees, no Due Dates, no "reviews" links.</div><div class="q-note">CF-1b (unique version identifiers) is high leverage given recurrence pattern. Does it merge into RDPIB-3379 from RDINC-77462 or stay separate?</div></div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4: Automated test coverage sufficient?</div><div class="q-text">Test coverage not analysed. The fix (PR #610) was a Helm values change — not assessed for whether existing tests should have caught it.</div><div class="q-note">Could a controller-startup smoke test (verify ≥1 replica running post-deploy) have caught this? Is this CF-1 or a distinct action item?</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-green">75%</span><span class="pillar-pts">(1.5/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Incident management process followed?</div><div class="q-text">Roles documented (ICs, Engineers, ICLs); Slack, Rootly used (incident 47426); SEV2 / system-wide scenario applied; three IC handoffs explicitly analysed. Open [TODO]s for Commander/Reviewer/Approver are expected for draft.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Change Management followed?</div><div class="q-text">PR #610 merged 23:47 UTC April 1 during incident. RFC-4739 and RFC-4764 created post-incident (April 7 and April 10). "Confirm: was VS Leader approval obtained in Slack before the PR #610 merge?" — question asked but not answered.</div><div class="q-note">If approval was not obtained before merge, this is a compliance gap requiring its own action item.</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🟢 Close-to-Ready Checklist — 45–60 min</span><span>Target: ≥85/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Close 4 [TODO: validate] root-cause whys (P3 Q2)</strong><p>F1 Why-3 (why did new tofu controller fail to start — confirm sidecar image with ICE/RDO), F1 Why-5 (why both versions shared same number), F2 Why-3 &amp; Why-4 (alarm coverage process gap). Root cause story incomplete without these.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Create prevention action Jira tickets (P5 Q3)</strong><p>CF-1, CF-1b, and CF-2 process step all lack Jira IDs, Assignees, and Due Dates. Does CF-1b merge with RDPIB-3379 from RDINC-77462? Create or link before VSL approval.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Confirm Change Management compliance (P6 Q2)</strong><p>Was VS Leader approval obtained in Slack before PR #610 merged at 23:47 UTC? RFC-4739 and RFC-4764 are post-incident — they don't satisfy "before implementation" requirement if approval wasn't given in Slack.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. Test coverage analysis (P5 Q4)</strong><p>Would a controller-startup smoke test have caught the failed deploy? Is this the same as CF-1 (post-deployment readiness validation) or a distinct action item?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. Runbook gap (P4 Q5)</strong><p>Did a runbook exist for "tofu controller has 0 replicas" or "rollback fails due to version collision"? Add action item to create/update if no.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>6. Architectural framing (P3 Q3)</strong><p>Unique-version-identifiers and alarm-as-code/observability-regeneration — systemic patterns or one-off fixes? Decide explicitly and state in the retrospective.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--green)"></div><div class="ai-content"><strong>7. Error budget and MTTA (P1 Q4, P2 Q1, Q4)</strong><p>Pull actual budget burn from Grafana. State whether 48 min declaration time is acceptable for SEV2. Distinguish acknowledge time from declare time.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /78058 -->
+
+    <!-- ── RDINC-78404 ── -->
+    <div class="inc-panel" id="panel-78404">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-78404 — GA morpheus_ai_llm_gw_error_rate (LLM Gateway)</div>
+          <div class="inc-subtitle">SEV2 · Single region (sa-east-1) · 47 min · GCP credential loss on LLM gateway pod</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-29 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.3</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> GCP credential webhook failure (mechanism unconfirmed) → LLM gateway pod loses credentials → embedding model failures (core user journeys unaffected)</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6292078606" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6287229179" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-78404" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag">Needs working session</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-yellow">67</div>
+          <div class="inc-score-label">/100 · 14.0/21 pts · 5 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-green">80%</span><span class="pillar-pts">(4.0/5, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident initially detected?</div><div class="q-text">SRE on-call (André Rosendo) detected elevated error rate via SLO burn rate alert — avg burn rate ≥10× for 30 min on <code>morpheus_ai_llm_gw_error_rate</code> in GA ring, sa-east-1. Detection method, actor, trigger, region, and threshold all present.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts clear and actionable?</div><div class="q-text">Finding 2 diagnoses miscalibration — SLO fires SEV2 for embedding failures that don't affect core journeys. André Fonseca noted team should not have been paged; prior incidents #47304 and #47848 reclassified to SEV3 post-incident for the same reason.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">CF-2 proposes: "Review and revise the <code>morpheus_ai_llm_gw_error_rate</code> SLO to distinguish embedding failures from core user journey failures." Targeted, owned (AI Platform + VS SRE), rationale clear.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">"0 customer incidents reported via Zendesk" documented, but detection timing relative to customer impact not stated. SLO fired before any Zendesk reports — suggesting proactive detection, but not explicitly stated.</div><div class="q-note">One sentence: "Detection was proactive — SLO alert fired at 12:07, no customer reports received. No customer impact was ever observable."</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: System-wide SLO error budget impact?</div><div class="q-text">Burn rate ≥10× mentioned; duration 47 min. Budget consumption not quantified.</div><div class="q-note">Relevant to severity reclassification argument — if budget consumed was minimal, it supports the SEV3 argument.</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q5: Service-specific SLO error budget?</div><div class="q-text">N/A — only the system-wide GA SLO was affected.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(2.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (all 4)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Incident declaration timely?</div><div class="q-text">Alert 12:06, declared SEV2 at 12:21 (15 min) — after root cause already identified at 12:14. No assessment of whether 15 min is acceptable.</div><div class="q-note">Declaration came after root cause identification. Was the delay confirmation process or SRE requirements? State whether 15 min is acceptable for SEV2 GA.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Internal communication effective?</div><div class="q-text">Zoom war room created, Ambarish Kumar as ICL, no handoffs needed. 47-min incident resolved with two engineers. Described but not assessed for proportionality.</div><div class="q-note">Was the Zoom war room necessary for a 47-min incident? Was ICL coverage proportionate? State whether communication was effective.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: External communication effective?</div><div class="q-text">[TODO: check OutSystems Status Page history for 2026-04-07 12:07–12:54 UTC] — not yet confirmed. Given embedding-only scope and 0 customer incidents, no entry is expected but must be verified.</div><div class="q-note">If no entry: update retrospective — "No status page entry — correct decision given embedding-only scope, single region, 0 customer incidents."</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA adequate?</div><div class="q-text">MTTA ~14 min documented. "What went well" states fast resolution. MTTA not explicitly assessed against SEV2 expectations.</div><div class="q-note">One sentence: "MTTA of 14 min is well within SEV2 expectations. Root cause identified within 7 min of alert fire."</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.5/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (all 3)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps effective?</div><div class="q-text">André Rosendo looped in André Fonseca (AI Platform) who recognised the issue immediately; runbook linked at 12:11. Root cause confirmed at 12:14 — very fast. But tools (Grafana, Rootly) not assessed for what made it fast.</div><div class="q-note">Which signals confirmed the credential loss? Was the runbook lookup the key signal? Brief assessment would complete this.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">Symptom-level root cause clear (pod loses GCP credentials → embedding failures). But Why-2 is [TODO: validate]: "root cause of webhook failure not confirmed. David Santos states 'we have no control why sometimes the webhook fails or simply doesn't run.'" Third occurrence of same failure.</div><div class="q-note">Is "the webhook sometimes fails for unknown reasons" an acceptable root cause? If non-deterministic, state explicitly and direct prevention toward self-healing rather than root cause elimination.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">Two structural gaps present — (1) no automated self-healing for credential loss, and (2) SLO design doesn't distinguish failure classes (Finding 2 is an SLO architecture issue). Neither explicitly framed as architectural.</div><div class="q-note">State: "Two architectural gaps — service lacks self-healing for credential drift, and SLO lacks failure-class granularity. Both addressed by CF-1 and CF-2."</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-green">90%</span><span class="pillar-pts">(4.5/5, 2 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: MTTR and acceptability?</div><div class="q-text">"Total duration approximately 47 minutes, within the SEV2 target of &lt;8h." Explicit comparison to target.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation method?</div><div class="q-text">RFC-4741 (standard change, pod restart per runbook). Documented with execution timestamps.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q5: Runbooks used and assessed?</div><div class="q-text">"Failure mode and fix procedure documented in existing LLM Gateway Troubleshooting Runbook." Assessed as effective — "no improvisation required." CF-2 process action for SLO revision is distinct.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">"0 customer incidents reported via Zendesk. Impact limited to embedding model requests (e.g. <code>text-embedding-004</code>) — core user journeys not affected per AI Platform assessment."</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Cascading failures delayed recovery?</div><div class="q-text">"Clients unable to use GCP models, affecting upstream mentor services" — upstream dependency mentioned as impact but recovery delay not analysed. Was pod restart self-contained or did mentor service require additional coordination?</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">N/A — infrastructure credential drift, not a deployment-triggered incident.</div></div></div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q4: Recovery blockers?</div><div class="q-text">N/A — recovery completed in 47 min following runbook with no documented blockers.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-red">25%</span><span class="pillar-pts">(0.5/2, 2 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q1: Caused by a recent change?</div><div class="q-text">N/A — incident is credential drift/webhook failure with no identified deployment trigger.</div></div></div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q4: Automated test coverage sufficient?</div><div class="q-text">N/A — credential drift is a runtime/infrastructure failure not preventable by pre-deployment automated tests.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">Third occurrence — prior Rootly incidents #47304 and #47848 both reclassified to SEV3 post-incident. Table of prior incidents included. BUT: RDINC keys are [TODO: find] and prior action items not reviewed.</div><div class="q-note">Identify RDINC keys for #47304 and #47848. Check if action items were created after those incidents and why they didn't prevent this third occurrence.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: Action items with ownership and tracking?</div>
+            <table class="jira-tbl">
+              <tr><th>Action</th><th>Ticket</th><th>Owner</th><th>Due Date</th></tr>
+              <tr><td>Automated self-healing for pod credential loss</td><td class="err">[TODO] ❌</td><td>AI Platform</td><td class="err">— ❌</td></tr>
+              <tr><td>Revise <code>morpheus_ai_llm_gw_error_rate</code> SLO</td><td class="err">[TODO] ❌</td><td class="err">AI Platform + VS SRE ❌</td><td class="err">— ❌</td></tr>
+            </table>
+            <div style="margin-top:6px;font-size:11px;color:var(--muted)">CF-1 may already exist as a backlog item (David Santos: "in development") — find and link rather than creating duplicate. CF-2 needs a single named owner, not a joint team.</div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-green">75%</span><span class="pillar-pts">(1.5/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: Incident management process followed?</div><div class="q-text">IC (André Rosendo), ICL (Ambarish Kumar), Retrospective Commander (David Santos) already assigned — better than most drafts. Slack, Rootly used. SEV2 / system-wide applied. No handoffs needed for 47-min incident. Process followed with strong structural coverage.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Change Management followed?</div><div class="q-text">RFC-4741 is a standard change (pod restart per runbook) — appropriate classification. Pre-approved for this failure mode. But "approval timing and approver name not confirmed" per Data Sources section.</div><div class="q-note">Confirm approver and approval timestamp in RFC-4741. State: "RFC-4741 (standard change, pre-approved per runbook). Approved by [name] at [time]. Policy compliant."</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🔴 Working Session — 30–45 min</span><span>Target: ≥85/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Create or link Jira action-item tickets (P5 Q3)</strong><p>CF-1 (self-healing): check AI Platform backlog first — David Santos says "in development", find and link. CF-2 (SLO revision): check if David Santos' 2026-04-10 Slack request generated a ticket; assign a single named owner (not "AI Platform + VS SRE").</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Confirm status page for 2026-04-07 window (P2 Q3)</strong><p>Verify no entry was posted for 12:07–12:54 UTC. If confirmed: "No entry — correct decision, embedding-only scope, 0 customer incidents." Closes the outstanding TODO.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Confirm RFC-4741 approval (P6 Q2)</strong><p>Check RFC-4741 Jira for approver name and timestamp. Standard change so low-risk, but retrospective must state it explicitly.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. Complete recurrence analysis (P5 Q2)</strong><p>Find RDINC keys for Rootly #47304 and #47848. Check if action items were created after those incidents and why they didn't prevent this third occurrence.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. Close webhook root cause (P3 Q2)</strong><p>Is "the webhook sometimes fails for unknown reasons" the final answer? If yes, state it explicitly — and confirm prevention is focused on self-healing rather than root cause elimination.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>6. Severity reclassification (Finding 2)</strong><p>Confirm status of David Santos' 2026-04-10 reclassification request. Is CF-2 the long-term fix? Should a temporary SEV classification rule apply while SLO is revised?</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--green)"></div><div class="ai-content"><strong>7. Communication and MTTA (P2 Q2, Q4)</strong><p>One sentence on ICL proportionality for 47-min incident. One sentence: "MTTA of 14 min well within SEV2 expectations."</p></div></div>
+        </div>
+      </div>
+    </div><!-- /78404 -->
+
+    <!-- ── RDINC-76734 ── -->
+    <div class="inc-panel" id="panel-76734">
+      <div class="inc-header">
+        <div class="inc-meta">
+          <div class="inc-title">RDINC-76734 — OSALL tenant-provisioning-success-rate (Terraform state corruption)</div>
+          <div class="inc-subtitle">SEV2 · 9 environments stuck in DatabaseReady, 6 OSALL stamps · ~52h detection lag · TF state corruption</div>
+          <div class="inc-meta-row"><strong>Date:</strong> 2026-04-29 · <strong>Assessed by:</strong> Koda Pre-Assessment Skill v2.0 · Framework v2.3</div>
+          <div class="inc-meta-row"><strong>Root cause:</strong> Duplicate <code>aws_rds_cluster_instance</code> in terraform state → environments stuck in DatabaseReady; origin of corruption unconfirmed (possible terraform controller restart)</div>
+          <div class="inc-meta-row">
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6291783685" target="_blank">Assessment ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6287360122" target="_blank">Retrospective ↗</a> ·
+            <a class="ext-link" href="https://outsystemsrd.atlassian.net/browse/RDINC-76734" target="_blank">Jira ↗</a>
+          </div>
+          <span class="status-tag">Needs working session</span>
+        </div>
+        <div class="inc-score-block">
+          <div class="inc-score-big c-yellow">65</div>
+          <div class="inc-score-label">/100 · 15.5/24 pts · 2 N/A</div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🕵️</span><span class="pillar-name">Detection & Monitoring</span>
+          <span class="pillar-pct c-green">90%</span><span class="pillar-pts">(4.5/5, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q1: How was the incident initially detected?</div><div class="q-text">SRE on-call (Hakim Jawrawala) detected elevated burn rate (~5.35×) on <code>tenant-provisioning-success-rate</code> OSALL SLO alert. Auto-created at 17:47 UTC; started/diagnosed 18:25 UTC. Detection method, actor, SLO source all present.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Detected before customer impact?</div><div class="q-text">Environments first stuck in DatabaseReady on 2026-03-12 (one since 2026-03-05). SLO alert only fired 2026-03-14 — detection lag of ~52h explicitly documented and analysed. OSALL environments = future customer pool, so no direct customer impact during the lag.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: Were alerts clear and actionable?</div><div class="q-text">Finding 1 analyses why earlier Terraform lambda alerts (RDINC-76465–76476) failed to escalate — closed individually at Normal priority without cross-stamp correlation. No alert existed for "environment stuck in provisioning state for >N hours."</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q6: Detection improvements?</div><div class="q-text">CF-1a proposes two specific actions — add alert for environments stuck in any provisioning state for >4h; review RDODCP-900 scope to include this gap. Specific and actionable.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: System-wide SLO error budget impact?</div><div class="q-text">System-wide SLO named (~5.35× burn rate). "At time of detection, reliability above 99% target (99.58%)" — budget not yet breached at detection. Total burn by resolution not quantified.</div><div class="q-note">Estimate the actual budget consumed — environments were stuck for 52h before alert fired. What was the total burn by 2026-03-14 22:23 UTC?</div></div></div>
+          <div class="q-group">🚫 Not Applicable</div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q5: Service-specific SLO error budget?</div><div class="q-text">N/A — only the system-wide OSALL SLO was affected.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">📣</span><span class="pillar-name">Response & Communication</span>
+          <span class="pillar-pct c-yellow">63%</span><span class="pillar-pts">(2.5/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q3: External communication effective?</div><div class="q-text">"No entry posted to OutSystems Status Page — correct decision. Global Support confirmed no customer incidents received." Decision justified, external confirmation documented.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Incident declaration timely?</div><div class="q-text">SLO alert auto-created 17:47, started/diagnosed 18:25 (~38 min), declared SEV2 19:44 (~79 min after first signal). No assessment of whether 79 min is acceptable for OSALL SEV2.</div><div class="q-note">Was the 1h19m delay driven by confirming system-wide scope? Was it within expected norms for OSALL SLO alerts?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Internal communication effective?</div><div class="q-text">Communication described — Hakim, António, Aravind on call 20:03; Anand updated internal status page 20:16; Gonçalo Silva from Global Support 20:18. No effectiveness judgment made.</div><div class="q-note">Were the right people looped in promptly? Was there a coordination stall? The document describes what happened but not whether it was sufficient.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q4: MTTA adequate?</div><div class="q-text">MTTA ~1h19m documented. Complex context: the "acknowledge" moment came 2 days into the actual failure. On-call response time from alert fire to investigation not separated from formal declaration time.</div><div class="q-note">Separate on-call response time from formal declaration time. Assess both against SEV2 expectations.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🔍</span><span class="pillar-name">Troubleshooting & Root Cause</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.5/3)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (all 3)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Troubleshooting steps effective?</div><div class="q-text">"Root cause identified within ~1h14m of detection (18:25 → 19:39 UTC)" in "What went well." Tools (Grafana TLC dashboard, Slack investigation) referenced but not assessed — was TLC routing the right first step?</div><div class="q-note">What dashboards surfaced the DatabaseReady stuck state? What would have shortened the 1h14m?</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Technical root cause?</div><div class="q-text">Root cause partially identified (TF state duplicate <code>aws_rds_cluster_instance</code> entry). BUT: deepest question — why did state get corrupted? — entirely open. "2026-03-17: initial suspicion of terraform controller restart as root cause under investigation." Unresolved. Why-2 is [TODO: validate].</div><div class="q-note">Working session must close the controller restart hypothesis. Until confirmed or ruled out, the 5-Whys chain is incomplete.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q3: Architectural issues?</div><div class="q-text">Finding 2 identifies "no automated mechanism to detect or correct terraform state corruption" — a structural gap. Described as operational limitation, not framed as architectural weakness requiring systemic analysis.</div><div class="q-note">Is the absence of state validation deliberate, a known gap, or an oversight? Consider architectural review of TF state integrity management at scale (6+ stamps, multiple regions).</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🩹</span><span class="pillar-name">Recovery & Resolution</span>
+          <span class="pillar-pct c-green">83%</span><span class="pillar-pts">(5.0/6, 1 N/A)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">✅ Fully Addressed</div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q2: Primary mitigation method?</div><div class="q-text"><code>terraform state rm</code> + <code>terraform state import</code> executed manually by António Caeiro and Hakim Jawrawala for all 9 environments across 6 stamps. RFC-4593 documented with timestamps.</div></div></div>
+          <div class="q-item"><span class="q-ico">🚫</span><div class="q-body"><div class="q-title">Q3: Rollback considered?</div><div class="q-text">N/A — terraform state corruption is not a deployment-triggered issue; no code or config change to roll back to.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q4: Recovery blockers identified?</div><div class="q-text">Emergency RFC creation failed (tooling issue, ~1h delay). Manual fix per environment across 6 stamps. Both blockers explicitly identified.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q5: Runbooks used and assessed?</div><div class="q-text">"Fix runbook existed and followed correctly — all 9 environments unblocked." Assessed as effective. CF-2 action item proposes validation and update.</div></div></div>
+          <div class="q-item"><span class="q-ico">✅</span><div class="q-body"><div class="q-title">Q7: Customer impact quantified?</div><div class="q-text">"9 environments stuck in DatabaseReady across 6 OSALL stamps. 0 customer incidents." Detailed table per stamp and environment ID provided.</div></div></div>
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: MTTR and acceptability?</div><div class="q-text">Formal MTTM/MTTR of ~45h43m reflects Rootly closure on 2026-03-16 — inflated because incident wasn't formally closed after the fix. Actual recovery time (SLO recovered ~22:23 UTC on 2026-03-14, ~4h after detection) not stated, not assessed against target.</div><div class="q-note">Add: "Actual MTTR ~4h (detection 18:25 → SLO recovery 22:23 on 2026-03-14), within SEV2 &lt;8h target. Formal closure delayed ~2 days due to process failure."</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q6: Cascading failures delayed recovery?</div><div class="q-text">Emergency RFC tooling failure caused ~1h delay. Manual execution across 9 environments on 6 stamps is a recovery dependency. Both mentioned but delay impact not quantified.</div><div class="q-note">Quantify time lost to the Emergency RFC tooling failure. Estimate how much manual-per-environment process added vs an automated remediation.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">🧠</span><span class="pillar-name">Prevention & Learning</span>
+          <span class="pillar-pct c-red">25%</span><span class="pillar-pts">(1.0/4)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Caused by a recent change?</div><div class="q-text">Document does not establish whether the terraform state corruption was triggered by a recent change. Post-resolution note ("initial suspicion of terraform controller restart as root cause under investigation") suggests a possible change link — but unresolved.</div><div class="q-note">Was a terraform controller restart/upgrade deployed before 2026-03-05 or 2026-03-12? This must be confirmed to close the 5-Whys chain for Finding 2.</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Recurrence analysis?</div><div class="q-text">Table of prior incidents present (RDINC-74666, RDINC-73538, RDINC-68984). BUT all three root cause fields are [TODO: check]. Not confirmed whether terraform state corruption appeared in prior incidents.</div><div class="q-note">If state corruption appeared before, this becomes a recurring structural failure — prevention priority increases significantly.</div></div></div>
+          <div class="q-group">❌ Missing</div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q3: Action items with ownership and tracking?</div>
+            <table class="jira-tbl">
+              <tr><th>Action</th><th>Ticket</th><th>Owner</th><th>Due Date</th></tr>
+              <tr><td>Add alert for provisioning stuck state</td><td class="err">[TODO] ❌</td><td class="err">[TODO] ❌</td><td class="err">— ❌</td></tr>
+              <tr><td>Review RDODCP-900 scope</td><td>RDODCP-900</td><td class="err">[TODO] ❌</td><td class="err">— ❌</td></tr>
+              <tr><td>Evaluate automated self-healing for TF state</td><td class="err">[TODO] ❌</td><td class="err">[TODO] ❌</td><td class="err">— ❌</td></tr>
+              <tr><td>Validate/update terraform state runbook</td><td class="err">[TODO] ❌</td><td class="err">[TODO] ❌</td><td class="err">— ❌</td></tr>
+              <tr><td>Fix Emergency RFC Rootly/Jira tooling</td><td class="err">[TODO] ❌</td><td class="err">[TODO] ❌</td><td class="err">— ❌</td></tr>
+            </table>
+            <div style="margin-top:6px;font-size:11px;color:var(--muted)">5 action items, 0 tickets, 0 owners. Do not leave the working session without Jira tickets created, even draft ones. Who is accountable for CF-1a (SRE or RDO), CF-3 (Emergency RFC tooling), and CF-2 (automated self-healing)?</div>
+          </div></div>
+          <div class="q-item"><span class="q-ico">❌</span><div class="q-body"><div class="q-title">Q4: Automated test coverage sufficient?</div><div class="q-text">No test coverage analysis. Incident involves terraform state corruption — not assessed for whether state integrity checks exist or should be added.</div><div class="q-note">Could a <code>terraform plan</code> check (expect zero changes) detect the duplicate entry? Is this covered by CF-2 (automated detection/self-healing), or a distinct action item? If infrastructure drift is confirmed as cause, may be N/A.</div></div></div>
+        </div>
+      </div>
+
+      <div class="pillar-block">
+        <div class="pillar-hdr" onclick="togglePillar(this)">
+          <span class="pillar-icon">✅</span><span class="pillar-name">Process Compliance</span>
+          <span class="pillar-pct c-yellow">50%</span><span class="pillar-pts">(1.0/2)</span><span class="pillar-chev">▶</span>
+        </div>
+        <div class="pillar-body">
+          <div class="q-group">⚠️ Present but Weak (both)</div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q1: Incident management process followed?</div><div class="q-text">Roles partially documented (IC, ICL, Engineers); Slack, Rootly, SEV2 evidenced. BUT: incident not formally closed after fix execution on 2026-03-14 22:23 UTC — remained open ~2 additional days, inflating MTTM/MTTR to ~45h43m. Gap identified but not analysed — why wasn't it closed?</div><div class="q-note">State explicitly why the incident wasn't closed. Was the IC unaware the SLO had recovered? Add process step or checklist item to prevent recurrence (e.g., IC checklist for closure after SLO recovery).</div></div></div>
+          <div class="q-item"><span class="q-ico">⚠️</span><div class="q-body"><div class="q-title">Q2: Change Management followed?</div><div class="q-text">Finding 3 is dedicated to RFC compliance and is thorough. Emergency RFC tooling failed; normal RFC-4593 created instead; RFC states "this should have been an emergency RFC." CRITICAL compliance question still [TODO: validate]: was João Rodrigues' approval obtained BEFORE fix execution at 22:01 UTC? RFC created 20:50, execution 22:01 — 1h11m window.</div><div class="q-note">Confirm approval timing from Jira/Slack RFC-4593 history. If approval was after execution: compliance gap requiring its own action item.</div></div></div>
+        </div>
+      </div>
+
+      <div class="agenda">
+        <div class="agenda-hdr"><span>🔴 Working Session Priorities — 60–75 min</span><span>Target: ≥80/100</span></div>
+        <div class="agenda-body">
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>1. Create all 5 missing Jira action-item tickets (P5 Q3)</strong><p>CF-1a (stuck-state alert), CF-2a (self-healing), CF-2b (runbook), CF-3a (Emergency RFC tooling), CF-3b (fallback path documentation). Each needs: Assignee + Due Date + "reviews" link to RDINC-76734. Do not leave the session without these created.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>2. Determine root cause of terraform state corruption (P3 Q2)</strong><p>Confirm or rule out: was a terraform controller restart/upgrade deployed before 2026-03-05 or 2026-03-12? Close Finding 2 Why-2. Without this, root cause story is incomplete and prevention scope is unclear.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--red)"></div><div class="ai-content"><strong>3. Confirm RFC-4593 approval timing (P6 Q2)</strong><p>Was João Rodrigues' approval recorded BEFORE fix execution at 22:01 UTC? RFC created 20:50, execution 22:01 — check RFC-4593 Jira history or Slack. If after: add process action item.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>4. Complete recurrence analysis (P5 Q2)</strong><p>Check root causes of RDINC-74666, RDINC-73538, RDINC-68984. If terraform state corruption appeared before, prevention priority increases significantly — possible Problem Management escalation.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>5. Explain why incident wasn't closed after fix (P6 Q1)</strong><p>~2 days of unnecessary open state inflated MTTR to ~45h. Why wasn't it closed at 22:23 UTC? Add IC closure checklist step to prevent recurrence.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>6. Actual MTTR acceptability (P4 Q1)</strong><p>Add one sentence: "Actual MTTR ~4h (within SEV2 &lt;8h target); formal closure delayed 2 days due to process failure." Required for Q1 to become ✅.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:#f59e0b"></div><div class="ai-content"><strong>7. Internal communication assessment (P2 Q2)</strong><p>Were the right people looped in promptly? Was there a coordination stall? Add effectiveness judgment — one or two sentences is enough.</p></div></div>
+          <div class="ai"><div class="ai-dot" style="background:var(--green)"></div><div class="ai-content"><strong>8. Error budget, MTTA, and architectural framing (P1 Q4, P2 Q4, P3 Q3)</strong><p>Quantify budget burn. Assess whether 1h19m MTTA is acceptable. State whether absence of TF state validation is architectural or operational.</p></div></div>
+        </div>
+      </div>
+    </div><!-- /76734 -->
+
+  </main>
+</div>
+</div><!-- /incidents -->
+
+</body>
+</html>

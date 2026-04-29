@@ -30,7 +30,23 @@
       "mcp__claude_ai_Atlassian__getConfluencePageDescendants",
       "WebFetch(domain:status.outsystems.com)",
       "mcp__claude_ai_Atlassian__getConfluenceSpaces",
-      "mcp__claude_ai_Atlassian__searchConfluenceUsingCql"
+      "mcp__claude_ai_Atlassian__searchConfluenceUsingCql",
+      "Bash(code *)",
+      "mcp__claude_ai_Atlassian__getJiraIssueRemoteIssueLinks",
+      "mcp__claude_ai_Slack__slack_read_channel",
+      "Bash(gpg *)",
+      "mcp__claude_ai_Atlassian__searchJiraIssuesUsingJql",
+      "Bash(mkdir -p \"C:/Users/ios/Documents/koda+claude/ProcessEngineering/Skills/assess-postmortem-pre\")",
+      "Bash(mkdir -p \"C:/Users/ios/Documents/koda+claude/ProcessEngineering/Skills/assess-postmortem-post\")",
+      "Bash(rm -rf \"C:/Users/ios/.claude/skills/assess-retrospective-pre\")",
+      "Bash(rm -rf \"C:/Users/ios/.claude/skills/assess-retrospective-post\")",
+      "mcp__claude_ai_Atlassian__addCommentToJiraIssue",
+      "Skill(assess-postmortem-pre)",
+      "mcp__claude_ai_Atlassian__search",
+      "mcp__claude_ai_Slack__slack_search_channels",
+      "mcp__claude_ai_Slack__slack_search_public",
+      "mcp__claude_ai_Atlassian__getAccessibleAtlassianResources",
+      "Bash(start *)"
     ]
   }
 }
