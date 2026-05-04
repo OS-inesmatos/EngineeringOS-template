@@ -15,7 +15,7 @@ This skill helps you start your day with a structured morning routine.
 Before greeting, collect today's context in parallel:
 
 1. **Yesterday's notes** — Read the most recent daily note from `log/daily/`.
-2. **Calendar** — Run the `/calendar` skill to get today's schedule from Google Calendar. This uses Playwright to navigate to Google Calendar day view, take an accessibility snapshot, and parse events into a markdown table.
+2. **Calendar** — Run the `/calendar` skill to get today's schedule from Google Calendar. This uses the Google Calendar MCP (`list_calendars` + `list_events`) to fetch events directly.
 3. **90-day goals** — Read `goals/90_day.md` for current priorities.
 4. **Inbox** — Check `inbox.md` for any pending items.
 5. **Principles** — Read `principles.md` to pull the Daily Reminders section.

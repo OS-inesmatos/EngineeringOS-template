@@ -95,7 +95,7 @@
     align-items: flex-start;
   }
   .card-retro  { flex: 1 1 0; }
-  .card-action { flex: 0 0 260px; }
+  .card-action { flex: 0 0 300px; }
 
   /* ── TABLES ── */
   table { width: 100%; border-collapse: collapse; background: #fff; }
@@ -131,6 +131,7 @@
     font-weight: 600;
     font-size: 12px;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
   .change.good    { color: #16a34a; }
   .change.bad     { color: #dc2626; }
@@ -218,18 +219,18 @@
             <td><span class="status stable">Stable</span></td>
           </tr>
           <tr>
-            <td class="metric">Incidents waiting for action item closure</td>
-            <td class="val num">91</td>
-            <td class="val num">94</td>
-            <td class="num"><span class="change bad">↑ 3</span></td>
-            <td><span class="status stable">Stable</span></td>
-          </tr>
-          <tr>
             <td class="metric">Unassigned Retrospective Commanders</td>
             <td class="val num">50.0%</td>
             <td class="val num">26.3%</td>
             <td class="num"><span class="change good">↓ 23.7 pp</span></td>
             <td><span class="status improved">Improved</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Incidents waiting for action item closure</td>
+            <td class="val num">91</td>
+            <td class="val num">94</td>
+            <td class="num"><span class="change bad">↑ 3</span></td>
+            <td><span class="status stable">Stable</span></td>
           </tr>
           <tr>
             <td class="metric">Avg lead time (days)</td>
@@ -265,11 +266,19 @@
             <td class="val num">8</td>
           </tr>
           <tr>
-            <td class="metric">Completeness</td>
-            <td class="val num">85.71%</td>
+            <td class="metric">Not started</td>
+            <td class="val num">8.6% <span style="color:#94a3b8;font-size:11px">(43 issues)</span></td>
           </tr>
           <tr>
-            <td class="metric">Avg time to complete (days)</td>
+            <td class="metric">In progress</td>
+            <td class="val num">2.2% <span style="color:#94a3b8;font-size:11px">(11 issues)</span></td>
+          </tr>
+          <tr>
+            <td class="metric">Completion rate</td>
+            <td class="val num">89.2%</td>
+          </tr>
+          <tr>
+            <td class="metric">Avg. days to close</td>
             <td class="val num">39.72</td>
           </tr>
         </tbody>

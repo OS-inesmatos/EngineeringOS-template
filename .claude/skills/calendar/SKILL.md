@@ -1,7 +1,7 @@
 ---
 skill_name: calendar
 title: Calendar View
-description: View today's or this week's calendar from Google Calendar via Playwright
+description: View today's or this week's calendar from Google Calendar via MCP
 ---
 
 # Calendar View
@@ -18,42 +18,32 @@ View your Google Calendar schedule parsed into a clean markdown table with confl
 
 ## Instructions
 
-### Step 1: Navigate to Google Calendar
+### Step 1: Get calendars
 
-Based on the argument (default: today):
-- **today** → navigate Playwright browser to `https://calendar.google.com/calendar/u/0/r/day`
-- **week** → navigate Playwright browser to `https://calendar.google.com/calendar/u/0/r/week`
+Call `mcp__claude_ai_Google_Calendar__list_calendars` to retrieve the list of available calendars and their IDs.
 
-Use `mcp__playwright__browser_navigate` to open the URL.
+### Step 2: Fetch events
 
-Wait 3 seconds for the page to fully load using `mcp__playwright__browser_wait_for`.
+Based on the argument (default: today), call `mcp__claude_ai_Google_Calendar__list_events` with the appropriate date range:
 
-### Step 2: Take an accessibility snapshot
+- **today** → `time_min` = start of today (00:00), `time_max` = end of today (23:59), in ISO 8601 format with timezone
+- **week** → `time_min` = start of current Monday, `time_max` = end of current Sunday
 
-Use `mcp__playwright__browser_snapshot` — NOT a screenshot.
+Fetch events from the primary calendar (or all calendars if needed).
 
-The snapshot returns the accessibility tree with all calendar events as interactive elements.
-
-### Step 3: Parse events from the snapshot
-
-Events typically appear as button elements with text patterns like:
-```
-"9:30 AM to 10 AM, Meeting Name, Organizer Name, Accepted, No location, Color: Grape"
-"2 PM to 3 PM, Sprint Planning, Team Lead, Tentative, Room 4B, Color: Banana"
-```
+### Step 3: Parse events from the response
 
 For each event, extract:
-- **Time range** — start and end time
-- **Event name** — the meeting title
-- **RSVP status** — Accepted, Tentative, Declined, or Not responded
-- **Location** — room or "No location"
-- **Category** — the color label (Grape, Banana, Sage, etc.)
+- **Time range** — start and end time (from `start.dateTime` / `end.dateTime`)
+- **Event name** — `summary`
+- **RSVP status** — from `attendees[].responseStatus` for the user's own entry: `accepted`, `tentative`, `declined`, `needsAction`
+- **Location** — `location` field, or "No location"
 
 **SKIP these entries** — do not include in the active events table:
-- "Working location" buttons
-- Lunch blocks or meals
-- Focus time / Do not disturb blocks
-- All-day events that are informational (holidays, OOO notices)
+- All-day events (those with `start.date` instead of `start.dateTime`)
+- Events with `status: cancelled`
+- Focus time / Do not disturb blocks (typically titled "Focus time" or "Do not disturb")
+- Lunch blocks or meal events
 
 **Track separately:**
 - Declined events → list in a "Declined" section
@@ -70,17 +60,17 @@ For each day, output:
 ```
 ### [Day of week], [Month] [Day], [Year]
 
-| Time | Event | Status | Category |
+| Time | Event | Status | Location |
 |------|-------|--------|----------|
-| 09:30–10:00 | Meeting Name | Accepted | Color |
-| 10:00–11:00 | Another Meeting | ⚠ Tentative | Color |
+| 09:30–10:00 | Meeting Name | Accepted | No location |
+| 10:00–11:00 | Another Meeting | ⚠ Tentative | Room 4B |
 ...
 
 **Conflicts:** [list overlapping events, or "None"]
 **Declined:** [list declined events, or "None"]
 ```
 
-Use 24h or AM/PM format matching what the snapshot provides. Use en-dash (–) for time ranges.
+Use HH:MM 24h format. Use en-dash (–) for time ranges.
 
 ### Step 5: Add summary
 
@@ -88,16 +78,15 @@ After all days, add:
 
 ```
 **Summary:**
-- Active events: [count] (excluding declined, focus time, lunch)
+- Active events: [count] (excluding declined, focus time, all-day)
 - Meeting hours: [total hours]
-- Estimated focus time: [hours] ([list gaps ≥ 30 min])
+- Estimated focus time: [hours] ([list gaps ≥ 30 min within 09:00–18:00])
 ```
 
-Focus time = gaps between meetings that are at least 30 minutes, within working hours (9 AM – 6 PM).
+Focus time = gaps between meetings of at least 30 minutes, within working hours (09:00–18:00).
 
 ## Tips
 
-- If the browser is not authenticated to Google, tell the user to log in manually and retry.
-- If the snapshot is empty or shows a login page, say so clearly — don't guess at events.
+- If the MCP returns an authentication error, tell the user to re-authenticate via the Google Calendar MCP and retry.
 - For week view, organize events by day with a section header per day.
 - Keep output clean and scannable — this feeds into `/morning` and daily planning.
