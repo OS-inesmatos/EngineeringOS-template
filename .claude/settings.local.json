@@ -48,7 +48,11 @@
       "mcp__claude_ai_Atlassian__getAccessibleAtlassianResources",
       "Bash(start *)",
       "mcp__claude_ai_Google_Calendar__list_calendars",
-      "mcp__claude_ai_Google_Calendar__list_events"
+      "mcp__claude_ai_Google_Calendar__list_events",
+      "mcp__playwright__browser_evaluate",
+      "Skill(update-config)",
+      "Bash(acli confluence *)",
+      "mcp__claude_ai_Slack__slack_search_public_and_private"
     ]
   }
 }
