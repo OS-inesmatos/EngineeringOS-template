@@ -1,7 +1,7 @@
 # RCA Framework — Quality Pillars
 
-**Version:** 2.3
-**Last Updated:** 2026-04-27
+**Version:** 2.5
+**Last Updated:** 2026-05-11
 **Purpose:** Define quality criteria for retrospective auditing (AI/Koda-assisted + sampling-based review)
 
 ---
@@ -75,36 +75,35 @@ The RCA framework evaluates retrospective quality across six core pillars. These
    - Was escalation appropriate and timely?
 
 2. **Was internal communication effective?**
-   - Internal communication (team, leadership)
-   - Timely and clear updates?
+   - Did the SRE IC post timely and informative updates in the incident channel?
+   - Were updates posted whenever significant developments occurred? (Investigating / Identified / Monitoring / Resolved serve as reference points)
+   - Was the response team adequately coordinated?
+   - Note: The ICL role has been eliminated; the IC carries full responsibility for channel updates.
 
 3. **Was external communication effective?**
    - Was the public status page updated promptly?
    - Were customer-facing updates clear and accurate?
-   - Was Public MTTA documented?
+   - Was Public TTA documented?
 
-4. **Was MTTA (Mean Time to Acknowledge) adequate?**
+4. **Was TTA (Time to Acknowledge) adequate?**
    - How long to acknowledge and start working on the incident?
    - Was the response time acceptable?
-   - How does it compare to historical MTTA?
-
-5. **Was status page communication timely and clear?**
-   - Was the public status page updated promptly?
-   - Were customer-facing updates clear and accurate?
-   - Was Public MTTA documented?
+   - How does it compare to historical TTA?
 
 ### Quality Signals
 
 **Good retrospective addresses:**
 - Incident declaration timing analyzed
-- Communication effectiveness assessed
-- MTTA documented and evaluated
+- IC updates posted at key developments throughout the incident
+- Communication effectiveness assessed (coordination, clarity, handoffs)
+- TTA documented and evaluated
 - Status page updates documented
 
 **Red flags:**
 - Incident declaration delays not explained
-- Communication effectiveness not discussed
-- MTTA not mentioned
+- No or infrequent IC updates in the Slack channel
+- No assessment of communication effectiveness
+- TTA not mentioned
 - No status page communication analysis
 
 ---
@@ -151,10 +150,10 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ### Key Questions
 
-1. **What was the recovery time (MTTR) and was it acceptable?**
+1. **What was the recovery time (TTR) and was it acceptable?**
    - How long did recovery take?
    - Was the recovery time acceptable given severity, complexity, and blockers?
-   - How does it compare to historical MTTR for similar incidents?
+   - How does it compare to historical TTR for similar incidents?
 
 2. **What was the primary method of mitigation?**
    - Rollback of change
@@ -194,7 +193,7 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 ### Quality Signals
 
 **Good retrospective addresses:**
-- MTTR quantified with analysis of acceptability (severity, complexity, blockers, historical comparison)
+- TTR quantified with analysis of acceptability (severity, complexity, blockers, historical comparison)
 - Mitigation method documented
 - Rollback consideration documented (used, or justification why not)
 - Recovery blockers clearly identified
@@ -203,7 +202,7 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 - Customer impact quantified with numbers
 
 **Red flags:**
-- MTTR not mentioned
+- TTR not mentioned
 - Mitigation method unclear
 - Rollback not mentioned (no evidence it was considered)
 - No analysis of what slowed recovery
@@ -261,58 +260,34 @@ The RCA framework evaluates retrospective quality across six core pillars. These
 
 ## Pillar 6: Process Compliance ✅
 
-**Focus:** Was the incident management and retrospective process followed correctly?
-
-**Note:** Questions 3, 4, and 5 are **post-assessment only** — they evaluate the completed retrospective process and can only be answered after VSL approval.
+**Focus:** Was the incident response and change management process followed correctly?
 
 ### Key Questions
 
-1. **Did the incident management process work as expected, and were any gaps identified?**
+1. **Did the incident response process work as expected, and were any gaps identified?**
    - Were roles assigned (Incident Commander, engineers, stakeholders)?
-   - Was incident management tooling used (e.g. Rootly)?
+   - Was incident response tooling used (e.g. Rootly)?
    - Were escalation paths followed?
    - If gaps occurred (e.g. delayed declaration, missed escalation): were they identified and analyzed?
+   - Was the Executive Summary completed in Rootly at Resolved stage? (Sc2/3 only — written by the SRE IC, verifiable via Slack channel notification)
 
 2. **If the mitigation required a change (RFC), did it follow Change Management policy?**
    - Was Emergency RFC usage appropriate (system-wide impact declared)?
    - Was risk classification accurate?
    - Was Fast Track usage justified?
-   - See [Change Management Patterns](./CHANGE-MANAGEMENT-PATTERNS.md) for detailed analysis guidelines
-
-3. **Was the retrospective completed within SLA (<14 days)?** 📊 *Post-assessment only*
-   - Time from incident closure to retrospective completion
-   - If delayed, what caused the delay?
-   - Was the timeline acceptable?
-
-4. **Is the retrospective documentation clear, complete, and actionable?** 📊 *Post-assessment only*
-   - Is the document well-structured and readable?
-   - Are all required sections present?
-   - Are action items specific and trackable?
-
-5. **Was the retrospective process followed correctly?** 📊 *Post-assessment only*
-   - Was retro commander assigned promptly?
-   - Was RCA session booked and conducted?
-   - Was sign-off obtained (EM review + VS Leader approval)?
+   - See [Change Management Reference](./CHANGE-MANAGEMENT-REFERENCE.md) for detailed analysis guidelines
 
 ### Quality Signals
 
 **Good retrospective addresses:**
-- Incident management process evaluated
-- Retrospective SLA adherence assessed *(post-assessment)*
-- Documentation quality is high (clear, complete, actionable) *(post-assessment)*
-- Process steps followed (commander assigned, RCA session, sign-off) *(post-assessment)*
+- Incident response process evaluated
+- Executive Summary completed at Resolved (Sc2/3)
 - Change Management policy compliance assessed (if RFC used for mitigation)
 
 **Red flags:**
-- No assessment of incident management process
-- Retrospective SLA not mentioned or significantly delayed *(post-assessment)*
-- Documentation is incomplete or unclear *(post-assessment)*
-- Process steps skipped or not followed *(post-assessment)*
+- No assessment of incident response process
+- Executive Summary missing or not completed at Resolved (Sc2/3)
 - RFC used for mitigation but Change Management compliance not evaluated
-
-**Assessment Timing:**
-- **Pre-assessment:** Evaluates Q1-Q2 (incident management, change management)
-- **Post-assessment:** Evaluates all Q1-Q5 (includes retrospective process itself)
 
 ---
 
@@ -330,7 +305,7 @@ The AI audit framework will:
 ### Sampling-Based Manager Review
 
 Engineering Managers or designated reviewers will:
-1. **Sample retrospectives** — focus on critical incidents (>12h MTTR, high customer impact)
+1. **Sample retrospectives** — focus on critical incidents (>12h TTR, high customer impact)
 2. **Validate AI findings** — ensure AI audit is accurate
 3. **Provide feedback** — when quality gaps identified
 4. **Pattern detection** — if same team repeatedly produces low-quality work, trigger support/training
@@ -365,7 +340,6 @@ Use this framework to assess quality:
 
 ## Reference Materials
 
-- [PROPOSAL-NEW-MODEL.md](./PROPOSAL-NEW-MODEL.md) — Full retrospective transformation proposal
 - [Confluence: Retrospective Transformation Solution](https://outsystemsrd.atlassian.net/wiki/spaces/EEO/pages/6118113287/Retrospective+Transformation+Solution+Proposed) — Process documentation
 - Production Readiness Checklist — Internal reference (link TBD)
 - SRE Guidance Deck — Internal reference (link TBD)
@@ -373,6 +347,18 @@ Use this framework to assess quality:
 ---
 
 ## Changelog
+
+**Version 2.5 (2026-05-11)**
+- Pillar 2 Q2 updated: ICL role eliminated; SRE IC now responsible for incident channel updates; stages are reference points
+- Pillar 2 Q3 updated: note added that external communication is fully owned by Global Support, no R&D accountability
+- Pillar 2 Quality Signals updated: IC channel updates added as signal/red flag
+- Pillar 6 Q1 updated: Executive Summary at Resolved added as process check (Sc2/3, written by SRE IC)
+- Pillar 6 Quality Signals updated: Executive Summary added as good signal and red flag
+
+**Version 2.4 (2026-05-11)**
+- Removed Pillar 6 Q3–Q5 (post-assessment only questions) — pre/post distinction abolished in skill v2.1
+- Framework is now always 26 questions, maximum 26 points
+- Removed all references to post-assessment and assessment timing guidance
 
 **Version 2.3 (2026-04-27)**
 - **Pillar 5, Q4 replaced** — "What learnings did the team gain?" replaced with "Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?"
@@ -408,14 +394,14 @@ Use this framework to assess quality:
 - Process Compliance: 5 questions
 
 **Version 1.7 (2026-04-20)**
-- Reformulated Pillar 4, Q1: "Was MTTR assessed?" → "What was the recovery time (MTTR) and was it acceptable?"
-- Rationale: MTTR is always available (timestamp data). Question should focus on analysis of acceptability considering severity, complexity, blockers, and historical comparison.
+- Reformulated Pillar 4, Q1: "Was TTR assessed?" → "What was the recovery time (TTR) and was it acceptable?"
+- Rationale: TTR is always available (timestamp data). Question should focus on analysis of acceptability considering severity, complexity, blockers, and historical comparison.
 
 **Version 1.6 (2026-04-20)**
 - Reformulated questions to be direct inquiries about the incident rather than asking "is X documented?"
 - Changed questions:
   - Pillar 1, Q1: "Is the detection method clearly documented?" → "How was the incident initially detected?"
-  - Pillar 2, Q4: "Was MTTA documented and adequate?" → "Was MTTA adequate?"
+  - Pillar 2, Q4: "Was TTA documented and adequate?" → "Was TTA adequate?"
   - Pillar 3, Q2: "Is the technical root cause clearly documented?" → "What is the technical root cause?"
   - Pillar 5, Q5: "Are learnings documented?" → "What learnings did the team gain?"
 - Rationale: Questions should guide retrospective writing by asking about the incident itself. Scoring evaluates whether and how well these questions are answered in the document.
@@ -439,7 +425,7 @@ Use this framework to assess quality:
 - Added Q2 to Pillar 6 (Process Compliance): "If the mitigation required a change (RFC), did it follow Change Management policy?"
 - Framework expanded from 28 to 29 questions
 - Question placement: Q2 evaluates incident recovery actions, Q3-5 evaluate retrospective process
-- Created companion reference document: CHANGE-MANAGEMENT-PATTERNS.md
+- Created companion reference document: CHANGE-MANAGEMENT-REFERENCE.md
 - Rationale: Operations Reviews (March-April 2026) identified recurring Change Management compliance gaps during incident recovery (Recovery Bypass, Fast Track misuse, Risk Creep). Framework must evaluate whether recovery actions followed policy.
 
 **Pillar distribution:**

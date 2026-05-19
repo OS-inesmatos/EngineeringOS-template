@@ -30,8 +30,8 @@
 
 | Severity | Description | Time to Repair (Objective) |
 |----------|-------------|---------------------------|
-| **SEV1** — Urgent | Complete loss of service, usually affecting many or all customers. Authentication unavailable, 1CP unavailable in a region. | **< 30 minutes** |
-| **SEV2** — High | Significant problem, no workaround, customer productivity severely impacted. Affects a subset of customers. | **< 8 hours** |
+| **SEV1** — Urgent | Complete loss of service, usually affecting many or all customers. Authentication unavailable, 1CP unavailable in a region. | **≤ 1 hour** |
+| **SEV2** — High | Significant problem, no workaround, customer productivity severely impacted. Affects a subset of customers. | **≤ 4 hours** |
 | **SEV3** — Normal | Non-critical, may have a workaround. Does not require immediate action. | **< 2 weeks** |
 | **SEV4** — Low | Minor issues, workarounds available, no immediate business impact. | **< 4 weeks** |
 
@@ -43,6 +43,21 @@
 - A **Slack channel is created automatically** (all communications must happen there)
 - SRE takes the **Incident Commander** role and swarms with Development Teams
 - Jira incident is the **single source of truth** — all decisions, steps, and people involved must be logged there
+
+---
+
+## Internal Communications (System-wide Incidents — Scenario 2/3)
+
+The SRE Incident Commander is responsible for posting updates in the incident Slack channel whenever there is relevant information to share. The stages below serve as reference points, not strict requirements:
+
+- **Investigating** — scope and nature of impact being assessed
+- **Identified** — root cause or contributing factor identified
+- **Monitoring** — mitigation applied, monitoring for recovery
+- **Resolved** — service fully restored
+
+Global Support is present in the incident channel and has direct access to all communications.
+
+> **Process change (rolling out ~May 2026):** The Internal Communications Leader (ICL) role has been eliminated. The SRE IC now carries full responsibility for incident channel updates.
 
 ---
 
@@ -80,8 +95,19 @@ The process mandates this sequence:
 
 ## External Communication
 
-- **Customer-facing communication** is always managed through **Global Support** — R&D teams do not communicate directly with customers
-- R&D teams communicate with Global Support via the **Jira Zendesk Integration** on the incident ticket
+Customer-facing status page communication is managed entirely by **Global Support**. GS has full accountability and is directly present in the incident Slack channel, using the IC's updates as the basis for customer-facing communications. There is no formal handoff required from R&D/SRE to GS.
+
+R&D teams do not communicate directly with customers.
+
+---
+
+## Executive Summary (System-wide Incidents — Scenario 2/3)
+
+> **Process change (rolling out ~May 2026):** Completing the Executive Summary in Rootly is mandatory as soon as the incident is marked as Resolved. The SRE Incident Commander is responsible for writing it. Completion triggers a notification in the incident Slack channel.
+
+**Why mandatory:**
+- Ensures Global Support has complete, accurate information immediately for external status page post-mortems
+- Captures context while fresh — prevents quality loss from delayed work
 
 ---
 
@@ -90,9 +116,9 @@ The process mandates this sequence:
 ### Pillar 2 — Response & Communication
 
 - **Q1 (Declaration timely):** Cross-reference against scenario. SEV1 system-wide → SRE should declare promptly after confirming impact. Delays must be explained.
-- **Q2 (Internal communication):** For system-wide incidents, all comms must be in the dedicated Slack channel. Verify whether this happened.
-- **Q3 (External communication):** Customer-facing comms go through Global Support. Assess whether the retrospective documents how and when Global Support was engaged.
-- **Q4 (MTTA):** SEV1 time-to-repair objective is <30 min. MTTA significantly above this warrants analysis.
+- **Q2 (Internal communication):** SRE IC is responsible for posting updates in the incident channel whenever relevant. Verify whether the IC posted timely, clear updates throughout the incident. Note: ICL role has been eliminated.
+- **Q3 (External communication):** Status page is fully owned by Global Support (full accountability, no R&D handoff). The retrospective should document whether the status page was updated, timing (Public TTA), and whether content was accurate.
+- **Q4 (TTA):** SEV1 time-to-repair objective is ≤ 1 hour. TTA significantly above this warrants analysis.
 
 ### Pillar 4 — Recovery & Resolution
 
@@ -107,8 +133,9 @@ The process mandates this sequence:
   - Slack channel used for all comms (Sc2/3)
   - Jira kept as single source of truth
   - Retrospective triggered (mandatory for Sc2/3, optional for Sc1)
+  - Executive Summary completed in Rootly at Resolved stage, written by the SRE IC (Sc2/3) — verifiable via Slack channel notification
 
 ---
 
 **Document Owner:** Inês Matos (Process Engineering)  
-**Last Updated:** 2026-04-27
+**Last Updated:** 2026-05-14

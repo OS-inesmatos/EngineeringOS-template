@@ -1,8 +1,8 @@
 # RCA Framework — Scoring Guide
 
-**Version:** 2.3
-**Last Updated:** 2026-04-27
-**Purpose:** Detailed scoring criteria for evaluating retrospective quality against RCA Framework (30 questions: 26 for pre-assessment, 29 for post-assessment)
+**Version:** 2.6
+**Last Updated:** 2026-05-11
+**Purpose:** Detailed scoring criteria for evaluating retrospective quality against RCA Framework (26 questions)
 
 ---
 
@@ -48,7 +48,7 @@ When evaluating "Are prevention action items defined with clear ownership and tr
    - **Assignee (Jira field)** — Owner assigned (not blank)? ⚠️ **MANDATORY**
    - **Due Date (Jira field)** — Due Date populated? ⚠️ **MANDATORY**
      - ⚠️ **RPOR project exception:** For RPOR tickets, Due Date is stored as **"Target end"** (`customfield_15486`), not `duedate`. Request both fields when calling `getJiraIssue`.
-   - **RDINC Link** — Ticket must have a Jira link of type **"reviews"** pointing to the RDINC issue of this retrospective ⚠️ **MANDATORY**
+   - **RDINC Link** — The action item must have a Jira link of type **"reviews"** pointing to the RDINC issue (checked from the action item side; the RDINC shows the same link as **"is reviewed by"**) ⚠️ **MANDATORY**
      - Check the `issuelinks` field in the `getJiraIssue` response (include `issuelinks` in `fields` param)
 4. **Red flags — flag but do not auto-fail:**
    - **Discarded status** — action item may not be executed; requires explanation of replacement or rationale
@@ -60,7 +60,7 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 **Why these fields are mandatory:**
 - **Assignee**: Without a named owner, accountability is unclear
 - **Due Date**: Without a Due Date, completion commitment is unclear; delays cannot be detected
-- **RDINC Link ("reviews")**: Without the link, action items are disconnected from the incident; traceability is broken
+- **RDINC Link ("reviews" on action item / "is reviewed by" on RDINC)**: Without the link, action items are disconnected from the incident; traceability is broken
 - **Discarded**: A Discarded action item that isn't replaced leaves the root cause unaddressed
 
 **Validation method:**
@@ -197,19 +197,20 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 ### Q2: Was internal communication effective?
 
 **What we're looking for:**
-- Was internal communication timely and clear?
-- Were stakeholders properly informed?
-- Was Slack/incident channel communication effective?
+- Did the SRE IC post timely and informative updates in the incident channel?
+- Were updates posted whenever significant developments occurred? (Investigating / Identified / Monitoring / Resolved serve as reference points)
+- Was the response team adequately coordinated?
+- Note: The ICL role has been eliminated; the IC carries full responsibility for channel updates.
 
 **Scoring:**
 
 | Score      | Criteria                                                                         | Example                                                                                                                                             |
 | ---------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ **1.0**  | Internal communication effectiveness explicitly assessed with specific analysis  | "Slack channel created immediately. IC provided updates every 30min. RDM and ICE teams added to channel within 15min. Communication was effective." |
-| ⚠️ **0.5** | Internal communication described with some detail, but no effectiveness judgment | "Slack channel created at 02:06. Cross-team coordination involved SRE and Identity Core."                                                           |
-| ❌ **0.0**  | No mention of internal communication                                             | No mention of internal communication                                                                                                                |
+| ✅ **1.0**  | IC channel updates timely and clear throughout incident; communication effectiveness explicitly assessed | "SRE IC posted updates at Investigating, Identified, Monitoring, and Resolved stages. Dev team engaged within 20min of channel open. Communication was effective — no handoff gaps." |
+| ⚠️ **0.5** | IC updates described but frequency or clarity not assessed; OR effectiveness judgment absent | "Slack channel created at 02:06. Cross-team coordination involved SRE and Identity Core."                                                           |
+| ❌ **0.0**  | No mention of IC updates or internal communication in the channel                | No mention of internal communication                                                                                                                |
 
-**Decision rule:** ✅ requires either (a) an explicit effectiveness judgment ("communication was effective/ineffective") OR (b) assessment of at least two aspects (e.g., update frequency + stakeholder coverage + gap analysis). Describing *what happened* without evaluating *whether it was sufficient* = ⚠️.
+**Decision rule:** ✅ requires either (a) an explicit effectiveness judgment ("communication was effective/ineffective") OR (b) assessment of at least two aspects (e.g., update frequency + team coordination + gap analysis). Describing *what happened* without evaluating *whether it was sufficient* = ⚠️.
 
 ---
 
@@ -218,33 +219,33 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 **What we're looking for:**
 - Was the public status page updated promptly?
 - Were customer-facing updates clear and accurate?
-- Was Public MTTA documented?
+- Was Public TTA documented?
 
 **Scoring:**
 
 | Score | Criteria | Example |
 |-------|----------|---------|
-| ✅ **1.0** | External communication assessed with status page update timing and Public MTTA | "Status page updated at 15:20 (11min after declaration). Public MTTA: 20min. Customer-facing updates clear: 'Deployment issues affecting 10% of production environments.' Communication was timely." |
+| ✅ **1.0** | External communication assessed with status page update timing and Public TTA | "Status page updated at 15:20 (11min after declaration). Public TTA: 20min. Customer-facing updates clear: 'Deployment issues affecting 10% of production environments.' Communication was timely." |
 | ⚠️ **0.5** | External communication mentioned but not assessed for effectiveness/timing | "Status page was updated." |
 | ❌ **0.0** | No assessment of external communication | No mention of customer communication |
 | 🚫 **N/A** | No external customer impact (internal-only incident) | "Internal infrastructure issue, no customer-facing communication needed." |
 
 ---
 
-### Q4: Was MTTA (Mean Time to Acknowledge) adequate?
+### Q4: Was TTA (Time to Acknowledge) adequate?
 
 **What we're looking for:**
 - How long to acknowledge and start working on the incident?
 - Was the response time acceptable?
-- How does it compare to historical MTTA?
+- How does it compare to historical TTA?
 
 **Scoring:**
 
 | Score | Criteria | Example |
 |-------|----------|---------|
-| ✅ **1.0** | MTTA documented with assessment of adequacy | "MTTA: 25min (alert at 10:16, team started troubleshooting at 10:41). Acceptable given initial misclassification. Historical MTTA for SEV2: 15min." |
-| ⚠️ **0.5** | MTTA value mentioned but not assessed | "MTTA: 25min." |
-| ❌ **0.0** | MTTA not mentioned | No mention of response time |
+| ✅ **1.0** | TTA documented with assessment of adequacy | "TTA: 25min (alert at 10:16, team started troubleshooting at 10:41). Acceptable given initial misclassification. Historical TTA for SEV2: 15min." |
+| ⚠️ **0.5** | TTA value mentioned but not assessed | "TTA: 25min." |
+| ❌ **0.0** | TTA not mentioned | No mention of response time |
 
 ---
 
@@ -305,22 +306,22 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 ## Pillar 4: Recovery & Resolution 🩹 (7 questions, 7 points max)
 
-### Q1: What was the recovery time (MTTR) and was it acceptable?
+### Q1: What was the recovery time (TTR) and was it acceptable?
 
 **What we're looking for:**
 - How long did recovery take?
 - Was the recovery time acceptable given severity, complexity, and blockers?
-- How does it compare to historical MTTR for similar incidents?
+- How does it compare to historical TTR for similar incidents?
 
 **Scoring:**
 
-| Score      | Criteria                                                                                                              | Example                                                                                                                                                                                                                          |
-| ---------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ **1.0**  | MTTR quantified with analysis of acceptability (considering severity, complexity, blockers, or historical comparison) | "MTTR: OSALL 6.8h, EA 1h. OSALL longer than typical (4h) due to race condition complexity requiring manual intervention across 24 stamps. EA faster due to fix-forward strategy already developed. Acceptable given complexity." |
-| ⚠️ **0.5** | MTTR value mentioned and delay cause analyzed, BUT no explicit acceptability judgment                                 | "MTTR: ~2h. Detection gap caused 1h32min delay due to SEV3 misclassification." (explains why but doesn't assess if acceptable)                                                                                                   |
-| ❌ **0.0**  | MTTR not mentioned                                                                                                    | No mention of recovery time                                                                                                                                                                                                      |
+| Score      | Criteria                                                                                                             | Example                                                                                                                                                                                                                         |
+| ---------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **1.0**  | TTR quantified with analysis of acceptability (considering severity, complexity, blockers, or historical comparison) | "TTR: OSALL 6.8h, EA 1h. OSALL longer than typical (4h) due to race condition complexity requiring manual intervention across 24 stamps. EA faster due to fix-forward strategy already developed. Acceptable given complexity." |
+| ⚠️ **0.5** | TTR value mentioned and delay cause analyzed, BUT no explicit acceptability judgment                                 | "TTR: ~2h. Detection gap caused 1h32min delay due to SEV3 misclassification." (explains why but doesn't assess if acceptable)                                                                                                   |
+| ❌ **0.0**  | TTR not mentioned                                                                                                    | No mention of recovery time                                                                                                                                                                                                      |
 
-**Decision rule:** Analyzing the *cause* of delay is not sufficient for ✅. The retrospective must also make an explicit acceptability judgment — either comparing to the SEV target (e.g., "SEV1 target <30min; actual 2h — unacceptable") or explaining why the duration was acceptable given circumstances. Cause without judgment = ⚠️.
+**Decision rule:** Analyzing the *cause* of delay is not sufficient for ✅. The retrospective must also make an explicit acceptability judgment — either comparing to the SEV target (e.g., "SEV1 target ≤1h; actual 2h — unacceptable") or explaining why the duration was acceptable given circumstances. Cause without judgment = ⚠️.
 
 ---
 
@@ -372,6 +373,8 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 | ⚠️ **0.5** | Recovery blockers mentioned but not specific                  | "Recovery was slow."                                                                                                                                                                                                                                                                |
 | ❌ **0.0**  | No recovery blockers identified                               | No analysis of what slowed recovery                                                                                                                                                                                                                                                 |
 | 🚫 **N/A** | Recovery was fast with no blockers                            | "Fix deployed in 10min, no blockers."                                                                                                                                                                                                                                               |
+
+**Decision rule — N/A vs ❌:** Acceptable TTR does not justify N/A. N/A applies only when (a) the document explicitly states no blockers were encountered, OR (b) recovery was near-instantaneous (<20 min) with no observable friction in the timeline. If the document is silent on blockers and recovery took >20 minutes, default to ❌ — silence is not confirmation that no blockers existed.
 
 ---
 
@@ -514,25 +517,24 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 
 ---
 
-## Pillar 6: Process Compliance ✅ (5 questions, 5 points max)
+## Pillar 6: Process Compliance ✅ (2 questions, 2 points max)
 
-**Note:** Questions 3, 4, and 5 are **post-assessment only** — they evaluate the completed retrospective and can only be scored after VSL approval.
-
-### Q1: Did the incident management process work as expected, and were any gaps identified?
+### Q1: Did the incident response process work as expected, and were any gaps identified?
 
 **What we're looking for:**
 - Were roles assigned (Incident Commander, engineers, stakeholders)?
-- Was incident management tooling used (e.g. Rootly)?
+- Was incident response tooling used (e.g. Rootly)?
 - Were escalation paths followed?
 - If gaps occurred: were they identified and analyzed?
+- Was the Executive Summary completed in Rootly at Resolved stage? (Sc2/3 only — written by the SRE IC, verifiable via Slack channel notification)
 
 **Scoring logic:** Inverted burden of proof — assume the process worked unless evidence of failure exists. Structural evidence (roles documented, tooling used) is sufficient for ✅. Only penalise when gaps are present but unacknowledged, or when there is no evidence of process at all.
 
 | Score      | Criteria                                                                        | Example                                                                                                                                                                                                          |
 | ---------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ **1.0**  | Roles assigned + tooling used + any gaps identified AND analyzed                | "Roles assigned: Incident Commander (Juan de Miguel), Stakeholder, Engineers. Rootly used. Declaration delayed 1h48m — root cause analyzed (SEV3 classification prevented on-call paging). Action item created." |
-| ⚠️ **0.5** | Roles assigned + tooling used, BUT gaps present and not analyzed                | "Roles documented. Declaration was delayed but no explanation provided."                                                                                                                                         |
-| ❌ **0.0**  | No evidence of incident management process (no roles, no tooling, no structure) | No mention of roles, tooling, or incident process                                                                                                                                                                |
+| ✅ **1.0**  | Roles assigned + tooling used + Executive Summary completed at Resolved (Sc2/3) + any gaps identified AND analyzed | "Roles assigned: Incident Commander (Juan de Miguel), Stakeholder, Engineers. Rootly used. Executive Summary completed at resolution. Declaration delayed 1h48m — root cause analyzed (SEV3 classification prevented on-call paging). Action item created." |
+| ⚠️ **0.5** | Roles assigned + tooling used, BUT gaps present and not analyzed; OR Executive Summary missing for Sc2/3 | "Roles documented. Declaration was delayed but no explanation provided." / "Roles and tooling documented but no evidence of Executive Summary completion (Sc2/3 incident)."                                      |
+| ❌ **0.0**  | No evidence of incident response process (no roles, no tooling, no structure) | No mention of roles, tooling, or incident process                                                                                                                                                                |
 
 ---
 
@@ -544,7 +546,7 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 - Was risk classification accurate?
 - Was Fast Track usage justified?
 
-**See:** [CHANGE-MANAGEMENT-PATTERNS.md](./CHANGE-MANAGEMENT-PATTERNS.md) for detailed scoring guidance
+**See:** [CHANGE-MANAGEMENT-REFERENCE.md](./CHANGE-MANAGEMENT-REFERENCE.md) for detailed scoring guidance
 
 **Scoring:**
 
@@ -554,59 +556,6 @@ When evaluating "Are prevention action items defined with clear ownership and tr
 | ⚠️ **0.5** | Partial compliance assessed or some gaps identified with justification | "RFC-4388 used Recovery Bypass (directly to GA) due to SEV1 urgency. Approved by SRE Lead. Partial compliance." |
 | ❌ **0.0** | RFC used but compliance not assessed, or clear policy violations | "RFC-4388 used Emergency for non-system-wide incident. Policy violation." |
 | 🚫 **N/A** | No RFC needed for mitigation | "Mitigation: service restart, no RFC required." |
-
----
-
-### Q3: Was the retrospective completed within SLA (<14 days)? 📊 *Post-Assessment Only*
-
-**What we're looking for:**
-- Time from incident closure to retrospective completion?
-- If delayed, what caused the delay?
-- Was the timeline acceptable?
-
-**Scoring:**
-
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Retrospective SLA documented and assessed (with delay explanation if applicable) | "Incident closed: Nov 3. Retrospective completed: Nov 10 (7 days). Within SLA (<14 days). No delays." |
-| ⚠️ **0.5** | SLA mentioned but not assessed or delay not explained | "Retrospective completed 20 days after incident closure." (no explanation) |
-| ❌ **0.0** | No mention of retrospective timeline | No information about SLA compliance |
-
----
-
-### Q4: Is the retrospective documentation clear, complete, and actionable? 📊 *Post-Assessment Only*
-
-**What we're looking for:**
-- Is the document well-structured and readable?
-- Are all required sections present?
-- Are action items specific and trackable?
-
-**Scoring:**
-
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Retrospective is well-structured, complete, and actionable | "Document includes: Executive Summary, Timeline, Root Cause (5-Whys), Recovery Actions, Action Items (with owners and Jira links). Clear structure, actionable items." |
-| ⚠️ **0.5** | Retrospective is present but incomplete or unclear | "Document has root cause but missing action items or timeline unclear." |
-| ❌ **0.0** | Retrospective is poorly structured or missing key sections | "Retrospective is minimal, no root cause analysis, no action items." |
-
-**Note:** This is a meta-question about the retrospective document itself.
-
----
-
-### Q5: Was the retrospective process followed correctly? 📊 *Post-Assessment Only*
-
-**What we're looking for:**
-- Was retro commander assigned promptly?
-- Was RCA session booked and conducted?
-- Was sign-off obtained (EM review + VS Leader approval)?
-
-**Scoring:**
-
-| Score | Criteria | Example |
-|-------|----------|---------|
-| ✅ **1.0** | Retrospective process explicitly documented and followed | "Commander assigned: Nov 4 (1 day after closure). RCA session: Nov 7 (3 attendees). Sign-off: EM review (Nov 9), VSL approval (Nov 10). Process followed." |
-| ⚠️ **0.5** | Process mentioned but not complete or delays not explained | "Commander assigned Nov 10 (7 days after closure)." (delay not explained) |
-| ❌ **0.0** | No evidence of retrospective process being followed | No information about commander assignment, RCA session, or sign-off |
 
 ---
 
@@ -641,33 +590,18 @@ Pillar Score (%) = (Points Earned / Points Possible) × 100
 Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 ```
 
-**Pre-Assessment vs Post-Assessment:**
-- **Pre-Assessment:** Evaluates 26 questions (Pillars 1-5 full + Pillar 6 Q1-Q2 only)
-  - Maximum possible: 26 points
-- **Post-Assessment:** Evaluates all 29 questions (includes Pillar 6 Q3-Q5)
-  - Maximum possible: 29 points
-
-**Example — Post-Assessment (Full Framework)**
+**Example — Full Framework (26 questions)**
 - Pillar 1: 2.5 / 5 points
 - Pillar 2: 3.0 / 4 points
 - Pillar 3: 2.5 / 3 points
 - Pillar 4: 4.0 / 7 points
 - Pillar 5: 3.5 / 4 points
-- Pillar 6: 3.5 / 5 points
+- Pillar 6: 1.5 / 2 points
 
 **Calculation:**
-- Total Earned: 2.5 + 3.0 + 2.5 + 4.0 + 3.5 + 3.5 = 19.0
-- Total Possible: 5 + 4 + 3 + 7 + 4 + 5 = 28
-- Overall Score: 19.0 / 28 = 67.9% → **68/100**
-
-**Example — Pre-Assessment (Excludes Pillar 6 Q3-Q5)**
-- Pillar 1-5: Same as above = 16.5 points
-- Pillar 6: 1.5 / 2 points (only Q1, Q2 scored)
-
-**Calculation:**
-- Total Earned: 16.5 + 1.5 = 18.0
-- Total Possible: 5 + 4 + 3 + 7 + 4 + 2 = 26
-- Pre-Assessment Score: 18.0 / 26 = 69.2% → **69/100**
+- Total Earned: 2.5 + 3.0 + 2.5 + 4.0 + 3.5 + 1.5 = 17.0
+- Total Possible: 5 + 4 + 3 + 7 + 4 + 2 = 25 (assuming 1 N/A)
+- Overall Score: 17.0 / 25 = 68%
 
 ---
 
@@ -675,8 +609,8 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 
 | Threshold | Symbol | Status | Interpretation |
 |-----------|--------|--------|----------------|
-| **70%+** | 🟢 | **Good Quality** | Ready for approval, meets quality standards |
-| **40-70%** | 🟡 | **Needs Improvement** | RCA working session recommended to address gaps |
+| **75%+** | 🟢 | **Good Quality** | Good quality — still some gaps to address |
+| **40–74%** | 🟡 | **Needs Improvement** | RCA working session recommended to address gaps |
 | **<40%** | 🔴 | **Significant Gaps** | Requires substantial work before approval |
 
 ---
@@ -689,9 +623,9 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 - Rationale: Some questions don't apply to every incident type
 
 **Example:**
-- Total questions: 29
+- Total questions: 26
 - N/A questions: 3
-- Scoring basis: 26 questions (29 - 3)
+- Scoring basis: 23 questions (26 - 3)
 
 ---
 
@@ -699,11 +633,11 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 
 ### Case 1: Implicit Information
 
-**Question:** "Was MTTR assessed?"
+**Question:** "Was TTR assessed?"
 **Document says:** "Incident lasted 6 hours."
 
 **How to score:**
-- ⚠️ **0.5** — MTTR value is present (6h) but not assessed (no analysis of adequacy)
+- ⚠️ **0.5** — TTR value is present (6h) but not assessed (no analysis of adequacy)
 - Not ✅ **1.0** — no assessment of whether 6h was acceptable
 
 ---
@@ -736,15 +670,15 @@ Overall Score (%) = (Total Points Earned / Total Points Possible) × 100
 
 ### Case 4: Data Without Analysis
 
-**Question:** "Was MTTR assessed?"
-**Document says:** "MTTR: 6.8 hours."
+**Question:** "Was TTR assessed?"
+**Document says:** "TTR: 6.8 hours."
 
 **How to score:**
 - ⚠️ **0.5** — Data present but no analysis (was it acceptable? why that duration?)
 - Not ✅ **1.0** — analysis missing
 
 **Better example for 1.0:**
-> "MTTR: 6.8 hours. This was longer than typical (historical: 4h) due to race condition complexity requiring manual intervention across 24 stamps. Acceptable given circumstances."
+> "TTR: 6.8 hours. This was longer than typical (historical: 4h) due to race condition complexity requiring manual intervention across 24 stamps. Acceptable given circumstances."
 
 ---
 
@@ -760,6 +694,18 @@ To ensure consistency across reviewers:
 ---
 
 ## Version History
+
+**Version 2.6 (2026-05-11)**
+- **P2 Q2 updated** — ICL role eliminated; scoring now evaluates whether SRE IC posted timely updates in the incident channel; examples updated to reflect direct IC responsibility
+- **P6 Q1 updated** — Executive Summary completion at Resolved added as scored element for Sc2/3; ✅ now requires Executive Summary; missing Executive Summary = ⚠️
+
+**Version 2.5 (2026-05-11)**
+- **P4 Q4 decision rule added** — Acceptable TTR does not justify N/A; N/A requires explicit "no blockers" statement or near-instantaneous recovery (<20 min); silence defaults to ❌
+
+**Version 2.4 (2026-05-11)**
+- Removed Pillar 6 Q3–Q5 (post-assessment only questions) — pre/post distinction abolished in skill v2.1
+- Framework is now always 26 questions, maximum 26 points
+- Removed all references to 29 questions and post-assessment
 
 **Version 2.3 (2026-04-27)**
 - **Pillar 5, Q4 added (tests)** — "Were existing automated tests sufficient to prevent or detect this issue? If not, are new tests defined as action items?" added to force explicit test coverage analysis
@@ -800,7 +746,7 @@ To ensure consistency across reviewers:
 - Updated edge case examples
 
 **Version 1.2 (2026-04-20)**
-- Updated Pillar 4, Q1 to match RCA Framework v1.7: "What was the recovery time (MTTR) and was it acceptable?"
+- Updated Pillar 4, Q1 to match RCA Framework v1.7: "What was the recovery time (TTR) and was it acceptable?"
 - Scoring now emphasizes analysis of acceptability considering severity, complexity, blockers, and historical comparison
 
 **Version 1.1 (2026-04-20)**
@@ -820,4 +766,4 @@ To ensure consistency across reviewers:
 **Status:** Active — Use for retrospective auditing
 **Related Documents:**
 - [RCA-FRAMEWORK-PILLARS.md](./RCA-FRAMEWORK-PILLARS.md) — Framework questions
-- [CHANGE-MANAGEMENT-PATTERNS.md](./CHANGE-MANAGEMENT-PATTERNS.md) — Pillar 6, Q2 detailed guidance
+- [CHANGE-MANAGEMENT-REFERENCE.md](./CHANGE-MANAGEMENT-REFERENCE.md) — Pillar 6, Q2 detailed guidance
